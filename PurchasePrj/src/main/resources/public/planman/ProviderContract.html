@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>供应商密码修改</TITLE>
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312"><LINK 
+href="ProviderContract.files/style.css" rel=stylesheet>
+<script language=javascript> 
+function updaback()
+	{ 
+		 if (form.strMemlogPass1.value!=form.strMemlogPass.value)
+			{  alert("登录密码和密码确认不一致！");   }
+		 else
+			{ if (form.rad.value=="")
+				{  alert("对不起，请输入登录名。");    } 
+			  else
+				{
+					 form.but.value ="upd";
+					 form.submit ();
+				}
+			}
+	 } 
+</script>
+
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR></HEAD>
+<BODY>
+<center>
+<form name=form action="jiffprov_hysave.asp" method="post">
+<input type=hidden name="but" value="updaback">
+<input type=hidden name="rad" value="zzCEO">
+
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+<tr bgcolor="#ffffff"> 
+<td colspan="20" bgcolor="#ffffff" align=center height=22><B><H2><font  color=#0070C0 >供应商密码修改</b>
+<img alt="帮助" src="css/help_a.gif" border="0"></td>
+</tr>
+
+<tr>
+		<TD  class=t1 noWrap width="21%" >登&nbsp;录&nbsp;名:</td>
+		<TD  class=t2 noWrap colspan=3> zzCEO<input type=hidden name="strMemLogName" value="zzCEO"></TD>
+</TR>
+<tr>
+		<TD class=t1 nowrap width="21%">用户姓名</td>
+		<TD class=t2 noWrap width="28%">邹卓</TD>
+		<TD class=t1 noWrap width="16%"> 性&nbsp;&nbsp;&nbsp;&nbsp;别</td>
+		<TD class=t2 noWrap width="35%">男</TD>
+</TR>
+<tr >
+		<TD class=t1 noWrap width="21%">联系电话</td>
+		<TD class=t2 noWrap width="28%">0731-87777888</TD>
+		<TD class=t1 noWrap width="16%">传&nbsp;&nbsp;&nbsp;&nbsp;真</td>
+		<TD class=t2 noWrap width="35%">0731-88888777</TD>
+</TR>
+<tr bgcolor="#99ccff">
+		<TD class=t1 noWrap width="21%">电子邮箱</td>
+		<TD class=t2 noWrap width="28%">zgyxwh@yahoo.com.cn</TD>
+		<TD class=t1 noWrap width="16%"> 邮&nbsp;&nbsp;&nbsp;&nbsp;编</td>
+		<TD class=t2 noWrap width="35%">410000</TD></TR>
+<tr bgcolor="#99ccff">
+		<TD class=t1 noWrap width="21%">联系地址</td>
+		<TD class=t2 noWrap colspan=3>湖南长沙解放西路403号</TD></TR>
+</table></td></tr></table>
+
+</P>
+<P align=center>
+		<INPUT id=button1 name=button1 type=button value="返回" onClick="history.back()">
+</P>
+</form></BODY></HTML>

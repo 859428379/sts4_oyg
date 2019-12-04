@@ -1,0 +1,890 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+	<HEAD>
+		<TITLE>修改合同申请</TITLE>
+		<SCRIPT language=JAVASCRIPT> 
+function chck()
+{  var  count=0;
+   for (var i=0;i<form.length;i++)
+   if ((form[i].type == "radio") && (form[i].checked))
+   count++; 
+   if (count==0)
+      { return false;  }
+   else
+      { return true;   }
+}
+ 
+function Add(SourceList,TargetList)
+	{
+	var nIndex = SourceList.selectedIndex;
+ 	var nCount = 0;  
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+	for (i=0;i<SourceList.length;i++)
+  {
+     if (SourceList.options(i).selected==true)
+     {    
+         if (inSouceList(SourceList.options(i).value,TargetList)==false)
+         {
+          	var objSelected = new Option(SourceList[i].text, SourceList[i].value);
+           	TargetList.options[TargetList.length] = objSelected;
+         }
+     }     
+	}
+  for (var i=0;i<TargetList.options.length;i++)
+  {
+    TargetList.options(i).selected=true;
+  }
+	if(navigator.appName=="Netscape")
+	{
+		history.go(0)
+	}
+ }
+ function inSouceList(SourceListOption,TargetList)
+ {
+ 	  for (i=0;i<TargetList.length;i++)
+    {
+	     if (TargetList.options[i].value==SourceListOption)
+       {
+        	 return true;
+       }
+    }   
+    return false;
+ }  
+function Remove(SelectList)
+	{
+	var nIndex = SelectList.selectedIndex;
+ 	var nCount = 0;
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+  while(nCount<SelectList.length)
+  {
+       if (SelectList.options(nCount).selected==true)
+       {
+       	 SelectList.options[nCount] = null;
+       }
+       else
+       {
+         nCount++;
+       }
+  }
+	if(navigator.appName=="Netscape")
+		{
+		history.go(0)
+		}	
+	}
+ function enter()
+ {
+   var srcEle = window.event.srcElement;
+   var tmp;   
+   tmp = window.showModalDialog("pub_pub.Dialog_Date?vc_input=" + srcEle.value);
+     if ( tmp.indexOf("/") != -1)
+     {
+        srcEle.value = tmp;
+     }
+     return;
+ }   
+ function check_num()
+ {
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+ function check_blank()
+ {
+ 	 if (window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+  
+function check_num_dot()
+{
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 46)
+	 {
+  		 window.event.returnValue = false;   
+	 }
+   else
+   {
+      if(window.event.keyCode==47)
+      {
+    		 window.event.returnValue = false;
+      }
+      if(window.event.keyCode==46)
+      {
+         if (window.event.srcElement.value.indexOf(".")!=-1)
+         {
+        		 window.event.returnValue = false;
+         }
+      }   
+    }  
+ }
+  
+ function submitonce(theform)
+ {
+ if (document.all || document.getElementById)
+ {
+ for (i=0;i<theform.length;i++)
+ {
+ var tempobj = theform.elements[i]
+ if (tempobj.type.toLowerCase() =="button")
+ tempobj.disabled = true
+ }
+ }
+ }
+ 
+  function CheckAll() 
+ {
+   var i = 0;
+   for (i=0; i < window.document.forms[0].elements.length; i++) 
+   {
+     if(window.document.forms[0].elements[i].Chk<3) 
+     {
+       if(window.document.forms[0].elements[i].value=="")
+       {
+         alert(window.document.forms[0].elements[i].alt);
+         window.document.forms[0].elements[i].focus();
+         return;
+       }
+       else if (window.document.forms[0].elements[i].Chk==2)
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+     else if(window.document.forms[0].elements[i].Chk==3)
+     {
+       if(window.document.forms[0].elements[i].value!="")
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+   }
+   window.document.forms[0].submit();
+   return true;
+ }
+ function NotNumber(Field)
+ {
+   var j = 0;
+   var k = 0;
+   for (var i=0; i<Field.length; i++)
+   {
+      var ch=Field.substring(i,i+1);
+      if((ch>="0")&&(ch<="9")) 
+      {
+        j=0;
+      }
+      else if(ch==".") 
+      {
+        k++;
+      }
+      else
+      {
+        j=1;
+        break;
+      }
+   }
+   if ((j==0)&&(k<2))
+   {
+      return false;
+   }
+   else
+   {
+      return true;
+   }
+ }
+ function openwindown(page)
+ {
+    window.open(page,"newuser","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=700,height=400,left=100,top=150");
+ }
+</SCRIPT>
+
+		<META http-equiv=Content-Language content=zh-cn>
+		<META http-equiv=Content-Type content="text/html; charset=gb2312">
+		<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
+		<META content=FrontPage.Editor.Document name=ProgId>
+		<LINK href="js/style.css" rel=stylesheet>
+		<SCRIPT language=JavaScript src=""></SCRIPT>
+
+		<SCRIPT language=javascript>
+      var v_qty_null=false;
+      var v_price_null=false;
+      var v_not_date=false;
+      var v_not_js=false;
+      function submit_form(theForm,i)
+      {
+        document.form.p_type.value=i;
+        if (v_qty_null)
+        {
+            alert("数量不能为0！");
+            return;
+        }
+        if (v_price_null)
+        {
+            alert("单价不能为0！");
+            return;
+        }
+        if (v_not_date)
+        {
+            alert("日期请按\"4位年/2位月/2位日\"格式输入！");
+            return;
+        }
+        if (v_not_js)
+        {
+            alert("结束交货期不能小于开始交货期。");
+            return;
+        }
+        CheckAll();
+      }
+      function select_supp(i)
+      {
+        var w=window.showModalDialog("Supp_Query_Main.asp?p_type=2&p_code=100020101347998");
+        if (w!="")
+        {
+           v_arry_supp=w.split(",");
+           form.p_currprod.value=i;
+           form.p_oldonlyone.value=v_arry_supp[0];
+           for (var n=1;n<v_arry_supp.length;n++)
+           {
+              form.p_supp[n-1].value=v_arry_supp[n];
+           }
+           document.form.p_type.value="3";
+           form.submit();
+        }
+      }
+      function calc(p_count)
+      {
+         //数量
+         var qty_input=0;
+         qty_input=7*(p_count-1);
+         var qty=0;
+         if (form.p_input[qty_input].value!="")
+         {
+            qty=form.p_input[qty_input].value;
+         }
+         if (qty==0)
+         {
+            alert("数量不能为0！");
+            form.p_input[qty_input].focus();
+            v_qty_null=true;
+            return;
+         }
+         else
+         {
+            v_qty_null=false;
+         }
+         //单价
+         var price_input=0;
+         price_input=1+7*(p_count-1);
+         var price=0;
+         if (form.p_input[price_input].value!="")
+         {
+            price=form.p_input[price_input].value;
+         }
+         if (price==0)
+         {
+            alert("单价不能为0！");
+            form.p_input[price_input].focus();
+            v_price_null=true;
+            return;
+         }
+         else
+         {
+            v_price_null=false;
+         }
+         //运杂费
+         var free_input=0;
+         free_input=2+7*(p_count-1);
+         var free=0;
+         if (form.p_input[free_input].value!="")
+         {
+            free=form.p_input[free_input].value;
+         }
+         //其它费用
+         var other_input=0;
+         other_input=3+7*(p_count-1);
+         var other=0;
+         if (form.p_input[other_input].value!="")
+         {
+            other=form.p_input[other_input].value;
+         }
+         //总计
+         var amount_input=0;
+         amount_input=4+7*(p_count-1);
+         var amount=0;
+         amount=parseFloat(qty*price)+parseFloat(free)+parseFloat(other);
+         form.p_input[amount_input].value=amount;
+         //开始交货期
+         var ks_input=0;
+         ks_input=5+7*(p_count-1);
+         if (isdate(form.p_input[ks_input].value)==false)
+         {
+             alert("日期请按\"4位年/2位月/2位日\"格式输入！");
+             //form.p_input[ks_input].focus();
+             v_not_date=true;
+             return;
+         }
+         else
+         {
+             v_not_date=false;
+         }
+         //结束交货期
+         var js_input=0;
+         js_input=6+7*(p_count-1);
+         if (isdate(form.p_input[js_input].value)==false)
+         {
+             alert("日期请按\"4位年/2位月/2位日\"格式输入！");
+             //form.p_input[js_input].focus();
+             v_not_date=true;
+             return;
+         }
+         else
+         {
+             v_not_date=false;
+         }
+         if  (form.p_input[ks_input].value>form.p_input[js_input].value)
+         {
+             alert("结束交货期不能小于开始交货期。");
+             //form.p_input[js_input].focus();
+             v_not_js=true;
+             return;
+         }
+         else
+         {
+             v_not_js=false;
+         }
+         //总金额
+         var total=form.p_total_cb.value
+         //总数量
+         var total_qty=0;
+         for (var k = 1; k <= (form.p_input.length)/7; k++)
+         {
+            total=parseFloat(form.p_input[4+7*(k-1)].value)+parseFloat(total);
+            total_qty=parseFloat(form.p_input[7*(k-1)].value)+parseFloat(total_qty);
+         }
+         form.p_total.value=total;
+      }
+      function back(i)
+      {
+        if (i==1)
+        {
+           history.back();
+        }
+        else
+        {
+           window.location="../flowlead.asp?p_code=100020101347998&p_lx=3";
+        }
+      }
+      function isdate(value)
+      {
+        var re=true;
+        var j = 0;
+        var k = 0;
+        if (value.length!=10)
+        {
+           re=false;
+        }
+        if (value.substring(4,5)!="/")
+        {
+           re=false;
+        }
+        if (value.substring(7,8)!="/")
+        {
+           re=false;
+        }
+        for (var i=0; i<value.length; i++)
+        {
+           var ch=value.substring(i,i+1);
+           if((ch>="0")&&(ch<="9")) 
+           {
+              j=0;
+           }
+           else if(ch=="/")
+           {
+              k++;
+           }
+           else
+           {
+              j=1;
+              break;
+           }
+        }
+        if ((j==1)||(k>=3))
+        {
+           re=false;
+        }
+        return re;
+      }
+
+		function queding()
+		{
+			window.document.location = "Apply_queren.htm";
+		}
+
+		function baopi()
+		{
+			if(confirm("您确定信息正确并报批吗？")){
+			window.document.location = "jieshilist.html";
+			}
+		}
+
+</SCRIPT>
+	</HEAD>
+	<BODY>
+		<CENTER>
+			<FORM name=form action=Apply_Save.asp method=post>
+				<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0
+					width="100%" bgColor=#336699 borderColorLight=#006699 border=0>
+					<TBODY>
+						<TR>
+							<TD>
+								<TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+									<TBODY>
+										<TR bgColor=#ffffff>
+											<TD align=middle width="100%" bgColor=#ffffff colSpan=20
+												height=22>
+												<B>
+													<H2>
+														<FONT color=#0070c0>编辑合同申请 
+												</B>
+											<IMG alt=帮助
+														src="img/help_a.gif" border=0 /> 
+												</FONT>
+												</H2>
+											</TD>
+										</TR>
+										<TR class=t1>											<TD width="20%">
+												询价书名称：
+											</TD>
+											<TD class=t2 width="30%">
+												<A href="javascript:alert('对应询价书详细')">询价书1</A>
+											</TD>
+											<!--<td>合同编号：</td>
+  <td colspan=2>W20100040</td>
+ </tr>-->
+											<TD width="20%">
+												报价份数：
+											</TD>
+											<TD class=t2 width="30%">
+												3
+											</TD>
+										</TR>
+										<TR class=t1>
+											<TD width="20%">
+												最高报价（元）：
+											</TD>
+											<TD class=t2 width="30%">
+												5001
+											</TD>
+											<TD width="20%">
+												最低报价（元）：
+											</TD>
+											<TD class=t2 width="30%">
+												5001
+											</TD>
+										</TR>
+									</TBODY>
+								</TABLE>
+							</TD>
+						</TR>
+					</TBODY>
+				</TABLE>
+
+				<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0
+					width="100%" bgColor=#336699 borderColorLight=#006699 border=0>
+					<TBODY>
+						<TR>
+							<TD>
+								<TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+									<TBODY>
+										<TR class=T1>
+											<TD noWrap align=middle colSpan=9>
+												物资
+												<B><FONT color=red>1 &nbsp; 
+												</B></FONT><A href="javascript:alert('对应需求计划书详细')">晶振(HC-49U-500K-0.005%)[W64001005000]</A>
+												999个
+												<B>计划价（元/不含税）</B>：0.43
+												<BR>
+												<A href="javascript:showModalDialog('Apply_supplyList.html','status:{no}')"><FONT
+													color=red><U>请为该物资选择供应商</U> </FONT> </A><A
+													href="javascript:alert('对应报价书详细')"> 报价明细信息</A>&nbsp;&nbsp;
+											</TD>
+										</TR>
+										<TR class=t1>
+											<TD noWrap align=middle width="20%">
+												供应商
+											</TD>
+											<TD noWrap align=middle>
+												数量
+											</TD>
+											<TD noWrap align=middle>
+												单价
+												<BR>
+												（元/含税）
+											</TD>
+											<TD noWrap align=middle>
+												运杂费
+												<BR>
+												（元）
+											</TD>
+											<TD noWrap align=middle>
+												其它费用
+												<BR>
+												（元）
+											</TD>
+											<TD noWrap align=middle>
+												总计
+												<BR>
+												（元）
+											</TD>
+											<TD noWrap align=middle width="12%">
+												计划开始
+												<BR>
+												交货期
+											</TD>
+											<TD noWrap align=middle>
+												开始
+												<BR>
+												交货期
+											</TD>
+											<TD noWrap align=middle>
+												结束
+												<BR>
+												交货期
+											</TD>
+										</TR>
+										<TR class=t2>
+											<TD width="20%">
+												供应商1
+												<BR>
+											</TD>
+											<TD align=right>
+												999
+												<BR>
+											</TD>
+											<TD align=right>
+												5
+												<BR>
+											</TD>
+											<TD align=right>
+												5
+												<BR>
+											</TD>
+											<TD align=right>
+												1
+												<BR>
+											</TD>
+											<TD align=right>
+												5001
+												<BR>
+											</TD>
+											<TD align=right>
+												2010/01/08
+											</TD>
+											<TD>
+												2010/01/08
+												<BR>
+											</TD>
+											<TD>
+												2010/02/25
+												<BR>
+											</TD>
+										</TR>
+										<TR class=t2>
+											<TD width="20%">
+												供应商2
+												<BR>
+											</TD>
+											<TD align=right>
+												999
+												<BR>
+											</TD>
+											<TD align=right>
+												5
+												<BR>
+											</TD>
+											<TD align=right>
+												5
+												<BR>
+											</TD>
+											<TD align=right>
+												1
+												<BR>
+											</TD>
+											<TD align=right>
+												5001
+												<BR>
+											</TD>
+											<TD align=right>
+												2010/01/08
+											</TD>
+											<TD>
+												2010/01/08
+												<BR>
+											</TD>
+											<TD>
+												2010/02/25
+												<BR>
+											</TD>
+										</TR>
+										<TR class=t2>
+											<TD width="20%">
+												供应商3
+												<BR>
+											</TD>
+											<TD align=right>
+												999
+												<BR>
+											</TD>
+											<TD align=right>
+												5
+												<BR>
+											</TD>
+											<TD align=right>
+												5
+												<BR>
+											</TD>
+											<TD align=right>
+												1
+												<BR>
+											</TD>
+											<TD align=right>
+												5001
+												<BR>
+											</TD>
+											<TD align=right>
+												2010/01/08
+											</TD>
+											<TD>
+												2010/01/08
+												<BR>
+											</TD>
+											<TD>
+												2010/02/25
+												<BR>
+											</TD>
+										</TR>
+
+										<TR class=T1>
+											<TD noWrap align=middle colSpan=9>
+												物资
+												<B><FONT color=red>2&nbsp; 
+												</B></FONT><A href="javascript:alert('对应需求计划书详细')">晶振(HC-49U-500K-0.005%)[W64001005000]</A>
+												999个
+												<B>计划价（元/不含税）</B>：0.43
+												<BR>
+												<A href="javascript:showModalDialog('Apply_supplyList.html','status:{no}')">
+												<FONT
+													color=red><U>请为该物资选择供应商</U> </FONT> </A><A
+													href="javascript:alert('对应报价书详细')"> 报价明细信息</A>&nbsp;&nbsp;
+											</TD>
+										</TR>
+										<TR class=t1>
+											<TD noWrap align=middle width="20%">
+												供应商
+											</TD>
+											<TD noWrap align=middle>
+												数量
+											</TD>
+											<TD noWrap align=middle>
+												单价
+												<BR>
+												（元/含税）
+											</TD>
+											<TD noWrap align=middle>
+												运杂费
+												<BR>
+												（元）
+											</TD>
+											<TD noWrap align=middle>
+												其它费用
+												<BR>
+												（元）
+											</TD>
+											<TD noWrap align=middle>
+												总计
+												<BR>
+												（元）
+											</TD>
+											<TD noWrap align=middle width="12%">
+												计划开始
+												<BR>
+												交货期
+											</TD>
+											<TD noWrap align=middle>
+												开始
+												<BR>
+												交货期
+											</TD>
+											<TD noWrap align=middle>
+												结束
+												<BR>
+												交货期
+											</TD>
+										</TR>
+										<TR class=t2>
+											<TD width="20%">
+												供应商1
+												<BR>
+											</TD>
+											<TD align=right>
+												999
+												<BR>
+											</TD>
+											<TD align=right>
+												5
+												<BR>
+											</TD>
+											<TD align=right>
+												5
+												<BR>
+											</TD>
+											<TD align=right>
+												1
+												<BR>
+											</TD>
+											<TD align=right>
+												5001
+												<BR>
+											</TD>
+											<TD align=right>
+												2010/01/08
+											</TD>
+											<TD>
+												2010/01/08
+												<BR>
+											</TD>
+											<TD>
+												2010/02/25
+												<BR>
+											</TD>
+										</TR>
+										<TR class=t2>
+											<TD width="20%">
+												供应商2
+												<BR>
+											</TD>
+											<TD align=right>
+												999
+												<BR>
+											</TD>
+											<TD align=right>
+												5
+												<BR>
+											</TD>
+											<TD align=right>
+												5
+												<BR>
+											</TD>
+											<TD align=right>
+												1
+												<BR>
+											</TD>
+											<TD align=right>
+												5001
+												<BR>
+											</TD>
+											<TD align=right>
+												2010/01/08
+											</TD>
+											<TD>
+												2010/01/08
+												<BR>
+											</TD>
+											<TD>
+												2010/02/25
+												<BR>
+											</TD>
+										</TR>
+										<TR class=t2>
+											<TD width="20%">
+												供应商3
+												<BR>
+											</TD>
+											<TD align=right>
+												999
+												<BR>
+											</TD>
+											<TD align=right>
+												5
+												<BR>
+											</TD>
+											<TD align=right>
+												5
+												<BR>
+											</TD>
+											<TD align=right>
+												1
+												<BR>
+											</TD>
+											<TD align=right>
+												5001
+												<BR>
+											</TD>
+											<TD align=right>
+												2010/01/08
+											</TD>
+											<TD>
+												2010/01/08
+												<BR>
+											</TD>
+											<TD>
+												2010/02/25
+												<BR>
+											</TD>
+										</TR>
+										<TR class=t1>
+											<TD align=middle>
+												总金额（元）
+											</TD>
+											<TD colSpan=9>
+												<INPUT readOnly size=10 value=5001 name=p_total>
+											</TD>
+										</TR>
+										<TR class=t1>
+											<TD align=middle>
+												备注
+											</TD>
+											<TD colSpan=9>
+												<INPUT size=80 name=mark>
+											</TD>
+										</TR>
+
+
+									</TBODY>
+								</TABLE>
+							</TD>
+						</TR>
+					</TBODY>
+				</TABLE>
+				
+				<CENTER>
+				
+					<BR>
+					<INPUT onclick="queding();" type=button value=确定>
+					<INPUT onclick="baopi();" type=button value=保存并报批>
+					<INPUT onclick=form.reset() type=button value=清除>
+					<INPUT onclick=" javascript:history.back()" type=button value=取消>
+			</FORM>
+		</CENTER>
+		</CENTER>
+	</BODY>
+</HTML>

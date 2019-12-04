@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0089)http://169.254.158.100/zzdl/ContApply/Apply_list_do.asp?p_type=1&p_Applyno=10002010182564 -->
+<HTML><HEAD><TITLE>合同申请明细</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+
+<LINK href="js/style.css" rel=stylesheet>
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR></HEAD>
+<SCRIPT language=JAVASCRIPT> 
+//Apply_caiwushenpi.htm
+function shenp()
+{
+	document.location="Apply_caiwushenpi.htm";
+}
+</SCRIPT>
+<BODY>
+<CENTER>
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
+bgColor=#336699 borderColorLight=#006699 border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffffff>
+          <TD align=middle width="100%" bgColor=#ffffff colSpan=20 
+            height=22><B>
+            <H2><FONT color=#0070c0>合同申请明细</B> <A 
+            onclick="" 
+            href=""><IMG alt=帮助 
+            src="img/help_a.gif" border=0></A> 
+</FONT></H2></TD></TR>
+        <TR class=t1>
+          <TD width="20%">询价书名称：</TD>
+          <TD class=t2 width="30%"><A 
+            href="javascript:alert('对应询价书详细')">天下无贼</A></TD><!--<td>合同编号：</td>
+  <td colspan=2>W20100040</td>-->
+          <TD width="20%">报价份数：</TD>
+          <TD class=t2 width="30%">1</TD></TR>
+        <TR class=t1>
+          <TD width="20%">最高报价（元）：</TD>
+          <TD class=t2 width="30%">5001</TD>
+          <TD width="20%">最低报价（元）：</TD>
+          <TD class=t2 
+width="30%">5001</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
+bgColor=#336699 borderColorLight=#006699 border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR class=T1>
+          <TD noWrap align=middle colSpan=9>物资<B><FONT color=red>1 
+            &nbsp;</B></FONT><A 
+            href="javascript:alert('对应的需求计划详细')">晶振(HC-49U-500K-0.005%)[W64001005000]</A> 999个 
+            <B>计划价（元/含税）<A 
+            href="javascript:alert('对应报价书详细')"> 
+            报价明细信息</A></TD></TR>
+        <TR class=t1>
+          <TD noWrap align=middle width="20%">供应商</TD>
+          <TD noWrap align=middle>数量</TD>
+          <TD noWrap align=middle>单价<BR>（元/含税）</TD>
+          <TD noWrap align=middle>运杂费<BR>（元）</TD>
+          <TD noWrap align=middle>其它费用<BR>（元）</TD>
+          <TD noWrap align=middle>总计<BR>（元）</TD>
+          <TD noWrap align=middle width="12%">计划开始<BR>交货期</TD>
+          <TD noWrap align=middle>开始<BR>交货期</TD>
+          <TD noWrap align=middle>结束<BR>交货期</TD></TR>
+        <TR class=t2>
+          <TD width="20%"><A 
+            href="javascript:alert('对应供应商详细')"><FONT 
+            color=green>供应商1</FONT></A><BR></TD>
+          <TD align=right>999<BR></TD>
+          <TD align=right>5<BR></TD>
+          <TD align=right>5<BR></TD>
+          <TD align=right>1<BR></TD>
+          <TD align=right>5001<BR></TD>
+          <TD align=right>2010/01/08</TD>
+          <TD align=middle>2010/01/08<BR></TD>
+          <TD align=middle>2010/01/08<BR></TD></TR>
+
+		  <TR class=T1>
+          <TD noWrap align=middle colSpan=9>物资<B><FONT color=red>2
+            &nbsp;</B></FONT><A 
+            href="javascript:alert('对应的需求计划详细')">晶振(HC-49U-500K-0.005%)[W64001005000]</A> 999个 
+            <B>计划价（元/含税）<A 
+            href="javascript:alert('对应报价书详细')"> 
+            报价明细信息</A></TD></TR>
+        <TR class=t1>
+          <TD noWrap align=middle width="20%">供应商</TD>
+          <TD noWrap align=middle>数量</TD>
+          <TD noWrap align=middle>单价<BR>（元/含税）</TD>
+          <TD noWrap align=middle>运杂费<BR>（元）</TD>
+          <TD noWrap align=middle>其它费用<BR>（元）</TD>
+          <TD noWrap align=middle>总计<BR>（元）</TD>
+          <TD noWrap align=middle width="12%">计划开始<BR>交货期</TD>
+          <TD noWrap align=middle>开始<BR>交货期</TD>
+          <TD noWrap align=middle>结束<BR>交货期</TD></TR>
+        <TR class=t2>
+          <TD width="20%"><A 
+            href="javascript:alert('对应供应商详细')"><FONT 
+            color=green>供应商2</FONT></A><BR></TD>
+          <TD align=right>999<BR></TD>
+          <TD align=right>5<BR></TD>
+          <TD align=right>5<BR></TD>
+          <TD align=right>1<BR></TD>
+          <TD align=right>5001<BR></TD>
+          <TD align=right>2010/01/08</TD>
+          <TD align=middle>2010/01/08<BR></TD>
+          <TD align=middle>2010/01/08<BR></TD></TR>
+        <TR class=t1>
+          <TD noWrap align=middle><B>需求计划数量<B></B></B></TD>
+          <TD align=right colSpan=4>999<BR></TD>
+          <TD noWrap align=middle><B>订货数量<B></B></B></TD>
+          <TD align=right colSpan=4>999<BR></TD></TR>
+        <TR class=t1>
+          <TD align=middle>总金额（元）</TD>
+          <TD colSpan=8>5001<BR></TD></TR>
+        </TBODY></TABLE></TD></TR></TBODY></TABLE>
+</TD></TR></TBODY></TABLE></CENTER><BR>
+<CENTER>
+<INPUT onclick="shenp();" type=button value=审批> 
+<INPUT onclick=history.back() type=button value=返回> 
+</CENTER></BODY></HTML>

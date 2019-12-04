@@ -1,0 +1,193 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="stylesheet" href="css/style.css">
+<script Language="JavaScript" src="pub_Calendar.js"></script>
+<title>采购计划审批</title>
+<SCRIPT LANGUAGE=javascript>
+      function submit_form(theForm,i)
+      {
+        theForm.action="Project_Exam_Save.asp";
+        theForm.submit();
+      }
+      function back(p_link)
+      {
+        window.location=p_link;
+      } 
+</SCRIPT>
+</head>
+<body>
+<center>
+ <form name="form" action="Project_Exam_Save.asp" method="post">
+ 
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+<tr bgcolor="#ffffff"> 
+<td width="100%" colspan="20" bgcolor="#ffffff" align=center height=22><B><H2><font  color=#0070C0 >采购计划审批</b>
+<a href="javascript:void(null)" onClick="window.open('../help/Help.asp?Value=采购计划审批','child','status=NO,scrollbars=yes,toolbar=no,menubar=no,location=no,left=200,top=100,width=700,height=400')" ><img alt="帮助" src="css/help_a.gif" border="0"></a>
+</td>
+</tr>
+
+	   <tr class="t1">
+		 <td nowrap width=20% >采购计划编号</td>
+         <td nowrap class="t2">1000201001251761</td>
+	
+
+<!--*******************************************************************以下为第二列****************************************************************-->
+    
+		 <td nowrap width=20% >采购计划名称</td>
+         <td nowrap class="t2">天下无贼</td>
+      </tr>
+	
+	   <tr class="t1">
+		 <td nowrap width=20% >公司名称</td>
+         <td nowrap class="t2">株洲南车时代电气股份有限公司</td>
+	
+
+<!--*******************************************************************以下为第二列****************************************************************-->
+    
+		 <td nowrap width=20% >编制人</td>
+         <td nowrap class="t2">杨春</td>
+      </tr>
+	
+	   <tr class="t1">
+		 <td nowrap width=20% >预算金额(元)</td>
+         <td nowrap class="t2">4995</td>
+	
+
+<!--*******************************************************************以下为第二列****************************************************************-->
+    
+		 <td nowrap width=20% >计划询价开始时间</td>
+         <td nowrap class="t2">2010/01/08</td>
+      </tr>
+	
+	   <tr class="t1">
+		 <td nowrap width=20% >计划报价截止时间</td>
+         <td nowrap class="t2">2010/01/09 00:00</td>
+	
+		 <td colspan=2 class="t2"><br></td></TR>
+	
+</table></td></tr></table>
+
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+
+    <tr class="t1">
+    <td align="center" nowrap>序号</td>
+    <td width="13%" align="center" nowrap>物资编码</td>    
+    <td width="25%" align="center" nowrap>物资名称</td>
+    <td width="5%" align="center" nowrap>数量</td>
+    
+    <td width="5%" align="center" nowrap>计量<br>
+      单位</td>
+    <td width="11%" align="center" nowrap>交货期</td> 
+    
+       <td width="9%" align="center" nowrap>协议价格<br>
+         （元）</td>
+    
+    <td width="11%" align="center" nowrap>预算总金额<br>
+      （元）</td>
+    <td width="14%" align="center" nowrap>计划价<br>
+      （元/不含税）</td>
+    </tr>
+ 
+       <tr class="t2" >
+       <td ><!--<SELECT  name=p_oraderagree > 
+					<OPTION selected value="1000201011133270;1">同意</OPTION>
+					<OPTION >不同意</OPTION>
+			</select>-->1</td>
+       <td >W64001005000<br></td>
+       <td ><a href="../Project/print_order_detail.asp?p_type=1&p_orderno=1000201011133270&p_ordernum=1" target="_new" >晶振(HC-49U-500K-0.005%)</a><br></td>
+       <td align=right>999<br></td>
+       
+       <td >个<br></td>
+       <td >2010/01/08<br></td>
+       
+          <td nowrap align="center"><a href="Xyprice_list.asp?itemcode=W64001005000"></a><br></td>
+       
+       <td >4995<br></td>
+       <td >0.43<br></td>
+       </tr>
+</table></td></tr></table>
+
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+
+	   <tr>
+		  <td nowrap width=20% class="t1">采购方式</td>
+ 	      <td  class="t2">公开求购</td>
+	  </tr>
+	  <tr>
+		 <td nowrap width=20%  class="t1">可选供应商</td>
+		 <td class="t2"><a href="../Demand/xjfatz_gysxx.asp?strProjCode=1000201001251761" target=_new><input type=hidden name=kxgys><b>可选供应商</a></td>
+	  </tr>
+	  <tr>
+		<td nowrap width=20%  class="t1">拟选供应商</td>
+			<td class=t2>本产品类所有供应商</td>
+		
+	  </tr>
+	  <tr>
+		<td nowrap width=20%  class="t1">说明</td>
+		<td class="t2">hhhhhhhhhhhhhhhhhhhhhhh
+</td>
+	  </tr>
+
+</table></td></tr></table>
+
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+
+ <!--
+ <tr class=t1>
+ <td width=20%>是否同意</td>
+ <td>
+ <input type=radio name="p_agree" value="1" checked>同意
+ <input type=radio name="p_agree" value="0">不同意
+ </td>
+ </tr>
+ -->
+ <tr class=t1>
+ <td width=20%>审批意见</td>
+ <td>
+  <TEXTAREA NAME="p_idea" ROWS=3 COLS=60 style="Width:100%">
+  </TEXTAREA>
+ </td>
+ </tr> 
+ 
+</table></td></tr></table>
+
+<TABLE  cellSpacing=1 cellPadding=0     width="100%"  bgColor=#ffffff borderColorLight=#ffffff border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+
+ <td align=right>
+ 审批人
+ <INPUT name=p_spr maxLength=20 style="BORDER-LEFT: 0px; BORDER-RIGHT: 0px; BORDER-TOP: 0px;BORDER-BOTTOM-COLOR: black;width:80px" value="张惠" readonly>&nbsp; &nbsp;
+ 审批时间
+ <INPUT name=p_spsj maxLength=20 style="BORDER-LEFT: 0px; BORDER-RIGHT: 0px; BORDER-TOP: 0px;BORDER-BOTTOM-COLOR: black;width:80px" value="2010/01/08" readonly>
+ </td>
+ 
+</table></td></tr></table>
+
+  <input type="hidden" name="p_projno" value="1000201001251761">
+  <input type="hidden" name="p_type" value="1">
+ <br>
+ <input type="button" value="确定" onClick="submit_form(document.form,1)">
+ <input type="button" value="返回" onClick="history.back()">
+ </form>
+ </center>
+ </body> 
+ </html>
+

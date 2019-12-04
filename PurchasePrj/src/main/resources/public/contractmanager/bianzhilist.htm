@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0061)http://169.254.158.100/zzdl/ContApply/Apply_list.asp?p_type=3 -->
+<HTML><HEAD><TITLE>合同申请一览表</TITLE>
+<SCRIPT language=JAVASCRIPT> 
+function chck()
+{  var  count=0;
+   for (var i=0;i<form.length;i++)
+   if ((form[i].type == "radio") && (form[i].checked))
+   count++; 
+   if (count==0)
+      { return false;  }
+   else
+      { return true;   }
+}
+ 
+function Add(SourceList,TargetList)
+	{
+	var nIndex = SourceList.selectedIndex;
+ 	var nCount = 0;  
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+	for (i=0;i<SourceList.length;i++)
+  {
+     if (SourceList.options(i).selected==true)
+     {    
+         if (inSouceList(SourceList.options(i).value,TargetList)==false)
+         {
+          	var objSelected = new Option(SourceList[i].text, SourceList[i].value);
+           	TargetList.options[TargetList.length] = objSelected;
+         }
+     }     
+	}
+  for (var i=0;i<TargetList.options.length;i++)
+  {
+    TargetList.options(i).selected=true;
+  }
+	if(navigator.appName=="Netscape")
+	{
+		history.go(0)
+	}
+ }
+ function inSouceList(SourceListOption,TargetList)
+ {
+ 	  for (i=0;i<TargetList.length;i++)
+    {
+	     if (TargetList.options[i].value==SourceListOption)
+       {
+        	 return true;
+       }
+    }   
+    return false;
+ }  
+function Remove(SelectList)
+	{
+	var nIndex = SelectList.selectedIndex;
+ 	var nCount = 0;
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+  while(nCount<SelectList.length)
+  {
+       if (SelectList.options(nCount).selected==true)
+       {
+       	 SelectList.options[nCount] = null;
+       }
+       else
+       {
+         nCount++;
+       }
+  }
+	if(navigator.appName=="Netscape")
+		{
+		history.go(0)
+		}	
+	}
+ function enter()
+ {
+   var srcEle = window.event.srcElement;
+   var tmp;   
+   tmp = window.showModalDialog("pub_pub.Dialog_Date?vc_input=" + srcEle.value);
+     if ( tmp.indexOf("/") != -1)
+     {
+        srcEle.value = tmp;
+     }
+     return;
+ }   
+ function check_num()
+ {
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+ function check_blank()
+ {
+ 	 if (window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+  
+function check_num_dot()
+{
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 46)
+	 {
+  		 window.event.returnValue = false;   
+	 }
+   else
+   {
+      if(window.event.keyCode==47)
+      {
+    		 window.event.returnValue = false;
+      }
+      if(window.event.keyCode==46)
+      {
+         if (window.event.srcElement.value.indexOf(".")!=-1)
+         {
+        		 window.event.returnValue = false;
+         }
+      }   
+    }  
+ }
+  
+ function submitonce(theform)
+ {
+ if (document.all || document.getElementById)
+ {
+ for (i=0;i<theform.length;i++)
+ {
+ var tempobj = theform.elements[i]
+ if (tempobj.type.toLowerCase() =="button")
+ tempobj.disabled = true
+ }
+ }
+ }
+ 
+  function CheckAll() 
+ {
+   var i = 0;
+   for (i=0; i < window.document.forms[0].elements.length; i++) 
+   {
+     if(window.document.forms[0].elements[i].Chk<3) 
+     {
+       if(window.document.forms[0].elements[i].value=="")
+       {
+         alert(window.document.forms[0].elements[i].alt);
+         window.document.forms[0].elements[i].focus();
+         return;
+       }
+       else if (window.document.forms[0].elements[i].Chk==2)
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+     else if(window.document.forms[0].elements[i].Chk==3)
+     {
+       if(window.document.forms[0].elements[i].value!="")
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+   }
+   window.document.forms[0].submit();
+   return true;
+ }
+ function NotNumber(Field)
+ {
+   var j = 0;
+   var k = 0;
+   for (var i=0; i<Field.length; i++)
+   {
+      var ch=Field.substring(i,i+1);
+      if((ch>="0")&&(ch<="9")) 
+      {
+        j=0;
+      }
+      else if(ch==".") 
+      {
+        k++;
+      }
+      else
+      {
+        j=1;
+        break;
+      }
+   }
+   if ((j==0)&&(k<2))
+   {
+      return false;
+   }
+   else
+   {
+      return true;
+   }
+ }
+ function openwindown(page)
+ {
+    window.open(page,"newuser","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=700,height=400,left=100,top=150");
+ }
+
+function dakai()
+	{
+		window.document.location="Apply_list_do22.htm";
+	}
+
+</SCRIPT>
+
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId><LINK 
+href="js/style.css" rel=stylesheet>
+
+</HEAD>
+<BODY>
+<CENTER>
+<FORM name=form action=Apply_list_do.asp method=post>
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
+bgColor=#336699 borderColorLight=#006699 border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffffff>
+          <TD align=middle width="100%" bgColor=#ffffff colSpan=20 
+            height=22><B>
+            <H2><FONT color=#0070c0>合同申请一览表</B> <IMG alt=帮助 
+            src="img/help_a.gif" border=0> </FONT></H2></TD></TR>
+			<TR>
+          <TD align=middle width="100%" bgColor=#ffffff colSpan=9 
+            height=22>
+			<table>
+			<tr>
+			 <td>
+			 询价书名称:<input type="text"/>
+			 </td>
+			 <td>
+			 状态:
+			 <select>
+			 <option>全部</option>
+			<option>未确定</option>
+			<option>待审</option>
+			<option>驳回</option>
+			<option>废弃</option>
+			<option>通过</option>
+			 </select>
+			 </td>
+			 <td>
+			 <input type="button" value="查询"/>
+			 </td>
+			</tr>
+			</table>
+			</TD></TR>
+        
+       <TR class=t1>
+          <TD noWrap align=middle>选择</TD>
+          <TD noWrap align=middle>序号</TD>
+          <TD noWrap align=middle>合同申请编号</TD>
+          <TD noWrap align=middle>签订时间</TD>
+          <TD noWrap align=middle>总金额</TD>
+		  <TD noWrap align=middle>是否确认</TD>
+          <TD noWrap align=middle>是否归档</TD></TR>
+       <TR class=t2>
+          <TD align=middle><INPUT type=radio value=10002010182564 
+            name=p_Applyno></TD>
+          <TD align=middle><A 
+            href="Apply_list_do22.htm">1<BR></A></TD>
+          <TD>20090909<BR></TD>
+          <TD>2010/01/08 17:14:26<BR></TD>
+          <TD>66666<BR></TD>
+		  
+			<TD >否<BR></TD>
+          <TD>否<br></TD></TR>
+			
+			<TR>
+          <TD align=middle width="100%" bgColor=#ffffff colSpan=9 
+            height=22><FORM #000064? 
+            action="Apply_list.asp name=form><font color=" 
+            method="Post">◆&nbsp;</FONT><FONT color=#000064>首页 
+            上一页</FONT>&nbsp;<FONT color=#000064>下一页 尾页</FONT><FONT 
+            color=#000064>&nbsp;共 1 个合同申请 10 个合同申请 /页</FONT><FONT 
+            color=#000064>&nbsp;页次:<FONT color=blue>1</FONT>/1页</FONT><FONT 
+            color=#000064>&nbsp;◆&nbsp;</FONT> </TD></TR>
+			</TBODY></TABLE></TD></TR></TBODY></TABLE><INPUT 
+type=hidden name=p_type> <INPUT type=hidden value=3 name=p_lx> 
+<P align=center><input type="button" value="打开" onclick="dakai();" />&nbsp;<input type="button" value="编制合同" onclick="window.document.location='bianzhihetong.htm'" />&nbsp;
+</P></FORM></CENTER></BODY></HTML>

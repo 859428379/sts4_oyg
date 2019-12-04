@@ -1,0 +1,684 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0036)http://169.254.158.100/zzdl/Menu.asp -->
+<HTML><HEAD><TITLE></TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<SCRIPT language=JAVASCRIPT> 
+function chck()
+{  var  count=0;
+   for (var i=0;i<form.length;i++)
+   if ((form[i].type == "radio") && (form[i].checked))
+   count++; 
+   if (count==0)
+      { return false;  }
+   else
+      { return true;   }
+}
+ 
+function Add(SourceList,TargetList)
+	{
+	var nIndex = SourceList.selectedIndex;
+ 	var nCount = 0;  
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+	for (i=0;i<SourceList.length;i++)
+  {
+     if (SourceList.options(i).selected==true)
+     {    
+         if (inSouceList(SourceList.options(i).value,TargetList)==false)
+         {
+          	var objSelected = new Option(SourceList[i].text, SourceList[i].value);
+           	TargetList.options[TargetList.length] = objSelected;
+         }
+     }     
+	}
+  for (var i=0;i<TargetList.options.length;i++)
+  {
+    TargetList.options(i).selected=true;
+  }
+	if(navigator.appName=="Netscape")
+	{
+		history.go(0)
+	}
+ }
+ function inSouceList(SourceListOption,TargetList)
+ {
+ 	  for (i=0;i<TargetList.length;i++)
+    {
+	     if (TargetList.options[i].value==SourceListOption)
+       {
+        	 return true;
+       }
+    }   
+    return false;
+ }  
+function Remove(SelectList)
+	{
+	var nIndex = SelectList.selectedIndex;
+ 	var nCount = 0;
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+  while(nCount<SelectList.length)
+  {
+       if (SelectList.options(nCount).selected==true)
+       {
+       	 SelectList.options[nCount] = null;
+       }
+       else
+       {
+         nCount++;
+       }
+  }
+	if(navigator.appName=="Netscape")
+		{
+		history.go(0)
+		}	
+	}
+ function enter()
+ {
+   var srcEle = window.event.srcElement;
+   var tmp;   
+   tmp = window.showModalDialog("pub_pub.Dialog_Date?vc_input=" + srcEle.value);
+     if ( tmp.indexOf("/") != -1)
+     {
+        srcEle.value = tmp;
+     }
+     return;
+ }   
+ function check_num()
+ {
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+ function check_blank()
+ {
+ 	 if (window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+  
+function check_num_dot()
+{
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 46)
+	 {
+  		 window.event.returnValue = false;   
+	 }
+   else
+   {
+      if(window.event.keyCode==47)
+      {
+    		 window.event.returnValue = false;
+      }
+      if(window.event.keyCode==46)
+      {
+         if (window.event.srcElement.value.indexOf(".")!=-1)
+         {
+        		 window.event.returnValue = false;
+         }
+      }   
+    }  
+ }
+  
+ function submitonce(theform)
+ {
+ if (document.all || document.getElementById)
+ {
+ for (i=0;i<theform.length;i++)
+ {
+ var tempobj = theform.elements[i]
+ if (tempobj.type.toLowerCase() =="button")
+ tempobj.disabled = true
+ }
+ }
+ }
+ 
+  function CheckAll() 
+ {
+   var i = 0;
+   for (i=0; i < window.document.forms[0].elements.length; i++) 
+   {
+     if(window.document.forms[0].elements[i].Chk<3) 
+     {
+       if(window.document.forms[0].elements[i].value=="")
+       {
+         alert(window.document.forms[0].elements[i].alt);
+         window.document.forms[0].elements[i].focus();
+         return;
+       }
+       else if (window.document.forms[0].elements[i].Chk==2)
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+     else if(window.document.forms[0].elements[i].Chk==3)
+     {
+       if(window.document.forms[0].elements[i].value!="")
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+   }
+   window.document.forms[0].submit();
+   return true;
+ }
+ function NotNumber(Field)
+ {
+   var j = 0;
+   var k = 0;
+   for (var i=0; i<Field.length; i++)
+   {
+      var ch=Field.substring(i,i+1);
+      if((ch>="0")&&(ch<="9")) 
+      {
+        j=0;
+      }
+      else if(ch==".") 
+      {
+        k++;
+      }
+      else
+      {
+        j=1;
+        break;
+      }
+   }
+   if ((j==0)&&(k<2))
+   {
+      return false;
+   }
+   else
+   {
+      return true;
+   }
+ }
+ function openwindown(page)
+ {
+    window.open(page,"newuser","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=700,height=400,left=100,top=150");
+ }
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+var selectedItem = null;
+var targetWin;
+
+document.onclick = handleClick;
+document.onmouseover = handleOver;
+document.onmouseout = handleOut;
+document.onmousedown = handleDown;
+document.onmouseup = handleUp;
+
+document.write(writeSubPadding(10));  //write the stylesheet for the sub. Getting the indention right
+
+function handleClick() {
+
+	//alert("handlClick.function");
+	el = getReal(window.event.srcElement, "tagName", "DIV");
+
+	if ((el.className == "rootmenuItem") || (el.className == "childmenu02")) {
+//		alert(eval(el.id + "Sub"));
+		if(eval(el.id + "Sub")!='[object]'){return false}else{
+			el.sub = eval(el.id + "Sub");
+			if (el.sub.style.display == null) el.sub.style.display = "none";
+			if (el.sub.style.display != "block") { //hidden
+				//any other sub open?
+				if (el.parentElement.openedSub != null) {
+					var opener = eval(el.parentElement.openedSub + ".opener");
+					hide(el.parentElement.openedSub);
+					if (opener.className == "rootmenuItem")
+						outchildmenu01(opener);
+				}
+				//alert('s');
+				el.sub.style.display = "block";
+				el.sub.parentElement.openedSub = el.sub.id;
+				el.sub.opener = el;
+			}
+			else {
+				if (el.sub.openedSub != null) hide(el.sub.openedSub);
+				else hide(el.sub.id);
+			}
+		}
+	}
+	if(el.className == "childmenu02")  {
+		if (selectedItem != null)
+			restorechildmenu01(selectedItem);
+            highlightchildmenu01(el);
+    }
+	if (el.className == "childmenu03") {
+		if (selectedItem != null)
+		restorechildmenu03(selectedItem);
+		highlightchildmenu03(el);
+	}
+	if (el.className == "childmenu01") {
+		if (selectedItem != null)
+		restorechildmenu01(selectedItem);
+        highlightchildmenu01(el);
+		sunHide(el.parentElement.openedSub);
+	}
+
+	if ((el.className == "childmenu01") || (el.className == "childmenu03")) {
+		if ((el.href != null) && (el.href != "")) {
+			if ((el.target == null) || (el.target == "")) {
+				if (window.opener == null) {
+//					alert(document.all.tags("BASE").item(0));
+					if (document.all.tags("BASE").item(0) != null)
+//						eval(document.all.tags("BASE").item(0).target + ".location = el.href");
+						window.open(el.href, document.all.tags("BASE").item(0).target);
+					else
+						window.location = el.href;					// HERE IS THE LOADING!!!
+				}
+				else {
+					window.opener.location =  el.href;
+				}
+			}
+			else {
+				window.open(el.href, el.target);
+//				eval(el.target + ".location = el.href");
+			}
+		}
+	}
+
+	var tmp  = getReal(el, "className", "rootmenu");
+	if (tmp.className == "rootmenu") fixScroll(tmp);
+
+}
+
+function handleOver() {
+	var fromEl = getReal(window.event.fromElement, "tagName", "DIV");
+	var toEl = getReal(window.event.toElement, "tagName", "DIV");
+	if (fromEl == toEl) return;
+
+	el = toEl;
+	if (el.className == "childmenu01") overchildmenu01(el);
+	if (el.className == "childmenu03") overchildmenu03(el);
+	if ((el.className == "childmenu01") || (el.className == "childmenu03")) {
+		if (el.href != null) {
+		}
+	}
+
+	if (el.className == "scrollButton") overscrollButton(el);
+}
+
+function handleOut() {
+	var fromEl = getReal(window.event.fromElement, "tagName", "DIV");
+	var toEl = getReal(window.event.toElement, "tagName", "DIV");
+	if (fromEl == toEl) return;
+	el = fromEl;
+	if (el.className == "childmenu01") outchildmenu01(el);
+	if (el.className == "childmenu03") outchildmenu03(el);
+	if (el.className == "scrollButton") outscrollButton(el);
+}
+
+function handleDown() {
+	el = getReal(window.event.srcElement, "tagName", "DIV");
+
+	if (el.className == "scrollButton") {
+		downscrollButton(el);
+		var mark = Math.max(el.id.indexOf("Up"), el.id.indexOf("Down"));
+		var type = el.id.substr(mark);
+		var menuID = el.id.substring(0,mark);
+		eval("scroll" + type + "(" + menuID + ")");
+	}
+}
+
+function handleUp() {
+	el = getReal(window.event.srcElement, "tagName", "DIV");
+	if (el.className == "scrollButton") {
+		upscrollButton(el);
+		window.clearTimeout(scrolltimer);
+	}
+}
+
+////////////////////// EVERYTHING IS HANDLED ////////////////////////////
+
+function hide(elID) {
+	var el = eval(elID);
+	el.style.display = "none";
+	el.parentElement.openedSub = null;
+	if (el.openedSub != null) hide(el.openedSub);
+}
+function sunHide(elID) {
+	var el = eval(elID);
+	if(el=='[object]'){
+	el.style.display = "none";
+	el.parentElement.openedSub = null;
+	if (el.openedSub != null) hide(el.openedSub);
+	}
+}
+function writeSubPadding(depth) {
+	var str, str2, val;
+
+	var str = "<style type='text/css'>\n";
+
+	for (var i=0; i < depth; i++) {
+		str2 ="";
+		val  = 5;
+		for (var j=0; j < i; j++) {
+			str2 += ".sub "
+			val += 5;
+		}
+		str += str2 + ".childmenu02 {padding-left: " + val + "px;}\n";
+		str += str2 + ".childmenu03 {padding-left: " + val + "px;}\n";
+              str += str2 + ".childmenu01 {padding-left: " + val + "px;}\n";
+
+	}
+
+	str += "</style>\n";
+	return str;
+}
+
+//If you wan't to change colors do so below
+
+function overchildmenu01(el) {
+with(el.style) {
+el.style.textDecoration = "none";
+	}
+}
+
+function outchildmenu01(el) {
+	if ((el.sub != null) && (el.parentElement.openedSub == el.sub.id)) { //opened
+		with(el.style) {
+		el.style.textDecoration = "none";
+		}
+	}
+	else {
+		 {
+		}
+	}
+}
+function highlightchildmenu01(el) {
+	if (el.className == "childmenu01") {
+		restorechildmenu01(el);
+        //highlightchildmenu01(el);
+		//sunHide(el.parentElement.openedSub);
+	}
+	el.style.background = "url('images/childmenu03.gif')";
+	el.style.color = "black"; //"highlighttext";
+	selectedItem = el;
+}
+
+function restorechildmenu01(el) {
+	if (el.className == 'childmenu03'){
+		el.style.background = "url('images/childmenu02.gif')";
+	}
+	if (el.className == 'childmenu02'){
+		el.style.background = "url('images/childmenu01.gif')";
+	}
+	if (el.className == 'childmenu01'){
+		el.style.background = "url('images/childmenu01.gif')";
+	}
+	//el.style.background = "url('images/childmenu01.gif')";
+	el.style.color      = "#0079CE";
+	selectedItem = null;
+}
+
+function overchildmenu03(el) {
+	el.style.textDecoration = "none";
+}
+
+function outchildmenu03(el) {
+	el.style.textDecoration = "none";
+}
+
+function highlightchildmenu03(el) {
+	if (el.className == 'childmenu03'){
+		el.style.background = "url('images/childmenu02.gif')";
+	}
+	if (el.className == 'childmenu02'){
+		el.style.background = "url('images/childmenu01.gif')";
+	}
+	el.style.background ="#FFFFFF";
+	el.style.color      = "black"; //"highlighttext";
+	selectedItem = el;
+}
+
+function restorechildmenu03(el) {
+	if (el.className == 'childmenu03'){
+		el.style.background = "url('images/childmenu02.gif')";
+	}
+	if (el.className == 'childmenu02'){
+		el.style.background = "url('images/childmenu01.gif')";
+	}
+	el.style.color      = "#0079CE";
+	selectedItem = null;
+}
+
+function overscrollButton(el) {
+	el.style.padding = "0px";
+}
+
+function outscrollButton(el) {
+	el.style.padding = "0px";
+}
+
+function downscrollButton(el) {
+	with (el.style) {
+		borderRight   = "1px solid buttonhighlight";
+		borderLeft  = "1px solid buttonshadow";
+		borderBottom    = "1px solid buttonhighlight";
+		borderTop = "1px solid buttonshadow";
+	}
+}
+
+function upscrollButton(el) {
+	overchildmenu01(el);
+	el.style.padding = "0px";
+}
+
+// ...till here
+
+function getReal(el, type, value) {
+	var temp = el;
+	while ((temp != null) && (temp.tagName != "BODY")) {
+		if (eval("temp." + type) == value) {
+			el = temp;
+			return el;
+		}
+		temp = temp.parentElement;
+	}
+	return el;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+// Fix the scrollbars
+
+var globalScrollContainer;	// Needed because the object is called through windwow.setTimeout
+var overflowTimeout = 1;
+
+function fixScroll(el) {
+	globalScrollContainer = el;
+	window.setTimeout('changeOverflow(globalScrollContainer)', overflowTimeout);
+}
+function changeOverflow(el) {
+	if (el.offsetHeight > el.parentElement.clientHeight)
+		window.setTimeout('globalScrollContainer.parentElement.style.overflow = "auto";', overflowTimeout);
+	else
+		window.setTimeout('globalScrollContainer.parentElement.style.overflow = "hidden";', overflowTimeout);
+}
+</SCRIPT>
+
+<SCRIPT language=Javascript>
+function showBill(strURL){
+	parent.FormAll.rows='0%,100%,0%';
+	parent.frames["TopBanner"].document.Image15.style.visibility="visible";
+	parent.frames["TopBanner"].document.Image15.style.width=45;
+	parent.frames["TopBanner"].document.Image15.style.height="100";
+	parent.frames["TopBanner"].document.Image17.style.visibility="visible";
+	parent.frames["TopBanner"].document.Image17.style.width=41;
+	parent.frames["TopBanner"].document.Image17.style.height="100";
+	parent.frames["TopBanner"].document.Image18.style.visibility="visible";
+	parent.frames["TopBanner"].document.Image18.style.width=40;
+	parent.frames["TopBanner"].document.Image18.style.height="100";
+	parent.frames["View"].document.location.replace(strURL);
+}
+
+var mx,my,out=1,s=10,flag=0,dwDelay=0;
+function sOut(){
+dws=new Date().valueOf();
+if (dws>dwDelay){flag=0;
+//parent.FormMain.cols='2,24,*';
+return;}
+setTimeout('sOut()',200);
+}
+function docover(){
+	var flag=0;
+	if (document.body.clientWidth==2&&flag==0){dwDelay=new Date().valueOf()+2000;sOut();flag=1;}
+	if (flag==1){dwDelay=new Date().valueOf()+2000;parent.FormMain.cols='106,24,*';}
+}
+document.onmouseover=docover;
+function msmove(){
+docover();
+mx=window.event.x;my=window.event.y;
+cy=document.body.clientHeight;
+
+if(my>=20&&my<=cy-20)out=1;
+else{if(out==1){out=0;
+setTimeout('domove()',50);
+}}
+}
+function msout(){out=1;}
+function domove(){
+var s;
+if (out==0){
+	cy=document.body.clientHeight;
+	if (my>0&&my<20)setTimeout('window.scrollBy(0,-20)',0);
+	if (my>cy-20&&my<cy)setTimeout('window.scrollBy(0,20)',0);
+	setTimeout('domove()',50);
+	}
+}
+
+</SCRIPT>
+
+<STYLE type=text/css>A:visited {
+	COLOR: #004080; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #004080; TEXT-DECORATION: underline
+}
+A:link {
+	COLOR: #004080; TEXT-DECORATION: none
+}
+.t {
+	LINE-HEIGHT: 1.4
+}
+BODY {
+	FONT-SIZE: 11px; SCROLLBAR-TRACK-COLOR: #ffffff; FONT-FAMILY: tahoma,Verdana
+}
+TD.forumHeaderBackgroundAlternate {
+	BACKGROUND-IMAGE: url(Images/forumHeaderBackgroundAlternate.gif); BACKGROUND-COLOR: #ebedf6
+}
+TD {
+	FONT-SIZE: 11px; COLOR: #000000; FONT-FAMILY: tahoma,Verdana
+}
+P {
+	FONT-SIZE: 11px; COLOR: #000000; FONT-FAMILY: tahoma,Verdana
+}
+DIV {
+	FONT-SIZE: 11px; COLOR: #000000; FONT-FAMILY: tahoma,Verdana
+}
+BR {
+	FONT-SIZE: 11px; COLOR: #000000; FONT-FAMILY: tahoma,Verdana
+}
+FORM {
+	FONT-SIZE: 11px; FONT-FAMILY: tahoma,Verdana
+}
+OPTION {
+	FONT-SIZE: 12px; FONT-FAMILY: tahoma,Verdana
+}
+INPUT {
+	BORDER-TOP-WIDTH: 1px; PADDING-RIGHT: 1px; PADDING-LEFT: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 12px; BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #cccccc; PADDING-BOTTOM: 1px; BORDER-TOP-COLOR: #cccccc; PADDING-TOP: 1px; FONT-FAMILY: tahoma,Verdana; HEIGHT: 18px; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #cccccc
+}
+TEXTAREA {
+	BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 12px; BORDER-LEFT-COLOR: #000000; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #000000; BORDER-TOP-COLOR: #000000; FONT-FAMILY: tahoma,Verdana; BACKGROUND-COLOR: #efefef; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #000000
+}
+SELECT {
+	BORDER-TOP-WIDTH: 1px; BORDER-LEFT-WIDTH: 1px; FONT-SIZE: 12px; BORDER-LEFT-COLOR: #000000; BORDER-BOTTOM-WIDTH: 1px; BORDER-BOTTOM-COLOR: #000000; BORDER-TOP-COLOR: #000000; FONT-FAMILY: tahoma,Verdana; BACKGROUND-COLOR: #eeeeee; BORDER-RIGHT-WIDTH: 1px; BORDER-RIGHT-COLOR: #000000
+}
+</STYLE>
+
+<SCRIPT language=JavaScript1.2 src="Menu.files/menua.js"></SCRIPT>
+
+<SCRIPT language=vbscript>
+Function openspan()
+	SVal1.innerHTML = "<table border=0 width='90%' cellspacing=0 cellpadding=0><tr><td width='100%' style=font-size:9pt>当前用户：<br>邹卓<br>[]</td></tr></table>"
+End function
+</SCRIPT>
+
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR></HEAD>
+<BODY onmouseover=msmove() onmouseout=msout() bgColor=#99ccff background="">
+<CENTER>
+<TABLE cellSpacing=0 cellPadding=0 bgColor=#7aa1e4 border=0><!-- <tr> <td width="100%"><img border="0" src="images/cha_1.gif" width="175" height="10"></td> </tr> <tr> <td width="100%"><img border="0" src="images/Main_Top_001.jpg" width="174" height="49" ></td> </tr> <tr> <td width="100%" align=center background="images/Main_TopBg_001.jpg"><Span id=SVal1></Span></td> </tr> <tr> <td width="100%"><img border="0" src="images/Main_Top_002.jpg" width="174" height="10"></td> </tr> <tr> <td width="100%">　</td> </tr>-->
+  <TBODY>
+  <TR>
+    <TD width="100%"><IMG height=70 src="Menu.files/Menu.gif" width=174 
+      border=0></TD></TR>
+  <TR></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="73%" border=0>
+  <TBODY>
+  <TR>
+    <TD width="33%"><BR>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0><B>
+        <TBODY>
+        <TR>
+          <TD noWrap width=2></TD>
+          <TD noWrap align=left>
+            <DIV class=parent id=KB1Parent><B><A title=供应商 
+            onclick="expandIt('KB1'); return false" 
+            href="http://169.254.158.100/zzdl/Menu.asp#"><IMG height=16 
+            src="Menu.files/+.gif" width=18 border=0 name=img1>&nbsp;供应商</A><BR>
+            <DIV class=child id=KB1Child>
+            <DIV class=parent id=KB2Parent><IMG height=13 
+            src="Menu.files/space.gif" width=13 border=0> <B><A title=供应商 
+            onclick="expandIt('KB2'); return false" 
+            href="http://169.254.158.100/zzdl/Menu.asp#"><IMG height=16 
+            src="Menu.files/+.gif" width=18 border=0 name=img2>&nbsp;供应商</A><BR>
+            <DIV class=child id=KB2Child>
+            <DIV><IMG height=13 src="Menu.files/space.gif" width=13 
+            border=0><IMG height=13 src="Menu.files/space.gif" width=13 
+            border=0><A title=临时供应商 
+            href="Jiffprovider_gystmp.html" target="frmRight"><IMG 
+            height=16 src="Menu.files/=.gif" width=18 
+            border=0>临时供应商</A><BR></DIV></DIV></DIV>
+            <DIV><IMG height=13 src="Menu.files/space.gif" width=13 border=0> 
+            <B><A title=合同查询 
+            href="ProviderConsignment.html" target="frmRight"><IMG 
+            height=16 src="Menu.files/=.gif" width=18 
+            border=0>&nbsp;合同查询</A><BR></DIV>
+            <DIV><IMG height=13 src="Menu.files/space.gif" width=13 border=0> 
+            <B><A title=发货信息维护 
+            href="ProviderContract.html" target="frmRight"><IMG 
+            height=16 src="Menu.files/=.gif" width=18 
+            border=0>&nbsp;发货信息维护</A><BR></DIV>
+            <DIV><IMG height=13 src="Menu.files/space.gif" width=13 border=0> 
+            <B><A title=入库查询 
+            href="MaterialQuery.html" target="frmRight"><IMG 
+            height=16 src="Menu.files/=.gif" width=18 
+            border=0>&nbsp;入库查询</A><BR></DIV></DIV></DIV></B></B></B></B></B></TD></TR>
+       </TBODY></TABLE>
+      <SCRIPT language=javascript>
+parent.frmRight.location="Contract/ProviderConsignment.asp";
+ </SCRIPT>
+      </B></TR></TBODY></TABLE></CENTER></BODY></HTML>

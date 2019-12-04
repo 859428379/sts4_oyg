@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<LINK href="css/style.css" rel=stylesheet>
+<SCRIPT language=JavaScript src="css/pub_Calendar.js"></SCRIPT>
+<title>录入采购需求</title>
+<script LANGUAGE="JAVASCRIPT">
+      function submit_form(theForm,i)
+      {
+	  window.close();
+    }
+    function iszero(value,input)
+    {
+        if  (value==0)
+        {
+           alert("数量不能为0！");
+           input.focus();
+           return;
+        }
+    }
+   function ps() {
+   	var objSelected1 = new Option("配送采购", "5");
+   	var objSelected2 = new Option("内部采购", "7");    
+   	var objSelected3 = new Option("特殊采购", "8");
+    if(form.p_cgtype.value == 1)
+    {
+     	form.p_stocktype.options[1] = objSelected1;
+     	form.p_stocktype.options[2] = objSelected3;
+     	form.p_stocktype.options[3] = null;
+    }
+    else
+    {
+     	form.p_stocktype.options[1] = objSelected2;
+     	form.p_stocktype.options[2] = objSelected3;
+     	form.p_stocktype.options[3] = null;
+    }
+   }
+   function tsfh()
+   {
+      form.p_ggxh.value=form.p_ggxh.value+form.p_tsfh.value;
+      form.p_ggxh.focus();
+   }
+   function back(i)
+   {
+      if (i==1)
+      {
+         history.back();
+      }
+      else
+      {
+         window.location="Order_wtb_list.htm";
+      }
+   }
+   
+   function changeData(){
+   		var cGetRow=window.event.srcElement.parentElement.parentElement.rowIndex;
+		//得到某一行
+		var oldTr=table1.rows[cGetRow];
+		var no=oldTr.cells[2].innerText;
+		var name=oldTr.cells[3].innerText;
+		
+		var oldTr2=table2.rows[2];
+		table2.rows[2].cells[1].innerText=no;
+		table2.rows[3].cells[1].innerText=name;
+   }
+</script>
+</head>
+<body>
+
+<center>
+<form name="form" action="Order_wtb_list.htm" method="post" enctype="multipart/form-data" >
+
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="80%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%" id="table2">
+
+   
+    <tr class="t1">
+    <td >物资编码</td>
+
+   	    <td>W64001005000</td>      	
+   	    <input type="hidden" name="p_input7" value="W64001005000">
+</tr>
+    <tr class="t1">
+    <td >物资名称</td>
+
+      	<td>
+      	晶振(HC-49U-500K-0.005%)
+      	  <input type="hidden" name="p_input8" value="晶振(HC-49U-500K-0.005%)">
+      	
+      	</td>
+      	
+      	
+      	
+</tr>
+   
+    <tr class="t1">
+    <td >数量</td>
+
+   	   <td>
+       <input type="text" name="p_input11" size="20" maxlength="20" value="1"  onKeyPress="check_num_dot()" Chk=2 alt="请输入数量。" onBlur="iszero(this.value,form.p_input11)">
+       <font color=red>*</font>
+       </td>
+</tr>
+    <tr class="t1">
+    <td >计量单位</td>
+
+      	   <td>
+      	   个
+      	   <input type="hidden" name="p_input12" value="个">
+      	   </td>
+</tr>
+    <tr class="t1">
+    <td >预算单价(元)</td>
+
+           <td>
+           <input type="text" name="p_input13" size="20" maxlength="20" value="5"  onKeyPress="check_num_dot()" Chk=3>
+      	   
+      	   </td>
+</tr>
+    <tr class="t1">
+    <td >交货期</td>
+
+      	<td>
+      	<input type="text" name="p_date1" size="20" readonly value="2010/01/09">
+      	
+      	<font color=red>*</font>
+      	</td>
+</tr>
+   
+    <tr class="t1">
+    <td >备注</td>
+
+      	<td>
+      	<textarea name="remark"></textarea>
+      	
+      	</td>
+</tr>
+   
+ <tr class="t1">
+ <td colspan=2>
+ <font color=red><B>
+ 附件上传说明：文件大小不能超过4M。
+ </B></font>
+ </td>
+ </tr>
+
+</table></td></tr></table>
+
+<br>
+
+<input type="button" value="重新选择物资" onClick="window.document.location='pclass_select.html'">
+
+   <input type="button" value="保存" onClick="submit_form(document.form,2)">
+
+<input type="button" value="全部需求录入完毕" onClick="submit_form(document.form,3)">
+</center>
+<input type="hidden" name="p_ordercode" value="1000201011133304">
+<input type="hidden" name="p_orderno" value="1000201011133304">
+<input type="hidden" name="p_type" value="">
+
+<input type="hidden" name="p_ftype" value="2">
+</form>
+</body>
+</html>

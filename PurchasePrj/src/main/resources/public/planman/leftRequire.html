@@ -1,0 +1,102 @@
+<HTML>
+	<HEAD>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+
+		<link type="text/css" rel="stylesheet" href="js/xtree.css" />
+		<script language="javascript" src="js/xtree.js"></script>
+		<script language="javascript" src="js/radioTreeItem.js"></script>
+
+		<script type="text/javascript">
+			webFXTreeConfig.setImagePath("js/images/");
+			var tree = new WebFXTree("务资采购电子商务系统");
+			
+			var tIterm0 = new WebFXTreeItem("当前工作提示[计划员]","javascript:mainRequire()");
+						
+			var tIterm1 = new WebFXTreeItem("业务处理","javascript:");
+			
+			
+			var tIterm101 = new WebFXTreeItem("需求计划处理","javascript: addProduct()",tIterm1);
+			var iterm101 = new WebFXTreeItem("需求计划录入","javascript: pclassSelect()",tIterm101);
+			var iterm103 = new WebFXTreeItem("需求计划查询","javascript: orderYtbList()",tIterm101);
+			
+			var tIterm102 = new WebFXTreeItem("编制采购计划","javascript: delProduct()",tIterm1);
+			var iterm201 = new WebFXTreeItem("制造中心采购计划编制","javascript:orderWbxjfaList()",tIterm102);
+			
+			var tIterm103 = new WebFXTreeItem("采购计划处理","javascript: updateProduct()",tIterm1);
+			var iterm301 = new WebFXTreeItem("采购计划查询","javascript:projectList()",tIterm103);
+			var iterm304 = new WebFXTreeItem("采购计划下达","javascript:projectList4()",tIterm103);
+			var iterm303 = new WebFXTreeItem("未通过审批采购计划","javascript:projectList3()",tIterm103);
+			
+			
+			var tIterm2 = new WebFXTreeItem("供应商","javascript:");
+			var tIterm201 = new WebFXTreeItem("供应商基本信息查询","javascript: providerCx()",tIterm2);
+			var tIterm201 = new WebFXTreeItem("供应商产品类别查询","javascript: category()",tIterm2);
+			var tIterm202 = new WebFXTreeItem("添加供应商","javascript: addSupply()",tIterm2);
+			
+			tree.add(tIterm0);
+			tree.add(tIterm1);
+			tree.add(tIterm2);
+					
+			document.write(tree);
+			tree.expand();
+		</script>
+
+		<script type="text/javascript">
+		function mainRequire(){
+			 window.parent.main.location="mainRequire.html";
+		}
+		
+		function pclassSelect(){
+			window.parent.main.location="pclass_select.html";
+		}
+		
+		
+		function orderYtbList(){
+			window.parent.main.location="Order_ytb_list.htm";	
+		}
+		
+		
+		function orderWbxjfaList(){
+			window.parent.main.location="Order_wbxjfa_list.htm";
+		}
+		
+		function projectList(){
+			window.parent.main.location="Project_list.htm";
+		}
+		
+		function projectList3(){
+			window.parent.main.location="Project_list3.htm";
+		}
+		
+		function projectList4(){
+			window.parent.main.location="Project_list4.htm";
+		}
+		
+		function providerCx(){
+			window.parent.main.location="provider_cx.htm";
+		}
+		
+		function addSupply(){
+			window.parent.main.location="supply.html";
+		}
+		
+		function category(){
+			window.parent.main.location="category.html";
+		}
+	
+		</script>
+
+	</HEAD>
+
+
+	<BODY style="cursor: default; background: #e7f3ff;" text=#000000
+		leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+</BODY>
+</HTML>
+
+
+
+
+
+

@@ -1,0 +1,81 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>供应商产品修改</TITLE>
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312"><LINK 
+href="ProviderContract.files/style.css" rel=stylesheet>
+<script language=javascript> 
+function updaback()
+	{ 
+		 if (form.strMemlogPass1.value!=form.strMemlogPass.value)
+			{  alert("登录密码和密码确认不一致！");   }
+		 else
+			{ if (form.rad.value=="")
+				{  alert("对不起，请输入登录名。");    } 
+			  else
+				{
+					 form.but.value ="upd";
+					 form.submit ();
+				}
+			}
+	 } 
+</script>
+ 
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR></HEAD>
+<BODY>
+<center>
+<form name=form action="jiffprov_hysave.asp" method="post">
+<input type=hidden name="but" value="updaback">
+<input type=hidden name="rad" value="zzCEO">
+ 
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+<tr bgcolor="#ffffff"> 
+<td width="100%" colspan="20" bgcolor="#ffffff" align=center height=22><B><H2><font  color=#0070C0 >供应商产品修改</b>
+<img alt="帮助" src="css/help_a.gif" border="0">
+</td>
+</tr>
+<tr>
+		<TD class=t1 noWrap width="20%">产品编号</td>
+		<TD class=t2 noWrap width="20%"><INPUT  name=strMemlogPass value="W64001005000" style="HEIGHT: 21px; WIDTH: 129px" size=16 maxlength=16 type="text" ></TD>
+		<TD class=t1 noWrap width="20%">产品名称</td>
+		<TD class=t2 noWrap width="30%"><INPUT  name=strMemlogPass1 value="晶振(HC-49U-500K-0.005%)
+" style="HEIGHT: 21px; WIDTH: 129px" size=16 maxlength=16 type="text" ></TD>
+</TR>
+<tr>
+		<TD class=t1 noWrap width="20%">产品类别</td>
+		<TD class=t2 noWrap width="20%"><INPUT  name=strMemlogPass value="" style="HEIGHT: 21px; WIDTH: 129px" size=16 maxlength=16 type="text" ></TD>
+		<TD class=t1 noWrap width="20%">产品数量</td>
+		<TD class=t2 noWrap width="30%"><INPUT  name=strMemlogPass1 value="1
+" style="HEIGHT: 21px; WIDTH: 129px" size=16 maxlength=16 type="text" ></TD>
+</TR>
+ 
+ <tr>
+		<TD class=t1 noWrap width="20%">价格</td>
+		<TD class=t2 noWrap width="20%"><INPUT  name=strMemlogPass value="12" style="HEIGHT: 21px; WIDTH: 129px" size=16 maxlength=16 type="text" ></TD>
+		<TD class=t1 noWrap width="20%">单位</td>
+		<TD class=t2 noWrap width="30%"><INPUT  name=strMemlogPass1 value="个
+" style="HEIGHT: 21px; WIDTH: 129px" size=16 maxlength=16 type="text" ></TD>
+</TR>
+
+<tr>
+		<TD class=t1 noWrap width="20%">规格型号</td>
+		<TD class=t2 noWrap width="20%"><INPUT  name=strMemlogPass value="" style="HEIGHT: 21px; WIDTH: 129px" size=16 maxlength=16 type="text" ></TD>
+		<TD class=t1 noWrap width="20%">材料标准</td>
+		<TD class=t2 noWrap width="30%"><INPUT  name=strMemlogPass1 value="1
+" style="HEIGHT: 21px; WIDTH: 129px" size=16 maxlength=16 type="text" ></TD>
+</TR>
+
+<tr>
+		<TD class=t1 noWrap width="20%">材料描述</td>
+		<TD class=t2 noWrap width="20%" colspan="3"><INPUT  name=strMemlogPass value="" style="HEIGHT: 21px; WIDTH: 129px" size=16 maxlength=16 type="text" ></TD>
+</TR>
+</table></td></tr></table>
+ 
+</P>
+<P align=center>
+		<INPUT id=button1 name=button1 type=button value="修改返回" onclick="updaback()">
+		<INPUT id=button2 name=button2 type=button value="直接返回" onclick="history.back()">
+</P>
+</form></BODY></HTML>

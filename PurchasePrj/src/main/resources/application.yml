@@ -1,0 +1,78 @@
+logging:
+  level:
+    com.turing.mapper: debug
+
+mybatis:
+  #类型别名扫描的包
+  type-aliases-package: com.turing.entity
+  configuration:
+    #懒加载相关
+    lazy-loading-enabled: true
+    aggressive-lazy-loading: false
+    #最好加上该设置，否则mybatis默认情况下equals,clone,hashCode,toString都会触发懒加载
+    #该属性是个Set集合，需要使用“-”来逐一添加一项或多项配置（数组、List类似）
+    lazy-load-trigger-methods:
+    - ""
+    #映射骆驼命名法
+    map-underscore-to-camel-case: true  
+
+spring:
+  devtools:
+    restart:
+      #排除指定的目录
+      exclude: /static/**,/templates/**
+
+  thymeleaf:
+    cache: false #关闭缓存配置
+     
+  main: 
+   allow-bean-definition-overriding: true 
+  jpa:
+    #显示执行的SQL
+    show-sql: true
+    #创建或更新数据库表结构
+    # hibernate:
+    # ddl-auto: create
+  datasource:
+    druid:
+      #JDBC四要素
+      url: jdbc:mysql://localhost:3306/purchasePrj?serverTimezone=UTC
+      #用户名
+      username: root
+      #加密后的密码
+      password: JJ3SVH1cfP7droTa0kfM1OssapH4EDB2n8TxZuAsFaP2h+izPgL/6bqYASqYWcFMc+XgZl2mh72B25Spwy+WSQ==
+      driver-class-name: com.mysql.jdbc.Driver
+      ######密码加密相关######
+      #配置ConfigFilter（Druid内置过滤器之一）的过滤器，用于解压密码
+      filters: config
+      #设置密码需要加密，并配置publickey
+      connection-properties: config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALMpxOscOyAXqm+n6dP2u+nSnYF9sB2rx0ldES9QZOFsWwYYfRhHT3MD51e8iHtmP7+9j9p3XreIymOvw+qMYC8CAwEAAQ==
+      
+      #数据库连接池属性配置
+      #初始化连接数
+      initial-size: 1
+      #最大连接数量
+      max-active: 20
+      #获取连接时最大等待时间
+      max-wait: 10000
+      #最小连接数量
+      min-idle: 1
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+      #用来检测连接是否有效的SQL，解决数据库断开连接的问题
+      validation-query: select 1
+      
+      #StatViewServlet配置
+      stat-view-servlet:
+          enabled: true
+          login-username: admin
+          login-password: admin
+          url-pattern: /druid/*
+          
+      #WebStatFilter配置
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        #排除一些不必要的url
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+ 

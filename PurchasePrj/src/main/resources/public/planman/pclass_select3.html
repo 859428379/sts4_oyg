@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<TITLE>选择物资</TITLE>
+	<META http-equiv=Content-Language content=zh-cn>
+	<META http-equiv=Content-Type content="text/html; charset=gb2312">
+	<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
+	<META content=FrontPage.Editor.Document name=ProgId>
+	<LINK href="css/style.css" rel=stylesheet>
+	<script src="jquery-easyui-1.6.3/jquery.min.js" charset="utf-8"></script>
+	<!-- easyui依赖的js -->
+	<script src="jquery-easyui-1.6.3/jquery.easyui.min.js" charset="utf-8"></script>
+	<!--引用对应的语言包 -->
+	<script src="jquery-easyui-1.6.3/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
+	<!-- 引用图标样式 -->
+	<link rel="stylesheet" href="jquery-easyui-1.6.3/themes/icon.css">
+	<!-- 引用默认的样式 -->
+	<link rel="stylesheet" href="jquery-easyui-1.6.3/themes/default/easyui.css">
+	<script type="text/javascript"></script>
+</HEAD>
+<BODY>
+ <CENTER>
+  <FORM name=form action=Order_newform.asp method=post encType=multipart/form-data>
+   <TABLE width="90%" align=center border=0>
+      <TBODY>
+       <TR>
+         <TD align=middle><FONT color=red>选择物资</FONT>====&gt;录入需求计划====&gt;需求计划确认</TD>
+       </TR>
+      </TBODY>
+    </TABLE>
+    <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff borderColorLight=#ffffff border=0>
+      <TBODY>
+       <tr>
+  	       <td>
+		     <div align="center">
+				<FONT color=#000064>◆&nbsp;</FONT><FONT color=#000064>首页 上一页</FONT>&nbsp;
+				<A href="#"><FONT color=#0000be>下一页</FONT></A>&nbsp;
+				<A href="#"><FONT color=#0000be>尾页</FONT></A>
+				<FONT color=#000064>&nbsp;共 40 个需求计划 每页10 个需求计划</FONT>
+				<FONT color=#000064>&nbsp;页次:<FONT color=blue>1</FONT>/4页</FONT>
+				<FONT color=#000064>&nbsp;◆&nbsp;</FONT> 
+		     </div>
+	      </td>
+       </tr>
+       <tr>
+  	    <td>
+    	 <div>
+        	<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+                <tr>
+                  <td>
+                    <table cellpadding="3" cellspacing="1" border="0" width="100%" id="table1">
+                     
+                         <tr  class="t1">
+                          <td nowrap align="center">选择</td>
+                          <td nowrap align="center">序号</td>
+                          <td nowrap align="center">产品编码</td>
+                          <td nowrap align="center">产品名称</td>
+                         </tr>
+                
+                         <tr class="t2" >
+                          <td align=center><input type="checkbox" name="p_orderno" value="1000201011133305" checked="checked"></td>
+                          <td >1</td>
+                          <td >W64001005000<br></td>
+                          <td >晶振(HC-49U-500K-0.005%)<br></td>
+                         </tr>
+                    </table>
+                  </td>
+                </tr>
+             </TABLE>
+             <div align="center"> 请先选择物资，然后点击：<A href="javascript:window.document.location='Order_newform.htm'"><FONT size=3><U>下一步</U></div>    
+         </div>
+       </td>
+     </tr>
+      <TR>
+        <TD>
+          <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+            <TBODY>
+       
+              <TR bgColor=#99ccff>
+                <TD colSpan=2><A href="javascript: productX()"><B>晶振  W64</B></A></TD>
+              </TR>
+              <TR bgColor=#ffffff>
+                <TD><A href="#">【晶振系列】【W640】</A> </TD>
+                <TD><BR></TD>
+              </TR>
+            </TBODY>
+          </TABLE>
+        </TD>
+       </TR>
+      </TBODY>
+     </TABLE>
+   </FORM>
+  </CENTER>
+ </BODY>
+</HTML>
+          

@@ -1,0 +1,73 @@
+<HTML>
+	<HEAD>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+
+		<link type="text/css" rel="stylesheet" href="js/xtree.css" />
+		<script language="javascript" src="js/xtree.js"></script>
+		<script language="javascript" src="js/radioTreeItem.js"></script>
+
+		<script type="text/javascript">
+			webFXTreeConfig.setImagePath("js/images/");
+			var tree = new WebFXTree("物资采购电子商务系统");
+			
+			var tIterm0 = new WebFXTreeItem("当前工作提示[采购员]","javascript:mainRequire()");
+						
+			var tIterm1 = new WebFXTreeItem("询价书业务处理","javascript:#");
+			
+			
+			var tIterm101 = new WebFXTreeItem("编制询价书","javascript: #",tIterm1);
+			var iterm101 = new WebFXTreeItem("编制询价书","javascript: apply()",tIterm101);
+			var iterm103 = new WebFXTreeItem("询价书列表","javascript: queryPact()",tIterm101);
+			
+			
+			//var tIterm102 = new WebFXTreeItem("询价书维护","javascript: #",tIterm1);
+			//var iterm201 = new WebFXTreeItem("可维护的询价书列表","javascript: apply1()" ,tIterm102);
+			
+			
+			var tIterm2 = new WebFXTreeItem("报价书业务处理","javascript:#");
+			var tIterm101 = new WebFXTreeItem("报价书查询","javascript: #",tIterm2);
+			var iterm201 = new WebFXTreeItem("报价的供应商列表","javascript: pactApplyList()" ,tIterm101);
+			
+			tree.add(tIterm0);
+			tree.add(tIterm1);
+			tree.add(tIterm2);
+					
+			document.write(tree);
+			tree.expand();
+		</script>
+
+		<script type="text/javascript">
+		function mainRequire(){
+			 window.parent.main.location="mainRequire.html";
+		}
+
+		function apply(){
+			window.parent.mainFrame.location="Project_list.htm";
+		}
+		
+		function pactApplyList(){
+			window.parent.mainFrame.location="Project_list33.htm";
+		}
+
+		function queryPact(){
+			window.parent.mainFrame.location="ask1.html";
+		}
+		function apply1(){
+			window.parent.mainFrame.location="Project_list22.htm";
+		}
+		</script>
+
+	</HEAD>
+
+
+	<BODY style="cursor: default; background: #e7f3ff;" text=#000000
+		leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+</BODY>
+</HTML>
+
+
+
+
+
+

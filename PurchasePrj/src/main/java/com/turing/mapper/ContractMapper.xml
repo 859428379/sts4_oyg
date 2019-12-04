@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.turing.mapper.ContractMapper">
+  <resultMap id="BaseResultMap" type="com.turing.entity.Contract">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cont_num" jdbcType="VARCHAR" property="contNum" />
+    <result column="buyer" jdbcType="VARCHAR" property="buyer" />
+    <result column="seller" jdbcType="VARCHAR" property="seller" />
+    <result column="supplier_num" jdbcType="VARCHAR" property="supplierNum" />
+    <result column="cont_date" jdbcType="TIMESTAMP" property="contDate" />
+    <result column="cont_type" jdbcType="VARCHAR" property="contType" />
+    <result column="stock_type" jdbcType="VARCHAR" property="stockType" />
+    <result column="cont_item" jdbcType="VARCHAR" property="contItem" />
+    <result column="money" jdbcType="VARCHAR" property="money" />
+    <result column="tax_rate" jdbcType="VARCHAR" property="taxRate" />
+    <result column="wrap_back" jdbcType="VARCHAR" property="wrapBack" />
+    <result column="verify_stand" jdbcType="VARCHAR" property="verifyStand" />
+    <result column="mode" jdbcType="VARCHAR" property="mode" />
+    <result column="pay_cond" jdbcType="VARCHAR" property="payCond" />
+    <result column="verify_date" jdbcType="TIMESTAMP" property="verifyDate" />
+    <result column="quality_stand" jdbcType="VARCHAR" property="qualityStand" />
+    <result column="standard_no" jdbcType="VARCHAR" property="standardNo" />
+    <result column="place" jdbcType="VARCHAR" property="place" />
+    <result column="cont_price" jdbcType="DECIMAL" property="contPrice" />
+    <result column="transport" jdbcType="VARCHAR" property="transport" />
+    <result column="pay_way" jdbcType="VARCHAR" property="payWay" />
+    <result column="out_perm" jdbcType="VARCHAR" property="outPerm" />
+    <result column="out_day" jdbcType="VARCHAR" property="outDay" />
+    <result column="wrap_require" jdbcType="VARCHAR" property="wrapRequire" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, cont_num, buyer, seller, supplier_num, cont_date, cont_type, stock_type, cont_item, 
+    money, tax_rate, wrap_back, verify_stand, `mode`, pay_cond, verify_date, quality_stand, 
+    standard_no, place, cont_price, transport, pay_way, out_perm, out_day, wrap_require, 
+    remark
+  </sql>
+  <select id="selectByExample" parameterType="com.turing.entity.ContractExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from contract
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from contract
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from contract
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.turing.entity.ContractExample">
+    delete from contract
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.turing.entity.Contract">
+    insert into contract (id, cont_num, buyer, 
+      seller, supplier_num, cont_date, 
+      cont_type, stock_type, cont_item, 
+      money, tax_rate, wrap_back, 
+      verify_stand, `mode`, pay_cond, 
+      verify_date, quality_stand, standard_no, 
+      place, cont_price, transport, 
+      pay_way, out_perm, out_day, 
+      wrap_require, remark)
+    values (#{id,jdbcType=BIGINT}, #{contNum,jdbcType=VARCHAR}, #{buyer,jdbcType=VARCHAR}, 
+      #{seller,jdbcType=VARCHAR}, #{supplierNum,jdbcType=VARCHAR}, #{contDate,jdbcType=TIMESTAMP}, 
+      #{contType,jdbcType=VARCHAR}, #{stockType,jdbcType=VARCHAR}, #{contItem,jdbcType=VARCHAR}, 
+      #{money,jdbcType=VARCHAR}, #{taxRate,jdbcType=VARCHAR}, #{wrapBack,jdbcType=VARCHAR}, 
+      #{verifyStand,jdbcType=VARCHAR}, #{mode,jdbcType=VARCHAR}, #{payCond,jdbcType=VARCHAR}, 
+      #{verifyDate,jdbcType=TIMESTAMP}, #{qualityStand,jdbcType=VARCHAR}, #{standardNo,jdbcType=VARCHAR}, 
+      #{place,jdbcType=VARCHAR}, #{contPrice,jdbcType=DECIMAL}, #{transport,jdbcType=VARCHAR}, 
+      #{payWay,jdbcType=VARCHAR}, #{outPerm,jdbcType=VARCHAR}, #{outDay,jdbcType=VARCHAR}, 
+      #{wrapRequire,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.turing.entity.Contract">
+    insert into contract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="contNum != null">
+        cont_num,
+      </if>
+      <if test="buyer != null">
+        buyer,
+      </if>
+      <if test="seller != null">
+        seller,
+      </if>
+      <if test="supplierNum != null">
+        supplier_num,
+      </if>
+      <if test="contDate != null">
+        cont_date,
+      </if>
+      <if test="contType != null">
+        cont_type,
+      </if>
+      <if test="stockType != null">
+        stock_type,
+      </if>
+      <if test="contItem != null">
+        cont_item,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="taxRate != null">
+        tax_rate,
+      </if>
+      <if test="wrapBack != null">
+        wrap_back,
+      </if>
+      <if test="verifyStand != null">
+        verify_stand,
+      </if>
+      <if test="mode != null">
+        `mode`,
+      </if>
+      <if test="payCond != null">
+        pay_cond,
+      </if>
+      <if test="verifyDate != null">
+        verify_date,
+      </if>
+      <if test="qualityStand != null">
+        quality_stand,
+      </if>
+      <if test="standardNo != null">
+        standard_no,
+      </if>
+      <if test="place != null">
+        place,
+      </if>
+      <if test="contPrice != null">
+        cont_price,
+      </if>
+      <if test="transport != null">
+        transport,
+      </if>
+      <if test="payWay != null">
+        pay_way,
+      </if>
+      <if test="outPerm != null">
+        out_perm,
+      </if>
+      <if test="outDay != null">
+        out_day,
+      </if>
+      <if test="wrapRequire != null">
+        wrap_require,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="contNum != null">
+        #{contNum,jdbcType=VARCHAR},
+      </if>
+      <if test="buyer != null">
+        #{buyer,jdbcType=VARCHAR},
+      </if>
+      <if test="seller != null">
+        #{seller,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierNum != null">
+        #{supplierNum,jdbcType=VARCHAR},
+      </if>
+      <if test="contDate != null">
+        #{contDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contType != null">
+        #{contType,jdbcType=VARCHAR},
+      </if>
+      <if test="stockType != null">
+        #{stockType,jdbcType=VARCHAR},
+      </if>
+      <if test="contItem != null">
+        #{contItem,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRate != null">
+        #{taxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="wrapBack != null">
+        #{wrapBack,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyStand != null">
+        #{verifyStand,jdbcType=VARCHAR},
+      </if>
+      <if test="mode != null">
+        #{mode,jdbcType=VARCHAR},
+      </if>
+      <if test="payCond != null">
+        #{payCond,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyDate != null">
+        #{verifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qualityStand != null">
+        #{qualityStand,jdbcType=VARCHAR},
+      </if>
+      <if test="standardNo != null">
+        #{standardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null">
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="contPrice != null">
+        #{contPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="transport != null">
+        #{transport,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null">
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="outPerm != null">
+        #{outPerm,jdbcType=VARCHAR},
+      </if>
+      <if test="outDay != null">
+        #{outDay,jdbcType=VARCHAR},
+      </if>
+      <if test="wrapRequire != null">
+        #{wrapRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.turing.entity.ContractExample" resultType="java.lang.Long">
+    select count(*) from contract
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update contract
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.contNum != null">
+        cont_num = #{record.contNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyer != null">
+        buyer = #{record.buyer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seller != null">
+        seller = #{record.seller,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierNum != null">
+        supplier_num = #{record.supplierNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contDate != null">
+        cont_date = #{record.contDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.contType != null">
+        cont_type = #{record.contType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockType != null">
+        stock_type = #{record.stockType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contItem != null">
+        cont_item = #{record.contItem,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null">
+        money = #{record.money,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxRate != null">
+        tax_rate = #{record.taxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wrapBack != null">
+        wrap_back = #{record.wrapBack,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifyStand != null">
+        verify_stand = #{record.verifyStand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mode != null">
+        `mode` = #{record.mode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payCond != null">
+        pay_cond = #{record.payCond,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifyDate != null">
+        verify_date = #{record.verifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.qualityStand != null">
+        quality_stand = #{record.qualityStand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standardNo != null">
+        standard_no = #{record.standardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.place != null">
+        place = #{record.place,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contPrice != null">
+        cont_price = #{record.contPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.transport != null">
+        transport = #{record.transport,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payWay != null">
+        pay_way = #{record.payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outPerm != null">
+        out_perm = #{record.outPerm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outDay != null">
+        out_day = #{record.outDay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wrapRequire != null">
+        wrap_require = #{record.wrapRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update contract
+    set id = #{record.id,jdbcType=BIGINT},
+      cont_num = #{record.contNum,jdbcType=VARCHAR},
+      buyer = #{record.buyer,jdbcType=VARCHAR},
+      seller = #{record.seller,jdbcType=VARCHAR},
+      supplier_num = #{record.supplierNum,jdbcType=VARCHAR},
+      cont_date = #{record.contDate,jdbcType=TIMESTAMP},
+      cont_type = #{record.contType,jdbcType=VARCHAR},
+      stock_type = #{record.stockType,jdbcType=VARCHAR},
+      cont_item = #{record.contItem,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=VARCHAR},
+      tax_rate = #{record.taxRate,jdbcType=VARCHAR},
+      wrap_back = #{record.wrapBack,jdbcType=VARCHAR},
+      verify_stand = #{record.verifyStand,jdbcType=VARCHAR},
+      `mode` = #{record.mode,jdbcType=VARCHAR},
+      pay_cond = #{record.payCond,jdbcType=VARCHAR},
+      verify_date = #{record.verifyDate,jdbcType=TIMESTAMP},
+      quality_stand = #{record.qualityStand,jdbcType=VARCHAR},
+      standard_no = #{record.standardNo,jdbcType=VARCHAR},
+      place = #{record.place,jdbcType=VARCHAR},
+      cont_price = #{record.contPrice,jdbcType=DECIMAL},
+      transport = #{record.transport,jdbcType=VARCHAR},
+      pay_way = #{record.payWay,jdbcType=VARCHAR},
+      out_perm = #{record.outPerm,jdbcType=VARCHAR},
+      out_day = #{record.outDay,jdbcType=VARCHAR},
+      wrap_require = #{record.wrapRequire,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.turing.entity.Contract">
+    update contract
+    <set>
+      <if test="contNum != null">
+        cont_num = #{contNum,jdbcType=VARCHAR},
+      </if>
+      <if test="buyer != null">
+        buyer = #{buyer,jdbcType=VARCHAR},
+      </if>
+      <if test="seller != null">
+        seller = #{seller,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierNum != null">
+        supplier_num = #{supplierNum,jdbcType=VARCHAR},
+      </if>
+      <if test="contDate != null">
+        cont_date = #{contDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contType != null">
+        cont_type = #{contType,jdbcType=VARCHAR},
+      </if>
+      <if test="stockType != null">
+        stock_type = #{stockType,jdbcType=VARCHAR},
+      </if>
+      <if test="contItem != null">
+        cont_item = #{contItem,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRate != null">
+        tax_rate = #{taxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="wrapBack != null">
+        wrap_back = #{wrapBack,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyStand != null">
+        verify_stand = #{verifyStand,jdbcType=VARCHAR},
+      </if>
+      <if test="mode != null">
+        `mode` = #{mode,jdbcType=VARCHAR},
+      </if>
+      <if test="payCond != null">
+        pay_cond = #{payCond,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyDate != null">
+        verify_date = #{verifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qualityStand != null">
+        quality_stand = #{qualityStand,jdbcType=VARCHAR},
+      </if>
+      <if test="standardNo != null">
+        standard_no = #{standardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null">
+        place = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="contPrice != null">
+        cont_price = #{contPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="transport != null">
+        transport = #{transport,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null">
+        pay_way = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="outPerm != null">
+        out_perm = #{outPerm,jdbcType=VARCHAR},
+      </if>
+      <if test="outDay != null">
+        out_day = #{outDay,jdbcType=VARCHAR},
+      </if>
+      <if test="wrapRequire != null">
+        wrap_require = #{wrapRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.turing.entity.Contract">
+    update contract
+    set cont_num = #{contNum,jdbcType=VARCHAR},
+      buyer = #{buyer,jdbcType=VARCHAR},
+      seller = #{seller,jdbcType=VARCHAR},
+      supplier_num = #{supplierNum,jdbcType=VARCHAR},
+      cont_date = #{contDate,jdbcType=TIMESTAMP},
+      cont_type = #{contType,jdbcType=VARCHAR},
+      stock_type = #{stockType,jdbcType=VARCHAR},
+      cont_item = #{contItem,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR},
+      tax_rate = #{taxRate,jdbcType=VARCHAR},
+      wrap_back = #{wrapBack,jdbcType=VARCHAR},
+      verify_stand = #{verifyStand,jdbcType=VARCHAR},
+      `mode` = #{mode,jdbcType=VARCHAR},
+      pay_cond = #{payCond,jdbcType=VARCHAR},
+      verify_date = #{verifyDate,jdbcType=TIMESTAMP},
+      quality_stand = #{qualityStand,jdbcType=VARCHAR},
+      standard_no = #{standardNo,jdbcType=VARCHAR},
+      place = #{place,jdbcType=VARCHAR},
+      cont_price = #{contPrice,jdbcType=DECIMAL},
+      transport = #{transport,jdbcType=VARCHAR},
+      pay_way = #{payWay,jdbcType=VARCHAR},
+      out_perm = #{outPerm,jdbcType=VARCHAR},
+      out_day = #{outDay,jdbcType=VARCHAR},
+      wrap_require = #{wrapRequire,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

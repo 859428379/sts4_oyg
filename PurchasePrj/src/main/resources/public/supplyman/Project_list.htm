@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>采购计划一览表</TITLE>
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId><LINK 
+href="Project_list.files/style.css" rel=stylesheet>
+<SCRIPT language=JavaScript src="Project_list.files/pub_Calendar.js"></SCRIPT>
+
+<SCRIPT language=javascript>
+    function select_check(theForm)
+      {
+        var count=0;
+        for (var k = 0; k < theForm.length; k++)
+        if ((theForm[k].type == "checkbox") && (theForm[k].checked))
+        count++;
+         if (count==0)
+         {
+            for (k = 0; k < theForm.length; k++)
+            {
+              if (theForm[k].type == "checkbox")
+              theForm[k].checked=true;
+            }
+         }
+         else
+         {
+            for (k = 0; k < theForm.length; k++)
+            {
+              if (theForm[k].type == "checkbox")
+              theForm[k].checked=false;
+            }
+         }
+      }
+      
+      function submit_Checkform(theForm,i)
+      {
+        var count=0;
+        for (var k = 0; k < theForm.length; k++)
+        if ((theForm[k].type == "checkbox") && (theForm[k].checked))
+        count++;
+        if (count==0)
+        {
+          alert("提示信息：\n请选择采购计划。");
+          return;
+        }
+         document.form.p_type.value=i;
+         window.document.form.submit();
+         return true;
+      }      
+      function submit_form(theForm,i)
+      {
+      	window.document.location="修改公开求购报价书.HTML";
+      }
+     
+</SCRIPT>
+</HEAD>
+<BODY>
+<DIV id=overDiv style="Z-INDEX: 1; POSITION: absolute"></DIV>
+<CENTER>
+<FORM name=form action=Project_list_do.asp method=post><INPUT type=hidden 
+value=1 name=p_type> 
+<H2><FONT color=#0070c0>报价维护</FONT></H2>
+<TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff 
+borderColorLight=#ffffff border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffffff>
+          <TD noWrap align=middle>报价书名称：<INPUT size=10 
+            name=p_title>&nbsp;&nbsp; 对应询价书名称：<INPUT size=10 
+            name=p_Item>&nbsp;&nbsp; <INPUT onclick=submit_form_cx() type=button value=查询></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FORM 
+name="form1" action="" method="Post">
+<CENTER>
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
+bgColor=#336699 borderColorLight=#006699 border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR class=t1>
+          <TD noWrap align=middle>选择</TD>
+          <TD noWrap align=middle>序号</TD>
+          <TD noWrap align=middle>报价书标题</TD>
+          <TD noWrap align=middle>报价提交时间</TD>
+          <TD noWrap align=middle>对应询价书</TD>
+          <TD noWrap align=middle>询价截止时间</TD>
+          <TD noWrap align=middle colspan="2">采购类型</TD></TR>
+        <TR class=t2>
+         <TD align=middle><INPUT type=checkbox value=1000201011133277 
+            name=p_orderno></TD>
+          <TD>1</TD>
+          <TD><A 
+            href="javascript:xjfatzXjfamx()">对W65200000000的报价<BR></A></TD>
+          <TD>2010-1-8 17:05:38<BR></TD>
+          <TD>W65200000000</TD>
+          <TD>2010-1-9 17:05:38<BR></TD>
+		  <TD colspan="2">公开求购</TD></TR>
+       </TBODY></TABLE>
+	   </TD></TR></TBODY></TABLE>
+	   <FONT color=#000064>◆&nbsp;</FONT><FONT color=#000064>首页 
+上一页</FONT>&nbsp;<FONT color=#ff0000>1</FONT>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=2"><FONT 
+color=#0000be>2</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=3"><FONT 
+color=#0000be>3</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=4"><FONT 
+color=#0000be>4</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=5"><FONT 
+color=#0000be>5</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=6"><FONT 
+color=#0000be>6</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=7"><FONT 
+color=#0000be>7</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=8"><FONT 
+color=#0000be>8</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=9"><FONT 
+color=#0000be>9</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=10"><FONT 
+color=#0000be>10</FONT></A>&nbsp; 到第 <SELECT onchange=submit_form_cx() 
+  name=page> <OPTION value=1 selected>1</OPTION> <OPTION value=2>2</OPTION> 
+  <OPTION value=3>3</OPTION> <OPTION value=4>4</OPTION> <OPTION 
+  value=5>5</OPTION> <OPTION value=6>6</OPTION> <OPTION value=7>7</OPTION> 
+  <OPTION value=8>8</OPTION> <OPTION value=9>9</OPTION> <OPTION 
+  value=10>10</OPTION> <OPTION value=11>11</OPTION> <OPTION value=12>12</OPTION> 
+  <OPTION value=13>13</OPTION> <OPTION value=14>14</OPTION> <OPTION 
+  value=15>15</OPTION></SELECT>页&nbsp; <A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=2"><FONT 
+color=#0000be>下一页</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=15"><FONT 
+color=#0000be>尾页</FONT></A><FONT color=#000064>&nbsp;共 141 个采购计划 每页10 
+个采购计划</FONT><FONT color=#000064>&nbsp;页次:<FONT 
+color=blue>1</FONT>/15页</FONT><FONT color=#000064>&nbsp;◆&nbsp;</FONT> 
+	   <INPUT 
+type=hidden value=1 name=p_listtype> 
+<P align=center><INPUT onclick=submit_form(document.form,1) type=button value=打开> <INPUT onclick="ret1();" type=button value=删除> 
+</P></FORM></CENTER></CENTER></BODY></HTML>

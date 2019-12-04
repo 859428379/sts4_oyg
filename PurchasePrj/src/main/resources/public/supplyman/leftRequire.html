@@ -1,0 +1,69 @@
+<HTML>
+	<HEAD>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+
+		<link type="text/css" rel="stylesheet" href="js/xtree.css" />
+		<script language="javascript" src="js/xtree.js"></script>
+		<script language="javascript" src="js/radioTreeItem.js"></script>
+
+		<script type="text/javascript">
+			webFXTreeConfig.setImagePath("js/images/");
+			var tree = new WebFXTree("供应商的信息维护");
+			var tree01= new WebFXTreeItem("供应商的信息维护","",tree);
+			var tIterm0 = new WebFXTreeItem("供应商的信息查看","javascript:mainRequire()",tree01);
+			var tIterm1 = new WebFXTreeItem("修改登录密码","javascript:pclassSelect()",tree01);
+			var tIterm2 = new WebFXTreeItem("供应商产品的维护","javascript:proSelect()",tree01);
+			var tIterm101 = new WebFXTreeItem("产品类别的维护","javascript: MaterialQuery()",tree01);
+			var iterm102 = new WebFXTreeItem("报价维护","javascript: projectList2()",tree);
+			var iterm103 = new WebFXTreeItem("报价历史记录","javascript: projectList3()",tree);
+			var iterm104 = new WebFXTreeItem("合同查询","javascript: ProviderConsignment()",tree);
+			
+			document.write(tree);
+			tree.expand();
+		</script>
+
+		<script type="text/javascript">
+		function mainRequire(){
+			 window.parent.main.location="jiffprov_look.htm";
+		}
+		
+		function pclassSelect(){
+			window.parent.main.location="ProviderContract.html";
+		}
+		
+		function MaterialQuery(){
+			window.parent.main.location="category.html";
+		}
+		
+		function projectList3(){
+			window.parent.main.location="Order_wbxjfa_list.html";
+		}
+
+		function proSelect(){
+			window.parent.main.location="proSelect.html";
+		}
+		
+		
+		function projectList2(){
+			window.parent.main.location="Project_list.htm";
+		}
+		
+		function ProviderConsignment(){
+			window.parent.main.location="ProviderConsignment.html";
+		}
+		</script>
+
+	</HEAD>
+
+
+	<BODY style="cursor: default; background: #e7f3ff;" text=#000000
+		leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+</BODY>
+</HTML>
+
+
+
+
+
+

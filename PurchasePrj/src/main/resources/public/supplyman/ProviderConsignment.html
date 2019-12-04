@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>查看合同</TITLE>
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312"><LINK 
+href="css/style.css" rel=stylesheet>
+<SCRIPT language=JavaScript 
+src="css/pub_Calendar.js"></SCRIPT>
+
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR></HEAD>
+<BODY>
+<CENTER>
+<FORM name=form action=ProviderConsignment.asp method=post>
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
+bgColor=#336699 borderColorLight=#006699 border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffffff>
+          <TD align=middle width="100%" bgColor=#ffffff colSpan=20 
+            height=22><B>
+            <H2><FONT color=#0070c0>查看合同</B> <A 
+            onclick="window.open('../help/Help.asp?Value=查看合同','child','status=NO,scrollbars=yes,toolbar=no,menubar=no,location=no,left=200,top=100,width=700,height=400')" 
+            href="javascript:void(null)"><IMG alt=帮助 
+            src="ProviderConsignment.files/help_a.gif" border=0></A> 
+          </FONT></H2></TD></TR>
+        <TR>
+          <TD align=middle width="100%" bgColor=#ffffff colSpan=10 
+            height=22>物资名称：<INPUT name=STRCLASSCODE1> &nbsp;&nbsp; 合同号： <INPUT 
+            size=17 name=strContCode1> 提交时间：<INPUT readOnly size=15 
+            value=2009/11/08 name=p_date1><IMG style="CURSOR: hand" 
+            onclick="fPopUpCalendarDlg(p_date1);return false" height=16 
+            alt=日历对话框 src="ProviderConsignment.files/schedure_datetime.gif" 
+            width=16 align=absMiddle> &nbsp;至&nbsp;<INPUT readOnly size=15 
+            value=2010/01/08 name=p_date2><IMG style="CURSOR: hand" 
+            onclick="fPopUpCalendarDlg(p_date2);return false" height=16 
+            alt=日历对话框 src="ProviderConsignment.files/schedure_datetime.gif" 
+            width=16 align=absMiddle> &nbsp;&nbsp;<INPUT onclick=submit_form_cx() type=button value="查 询"> 
+          </TD></TR>
+        <TR>
+          <TD align=middle width="100%" bgColor=#ffffff colSpan=10 
+            height=22><FORM name="form1" action="" method="Post">
+            <CENTER><FONT color=#000064>◆&nbsp;</FONT><FONT color=#000064>首页 
+            上一页</FONT>&nbsp;<FONT color=#000064>下一页 尾页</FONT><FONT 
+            color=#000064>&nbsp;共 4 个合同 每页10 个合同</FONT><FONT 
+            color=#000064>&nbsp;页次:<FONT color=blue>1</FONT>/1页</FONT><FONT 
+            color=#000064>&nbsp;◆&nbsp;</FONT> </CENTER></TD></TR>
+        <TR class=t1>
+          <TD noWrap align=middle>序号</TD>
+          <TD noWrap align=middle>合同号</TD>
+          <TD noWrap align=middle>合同标的</TD>
+          <TD noWrap align=middle>合同金额</TD>
+          <TD noWrap align=middle>签定时间</TD>
+          </TR>
+        <TR class=t2>
+          <TD>1</TD>
+          <TD><A 
+            href="contract_view.htm">2010200540580090</A></TD>
+          <TD>wqteswgdsfdsdshfsdgd</TD>
+          <TD align=right>12531846</TD>
+          <TD>2010/01/05</TD>
+        <TR class=t2>
+          <TD>2</TD>
+          <TD><A 
+            href="contract_view.htm">2010200540580086</A></TD>
+          <TD>kljo</TD>
+          <TD align=right>51842</TD>
+          <TD>2010/01/05</TD>
+        <TR class=t2>
+          <TD>3</TD>
+          <TD><A 
+            href="contract_view.htm">20102005405800081</A></TD>
+          <TD>fdsf</TD>
+          <TD align=right>880000</TD>
+          <TD>2010/01/05</TD>
+         </TR>
+        <TR>
+          <TD class=t2 colSpan=10><FONT 
+            color=red>打印状态注释:</FONT><BR>&nbsp;&nbsp;&nbsp;&nbsp;为便于供应商查看合同是否已打印，当打印完后，点击【未打印】按钮，改变打印状态。 
+          </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><INPUT type=hidden 
+name=p_type> </FORM><!INPUT onclick=submit_form(document.form,1) type=button value=打开> <!input type=button value="录入发货信息" onclick="submit_form(document.form,2)">
+<SCRIPT language=javascript>
+function updmark(contcode) 
+{ 
+	form.action="providermark.asp?strcontcode="+contcode+"";
+	form.submit();
+}
+function submit_form(theForm,i)
+{
+    var count=0;
+    for (var k = 0; k < theForm.length; k++)
+    if ((theForm[k].type == "radio") && (theForm[k].checked))
+    count++;
+    if (count==0)
+    {
+       alert("提示信息：\n请选择合同。");
+       return;
+    }
+    window.document.location="contract_view.htm";
+    form.action="ProviderContract_do.asp";
+    document.form.p_type.value=i;
+    window.document.form.submit();
+    return true;
+}
+function submit_form_cx()
+{
+    form.action="ProviderConsignment.asp";
+    window.document.form.submit();
+}		
+</SCRIPT>
+</CENTER></BODY></HTML>

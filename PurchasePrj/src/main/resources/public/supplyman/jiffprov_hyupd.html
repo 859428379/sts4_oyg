@@ -1,0 +1,301 @@
+
+ <SCRIPT LANGUAGE="JAVASCRIPT"> 
+function chck()
+{  var  count=0;
+   for (var i=0;i<form.length;i++)
+   if ((form[i].type == "radio") && (form[i].checked))
+   count++; 
+   if (count==0)
+      { return false;  }
+   else
+      { return true;   }
+}
+ 
+function Add(SourceList,TargetList)
+	{
+	var nIndex = SourceList.selectedIndex;
+ 	var nCount = 0;  
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+	for (i=0;i<SourceList.length;i++)
+  {
+     if (SourceList.options(i).selected==true)
+     {    
+         if (inSouceList(SourceList.options(i).value,TargetList)==false)
+         {
+          	var objSelected = new Option(SourceList[i].text, SourceList[i].value);
+           	TargetList.options[TargetList.length] = objSelected;
+         }
+     }     
+	}
+  for (var i=0;i<TargetList.options.length;i++)
+  {
+    TargetList.options(i).selected=true;
+  }
+	if(navigator.appName=="Netscape")
+	{
+		history.go(0)
+	}
+ }
+ function inSouceList(SourceListOption,TargetList)
+ {
+ 	  for (i=0;i<TargetList.length;i++)
+    {
+	     if (TargetList.options[i].value==SourceListOption)
+       {
+        	 return true;
+       }
+    }   
+    return false;
+ }  
+function Remove(SelectList)
+	{
+	var nIndex = SelectList.selectedIndex;
+ 	var nCount = 0;
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+  while(nCount<SelectList.length)
+  {
+       if (SelectList.options(nCount).selected==true)
+       {
+       	 SelectList.options[nCount] = null;
+       }
+       else
+       {
+         nCount++;
+       }
+  }
+	if(navigator.appName=="Netscape")
+		{
+		history.go(0)
+		}	
+	}
+ function enter()
+ {
+   var srcEle = window.event.srcElement;
+   var tmp;   
+   tmp = window.showModalDialog("pub_pub.Dialog_Date?vc_input=" + srcEle.value);
+     if ( tmp.indexOf("/") != -1)
+     {
+        srcEle.value = tmp;
+     }
+     return;
+ }   
+ function check_num()
+ {
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+ function check_blank()
+ {
+ 	 if (window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+  
+function check_num_dot()
+{
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 46)
+	 {
+  		 window.event.returnValue = false;   
+	 }
+   else
+   {
+      if(window.event.keyCode==47)
+      {
+    		 window.event.returnValue = false;
+      }
+      if(window.event.keyCode==46)
+      {
+         if (window.event.srcElement.value.indexOf(".")!=-1)
+         {
+        		 window.event.returnValue = false;
+         }
+      }   
+    }  
+ }
+  
+ function submitonce(theform)
+ {
+ if (document.all || document.getElementById)
+ {
+ for (i=0;i<theform.length;i++)
+ {
+ var tempobj = theform.elements[i]
+ if (tempobj.type.toLowerCase() =="button")
+ tempobj.disabled = true
+ }
+ }
+ }
+ 
+  function CheckAll() 
+ {
+   var i = 0;
+   for (i=0; i < window.document.forms[0].elements.length; i++) 
+   {
+     if(window.document.forms[0].elements[i].Chk<3) 
+     {
+       if(window.document.forms[0].elements[i].value=="")
+       {
+         alert(window.document.forms[0].elements[i].alt);
+         window.document.forms[0].elements[i].focus();
+         return;
+       }
+       else if (window.document.forms[0].elements[i].Chk==2)
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+     else if(window.document.forms[0].elements[i].Chk==3)
+     {
+       if(window.document.forms[0].elements[i].value!="")
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+   }
+   window.document.forms[0].submit();
+   return true;
+ }
+ function NotNumber(Field)
+ {
+   var j = 0;
+   var k = 0;
+   for (var i=0; i<Field.length; i++)
+   {
+      var ch=Field.substring(i,i+1);
+      if((ch>="0")&&(ch<="9")) 
+      {
+        j=0;
+      }
+      else if(ch==".") 
+      {
+        k++;
+      }
+      else
+      {
+        j=1;
+        break;
+      }
+   }
+   if ((j==0)&&(k<2))
+   {
+      return false;
+   }
+   else
+   {
+      return true;
+   }
+ }
+ function openwindown(page)
+ {
+    window.open(page,"newuser","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=700,height=400,left=100,top=150");
+ }
+</SCRIPT>
+ 
+
+<HTML>
+<HEAD>
+<title>修改供应商会员注册密码</title>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<script language=javascript> 
+function updaback()
+	{ 
+		 if (form.strMemlogPass1.value!=form.strMemlogPass.value)
+			{  alert("登录密码和密码确认不一致！");   }
+		 else
+			{ if (form.rad.value=="")
+				{  alert("对不起，请输入登录名。");    } 
+			  else
+				{
+					 form.but.value ="upd";
+					 form.submit ();
+				}
+			}
+	 } 
+</script>
+<BODY>
+<center>
+<form name=form action="jiffprov_hysave.asp" method="post">
+<input type=hidden name="but" value="updaback">
+<input type=hidden name="rad" value="zzCEO">
+
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+<tr bgcolor="#ffffff"> 
+<td width="100%" colspan="20" bgcolor="#ffffff" align=center height=22><B><H2><font  color=#0070C0 >临时供应商信息修改</b>
+<a href="javascript:void(null)" onClick="window.open('../help/Help.asp?Value=临时供应商信息修改','child','status=NO,scrollbars=yes,toolbar=no,menubar=no,location=no,left=200,top=100,width=700,height=400')" ><img alt="帮助" src="../Images/help_a.gif" border="0"></a>
+</td>
+</tr>
+
+<tr>
+		<TD  class=t1 noWrap width="20%" >登&nbsp;录&nbsp;名:</td>
+		<TD  class=t2 noWrap width="30%" colspan=3> zzCEO<input type=hidden name="strMemLogName" value="zzCEO"></TD>
+</TR>
+<tr>
+		<TD class=t1 noWrap width="20%">登陆密码</td>
+		<TD class=t2 noWrap width="20%"><INPUT  name=strMemlogPass value="woaiziji" style="HEIGHT: 21px; WIDTH: 129px" size=16 maxlength=16 type="password" ></TD>
+		<TD class=t1 noWrap width="20%">确认密码</td>
+		<TD class=t2 noWrap width="30%"><INPUT  name=strMemlogPass1 value="woaiziji" style="HEIGHT: 21px; WIDTH: 129px" size=16 maxlength=16 type="password" ></TD>
+</TR>
+<tr>
+		<TD class=t1 nowrap width="20%">用户姓名</td>
+		<TD class=t2 noWrap width="30%"><INPUT  name=strMemName value="邹卓">**</TD>
+		<TD class=t1 noWrap width="20%"> 性&nbsp;&nbsp;&nbsp;&nbsp;别</td>
+		<TD class=t2 noWrap width="30%"><SELECT  name=intSex  style=" WIDTH: 74px"> 
+																	  
+																	 <OPTION value="1" selected>男</OPTION>
+																	 <OPTION value="2">女</OPTION>
+																	         
+																	</SELECT> </TD>
+</TR>
+<tr >
+		<TD class=t1 noWrap width="20%">联系电话</td>
+		<TD class=t2 noWrap width="30%"><INPUT name=strTel value="0731-87777888"></TD>
+		<TD class=t1 noWrap width="20%">传&nbsp;&nbsp;&nbsp;&nbsp;真</td>
+		<TD class=t2 noWrap width="30%"><INPUT name=strFax  style="HEIGHT: 21px; WIDTH: 129px" value="0731-88888777"></TD>
+</TR>
+<tr bgcolor="#99ccff">
+		<TD class=t1 noWrap width="20%">电子邮箱</td>
+		<TD class=t2 noWrap width="30%"><INPUT  name=strEmail value="zgyxwh@yahoo.com.cn"></TD>
+		<TD class=t1 noWrap width="20%"> 邮&nbsp;&nbsp;&nbsp;&nbsp;编</td>
+		<TD class=t2 noWrap width="30%"><INPUT  name=strZip  style="HEIGHT: 21px; WIDTH: 129px" value="410000"></TD></TR>
+<tr bgcolor="#99ccff">
+		<TD class=t1 noWrap width="10%">联系地址</td>
+		<TD class=t2 noWrap width="30%" colspan=3><INPUT name=strAddr style="WIDTH: 100%" value="湖南长沙解放西路403号"></TD></TR>
+
+</table></td></tr></table>
+
+</P>
+<P align=center>
+		<INPUT id=button1 name=button1 type=button value="修改返回" onclick="updaback()">
+		<INPUT id=button2 name=button2 type=button value="直接返回" onclick="history.back()">
+</P>
+</form>
+</BODY>
+</HTML>

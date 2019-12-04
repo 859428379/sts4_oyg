@@ -1,0 +1,127 @@
+<HTML>
+	<HEAD>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+
+		<link type="text/css" rel="stylesheet" href="js/xtree.css" />
+		<script language="javascript" src="js/xtree.js"></script>
+		<script language="javascript" src="js/radioTreeItem.js"></script>
+
+		<script type="text/javascript">
+			webFXTreeConfig.setImagePath("js/images/");
+			var tree = new WebFXTree("物资采购电子商务系统");
+			
+			var tIterm0 = new WebFXTreeItem("采购员业务处理","javascript:#");
+			
+			
+			var tIterm101 = new WebFXTreeItem("编制合同申请","javascript: #",tIterm0);
+			var iterm101 = new WebFXTreeItem("编制合同申请","javascript: apply()",tIterm101);
+			var iterm102 = new WebFXTreeItem("确认合同申请","javascript: affirmPact()",tIterm101);
+			var iterm103 = new WebFXTreeItem("查询合同申请及报批","javascript: queryPact()",tIterm101);
+			var iterm104 = new WebFXTreeItem("未通过合同申请(可删除)","javascript: callbackPact()",tIterm101);
+			
+			var tIterm103 = new WebFXTreeItem("合同申请维护","javascript: #",tIterm0);
+			var iterm3011 = new WebFXTreeItem("编制合同","javascript:bianzhi()",tIterm103);
+			var iterm3012 = new WebFXTreeItem("确认合同","javascript:queren()",tIterm103);
+			var iterm3014 = new WebFXTreeItem("维护合同","javascript:weihu()",tIterm103);
+			var iterm3015 = new WebFXTreeItem("合同归档","javascript:guidang()",tIterm103);
+
+			var tIterm1 = new WebFXTreeItem("财务部长业务处理","javascript:#");
+						
+			var tIterm102 = new WebFXTreeItem("当前工作提醒","javascript: #",tIterm1);
+			var iterm201 = new WebFXTreeItem("待审批合同申请","javascript: daipi()",tIterm102);
+
+			var tIterm2 = new WebFXTreeItem("计划部长业务处理","javascript:#");
+			
+			
+			var tIterm103 = new WebFXTreeItem("当前工作提醒","javascript: #",tIterm2);
+			var iterm301 = new WebFXTreeItem("待审批合同申请","javascript: shenpi()",tIterm103);
+
+			var tIterm3 = new WebFXTreeItem("厂长业务处理","javascript:#");
+			
+			
+			var tIterm104 = new WebFXTreeItem("当前工作提醒","javascript: #",tIterm3);
+			var iterm401 = new WebFXTreeItem("待审批合同申请","javascript: changzhang()",tIterm104);
+						
+			tree.add(tIterm0);
+			tree.add(tIterm1);
+			tree.add(tIterm2);
+			tree.add(tIterm3);
+					
+			document.write(tree);
+			tree.expand();
+		</script>
+
+		<script type="text/javascript">
+
+		function guidang(){
+			window.parent.mainFrame.location="guidanghetong.htm";
+		}
+
+		function weihu(){
+			window.parent.mainFrame.location="keweihuhetong.htm";
+		}
+
+		function queren(){
+			window.parent.mainFrame.location="querenhetong.htm";
+		}
+
+		function bianzhi(){
+			window.parent.mainFrame.location="bianzhilist.htm";
+		}
+
+		function luru(){
+			window.parent.mainFrame.location="contract_view.htm";
+		}
+
+		function changzhang(){
+			window.parent.mainFrame.location="Apply_daishen.htm";
+		}
+
+		function shenpi(){
+			window.parent.mainFrame.location="Apply_daishenjihua.htm";
+		}
+
+		function daipi(){
+			window.parent.mainFrame.location="Apply_daishencaiwu.htm";
+		}
+
+		function apply(){
+			window.parent.mainFrame.location="jieshilist.html";
+		}
+		
+		function pactApplyList(){
+			window.parent.mainFrame.location="Apply_list.htm";
+		}
+		
+		function pactUpdate(){
+			window.parent.mainFrame.location="Apply_update.htm";
+		}
+		
+		function callbackPact(){
+			window.parent.mainFrame.location="Apply_kehuishou.htm";	
+		}
+		
+		function queryPact(){
+			window.parent.mainFrame.location="Apply_chaxun.htm";
+		}
+		
+		function affirmPact(){
+			window.parent.mainFrame.location="Apply_queren.htm";
+		}
+
+		</script>
+
+	</HEAD>
+
+
+	<BODY style="cursor: default; background: #e7f3ff;" text=#000000
+		leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+</BODY>
+</HTML>
+
+
+
+
+
+

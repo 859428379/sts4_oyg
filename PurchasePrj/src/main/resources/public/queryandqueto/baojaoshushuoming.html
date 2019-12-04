@@ -1,0 +1,440 @@
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<script Language="JavaScript" src="js/pub_Calendar.js"></script>
+
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>查看报价书</title>
+<link rel="stylesheet" href="js/style.css">
+</head>
+ <SCRIPT LANGUAGE="JAVASCRIPT"> 
+function chck()
+{  var  count=0;
+   for (var i=0;i<form.length;i++)
+   if ((form[i].type == "radio") && (form[i].checked))
+   count++; 
+   if (count==0)
+      { return false;  }
+   else
+      { return true;   }
+}
+ 
+function Add(SourceList,TargetList)
+	{
+	var nIndex = SourceList.selectedIndex;
+ 	var nCount = 0;  
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+	for (i=0;i<SourceList.length;i++)
+  {
+     if (SourceList.options(i).selected==true)
+     {    
+         if (inSouceList(SourceList.options(i).value,TargetList)==false)
+         {
+          	var objSelected = new Option(SourceList[i].text, SourceList[i].value);
+           	TargetList.options[TargetList.length] = objSelected;
+         }
+     }     
+	}
+  for (var i=0;i<TargetList.options.length;i++)
+  {
+    TargetList.options(i).selected=true;
+  }
+	if(navigator.appName=="Netscape")
+	{
+		history.go(0)
+	}
+ }
+ function inSouceList(SourceListOption,TargetList)
+ {
+ 	  for (i=0;i<TargetList.length;i++)
+    {
+	     if (TargetList.options[i].value==SourceListOption)
+       {
+        	 return true;
+       }
+    }   
+    return false;
+ }  
+function Remove(SelectList)
+	{
+	var nIndex = SelectList.selectedIndex;
+ 	var nCount = 0;
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+  while(nCount<SelectList.length)
+  {
+       if (SelectList.options(nCount).selected==true)
+       {
+       	 SelectList.options[nCount] = null;
+       }
+       else
+       {
+         nCount++;
+       }
+  }
+	if(navigator.appName=="Netscape")
+		{
+		history.go(0)
+		}	
+	}
+ function enter()
+ {
+   var srcEle = window.event.srcElement;
+   var tmp;   
+   tmp = window.showModalDialog("pub_pub.Dialog_Date?vc_input=" + srcEle.value);
+     if ( tmp.indexOf("/") != -1)
+     {
+        srcEle.value = tmp;
+     }
+     return;
+ }   
+ function check_num()
+ {
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+ function check_blank()
+ {
+ 	 if (window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+  
+function check_num_dot()
+{
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 46)
+	 {
+  		 window.event.returnValue = false;   
+	 }
+   else
+   {
+      if(window.event.keyCode==47)
+      {
+    		 window.event.returnValue = false;
+      }
+      if(window.event.keyCode==46)
+      {
+         if (window.event.srcElement.value.indexOf(".")!=-1)
+         {
+        		 window.event.returnValue = false;
+         }
+      }   
+    }  
+ }
+  
+ function submitonce(theform)
+ {
+ if (document.all || document.getElementById)
+ {
+ for (i=0;i<theform.length;i++)
+ {
+ var tempobj = theform.elements[i]
+ if (tempobj.type.toLowerCase() =="button")
+ tempobj.disabled = true
+ }
+ }
+ }
+ 
+  function CheckAll() 
+ {
+   var i = 0;
+   for (i=0; i < window.document.forms[0].elements.length; i++) 
+   {
+     if(window.document.forms[0].elements[i].Chk<3) 
+     {
+       if(window.document.forms[0].elements[i].value=="")
+       {
+         alert(window.document.forms[0].elements[i].alt);
+         window.document.forms[0].elements[i].focus();
+         return;
+       }
+       else if (window.document.forms[0].elements[i].Chk==2)
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+     else if(window.document.forms[0].elements[i].Chk==3)
+     {
+       if(window.document.forms[0].elements[i].value!="")
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+   }
+   window.document.forms[0].submit();
+   return true;
+ }
+ function NotNumber(Field)
+ {
+   var j = 0;
+   var k = 0;
+   for (var i=0; i<Field.length; i++)
+   {
+      var ch=Field.substring(i,i+1);
+      if((ch>="0")&&(ch<="9")) 
+      {
+        j=0;
+      }
+      else if(ch==".") 
+      {
+        k++;
+      }
+      else
+      {
+        j=1;
+        break;
+      }
+   }
+   if ((j==0)&&(k<2))
+   {
+      return false;
+   }
+   else
+   {
+      return true;
+   }
+ }
+ function openwindown(page)
+ {
+    window.open(page,"newuser","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=700,height=400,left=100,top=150");
+ }
+</SCRIPT>
+ 
+
+
+
+<body>
+<center>
+        
+    <form name="form" action="" method="post">
+    
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+
+    <tr bgcolor="#ffffff"> 
+    <td width="100%" colspan="6" bgcolor="#ffffff" align=center height=30><b><h2><font color="#0070C0">查看供应商报价明细</b></td>
+    </tr>
+    <tr class="t2">
+    <td>报价单位</td>
+    
+    <td><font color=green>aive115</font></td>
+    
+    <td>询价单位</td>
+    <td>株洲南车时代电气股份有限公司<br></td></tr>
+    <tr class="t2">
+    <td>地址</td>
+    <td>湖南长沙解放西路403号</td>
+    <td>地址</td>
+    <td>湖南省株洲市石峰区时代路<br></td>
+    </tr>
+    <tr class="t2">
+    <td>联系人</td>
+    <td>邹卓</td>
+    <td>联系人</td>
+    <td>曹端阳<br></td>
+    </tr>
+    <tr class="t2">
+    <td>电话</td>
+    <td>0731-87777888</td>
+    <td>电话</td>
+    <td>0733-8498283<br></td></tr>
+    <tr class="t2">
+    <td >传真</td>
+    <td>0731-88888777</td>
+    <td >传真</td>
+    <td>0733-8498440<br></td></tr>
+    <tr class="t2">
+    <td>E_mail</td>
+    <td>zgyxwh@yahoo.com.cn</td>
+    <td>E_mail</td>
+    <td>caody@teg.cn<br></td></tr>
+    <tr class="t2">
+    <td>报价时间</td>
+    <td>2010/01/09 10:32:46</td>
+    <td>询价时间</td>
+    <td>2010/01/09 10:32:23<br></td>
+    </tr>
+    <tr bgcolor="#ffffff"> 
+    <td width="100%" colspan="6" bgcolor="#ffffff" align=center height=22><center>
+      供应商对本公司的<font color="9933FF">"&nbsp;20020055100109"</font>询价书具体报价情况如下：
+    </center></b></td>
+    </tr>
+    
+</table></td></tr></table>
+
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+
+      <tr>
+      <td colspan=6 align="middle" bgcolor="#99ccff"><B>需求计划1</td>
+      </tr>
+      <tr class=t2> 
+           <td >物资编码</td>
+           <td >W64001005000<br></td>         
+           <td >物资名称</td>
+           <td >晶振(HC-49U-500K-0.005%)<br></td>
+           <td ></td>
+           <td ></td>
+           </tr>       
+      <tr class=t2> 
+           <td >计量单位</td>
+           <td >个<br></td>         
+           <td >开始到货期</td>
+           <td >2010/01/09<br></td>
+           <td >结束到货期</td>
+           <td >2010/01/09<br></td>
+           </tr>  
+         
+           <tr bgcolor="#FFFFFF">
+           <td nowrap >单价(元/含税)</td>
+           <td nowrap >1</td>
+           <td nowrap >数量</td>
+           <td nowrap >1</td>
+           <td nowrap >总价(元/含税)</td>
+           <td nowrap >1</td>
+           </tr>
+           <tr bgcolor="#FFFFFF">
+           <td nowrap >运杂费(元/含税)</td>
+           <td nowrap >0</td>
+           <td nowrap >其他(元/含税)</td>
+           <td nowrap >0</td>
+           <td nowrap >总计(元/含税)</td>
+           <td nowrap >1</td>
+           </tr>  
+           <tr bgcolor="#FFFFFF">
+           <td nowrap >起始到货期</td>
+           <td nowrap >2010/01/09</td>
+           </td>
+           <td nowrap >结束到货期</td>
+           <td nowrap >2010/01/09</td>
+           <td nowrap ></td>
+           <td nowrap ></td>
+           </td>
+           </tr>                    
+
+</table></td></tr>
+<tr><td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+
+      <tr>
+      <td colspan=6 align="middle" bgcolor="#99ccff"><B>需求计划2</td>
+      </tr>
+      <tr class=t2> 
+           <td >物资编码</td>
+           <td >W64001005000<br></td>         
+           <td >物资名称</td>
+           <td >晶振(HC-49U-500K-0.005%)<br></td>
+           <td ></td>
+           <td ></td>
+           </tr>       
+      <tr class=t2> 
+           <td >计量单位</td>
+           <td >个<br></td>         
+           <td >开始到货期</td>
+           <td >2010/01/09<br></td>
+           <td >结束到货期</td>
+           <td >2010/01/09<br></td>
+           </tr>  
+         
+           <tr bgcolor="#FFFFFF">
+           <td nowrap >单价(元/含税)</td>
+           <td nowrap >1</td>
+           <td nowrap >数量</td>
+           <td nowrap >1</td>
+           <td nowrap >总价(元/含税)</td>
+           <td nowrap >1</td>
+           </tr>
+           <tr bgcolor="#FFFFFF">
+           <td nowrap >运杂费(元/含税)</td>
+           <td nowrap >0</td>
+           <td nowrap >其他(元/含税)</td>
+           <td nowrap >0</td>
+           <td nowrap >总计(元/含税)</td>
+           <td nowrap >1</td>
+           </tr>  
+           <tr bgcolor="#FFFFFF">
+           <td nowrap >起始到货期</td>
+           <td nowrap >2010/01/09</td>
+           </td>
+           <td nowrap >结束到货期</td>
+           <td nowrap >2010/01/09</td>
+           <td nowrap ></td>
+           <td nowrap ></td>
+           </td>
+           </tr>                    
+
+</table>
+</td></tr>
+</table>
+
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+
+    <tr class="t2">
+    <td nowrap>数量合计</td>
+    <td>1</td>
+    <td nowrap width="20%">总金额(元/含税)</td>
+    <td>1</td>
+    </tr>
+    
+    <tr class="t2">
+    <td nowrap>报价书标题</td>
+    <td>对20020055100109的报价</td>
+    <td nowrap>报价有效期</td>
+    <td>2010/01/09</td>
+    </tr>
+    <tr class="t2">
+    <td nowrap>报价说明</td>
+    <td colspan="3" style="width:100%"><textarea readonly rows="4" style="width:100%"></textarea></td>
+    </tr>
+    
+</table></td></tr></table>
+
+    </form>
+    <p Align="center">
+    
+    <input onClick="javascript:history.back()" type="button" name="back" value="返回">  
+    </p>
+    </center>
+  
+</body>
+</html>
+
+
+<script language="javascript">
+   function QuotePrint(p_QuoteNo)
+   {
+      window.open("Quote_Print.ASP?QuoteNo="+p_QuoteNo,"","toolbar=0,resizable=yes,location=0,status=0,menubar=1,scrollbars=1,width=800,height=600,left=0,top=0");
+   }    
+</script>

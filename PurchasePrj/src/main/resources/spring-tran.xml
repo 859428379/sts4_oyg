@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+       
+       <!-- 事物的传播特性 
+       transaction-mananger:指定事物管理器
+       --> 
+   		<tx:advice
+   			id="txAdivce"
+   			transaction-manager="transactionManager"
+   		>
+   			<tx:attributes>
+   				<!-- 具体哪些业务方法需要进行是事物管理
+   				propagation:事物传播的类型：
+   				SUPPORTS:不需要事物
+   				REQUIRED:必须事物管理
+   				 -->
+   				<tx:method name="get*" propagation="SUPPORTS" read-only="true" /> 
+   				<tx:method name="select*" propagation="SUPPORTS" read-only="true" />
+   				<tx:method name="update*" propagation="REQUIRED" />
+   				<tx:method name="insert*" propagation="REQUIRED" />
+   				<tx:method name="add*" propagation="REQUIRED" />
+   				<tx:method name="delete*" propagation="REQUIRED" />
+   				<tx:method name="remove*" propagation="REQUIRED" />
+   			</tx:attributes>
+   		</tx:advice>
+        
+        
+        <!-- 声明事物的切面 -->
+        <aop:config> 
+        	<!-- 通知器 -->
+        	<aop:advisor pointcut="execution(*com.turing.service.impl.*.*(..))"
+        		advice-ref="txAdivce"
+        	/> 
+        </aop:config>
+</beans>

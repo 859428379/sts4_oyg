@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<HEAD>
+	<TITLE>选择物资</TITLE>
+	<META http-equiv=Content-Language content=zh-cn>
+	<META http-equiv=Content-Type content="text/html; charset=gb2312">
+	<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
+	<META content=FrontPage.Editor.Document name=ProgId>
+	<LINK href="css/style.css" rel=stylesheet>
+	<script src="jquery-easyui-1.6.3/jquery.min.js" charset="utf-8"></script>
+	<!-- easyui依赖的js -->
+	<script src="jquery-easyui-1.6.3/jquery.easyui.min.js" charset="utf-8"></script>
+	<!--引用对应的语言包 -->
+	<script src="jquery-easyui-1.6.3/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
+	<!-- 引用图标样式 -->
+	<link rel="stylesheet" href="jquery-easyui-1.6.3/themes/icon.css">
+	<!-- 引用默认的样式 -->
+	<link rel="stylesheet" href="jquery-easyui-1.6.3/themes/default/easyui.css">
+	<script type="text/javascript">
+	//通过js创建easyui控件 通过url属性 远程加载内容
+	$(function(){ 
+		
+		//模糊查询
+		$("#query").click(function(){
+			
+			$("#dg").datagrid({
+				queryParams: {
+					typeUnit:$("#typeUnit").val()
+					
+				}
+			});
+			
+		});	
+		
+		//初始化数据表格
+		$("#dg").datagrid({
+			title:'物资类别',
+			toolbar: [{
+				iconCls: 'icon-remove',
+				text:"添加录入计划",
+				handler: function(){
+					//获取选中行
+				    var rows = $("#dg").datagrid("getChecked");
+					$(rows).each(function(index,data){
+						alert("添加：" + data.id);
+
+						 $.ajax({
+					        	 url:"/findMaterial",
+					        	 type:"get",
+					        	 data:{
+					        		 id:data.id
+					        	  },
+					        	  async:true,
+					        	  success:function(data){
+								          //jquery的each方法实现
+								          var str="";
+								          $.each(data,function(i,e){
+								        	  str+="<tr  class='T2'>"
+								        	  str+="<td align=center><input type='checkbox' name='p_orderno' ></td>"
+								              str+='<td>'+e.id+'</td>'
+								              str+='<td>'+e.materialNum+'</td>'
+								              str+='<td>'+e.materialName+'</td>'
+								              str+='</tr>'
+								              //console.log(i,_str)
+								          })
+								          $('#table1').append(str);
+ 
+					        			//重新加载数据表格
+										//$("#dg").datagrid("reload");
+					        	  },
+					        	  error:function(){
+					        			alert("出错了");
+					        	 }
+					         });   
+			         });
+				   }	
+			     }	
+			   
+			]
+			,
+			 columns:[
+				 [
+					 {
+						 title:'操作',
+						 width:50,
+						 field:'cz',
+						 checkbox:true
+					 },
+					 {
+						 title:'名称',
+						 field:'materialName',
+						 width:200,
+						 align:'center'
+					 },
+					 {
+						 title:'单位',
+						 field:'materialUnit',
+						 width:200,
+						 align:'center'
+					 },
+					 {
+						 title:'类型',
+						 field:'typeUnit',
+						 width:200,
+						 align:'center'
+					 }
+				 ]
+			 ],
+			 url:'/materials',
+			 method:'get',
+			 pagination:true,//分页工具
+			 pageSize:2,//页面显示几条
+			 pageNumber:1,//显示第一页
+			 pageList:[2,4,6,8],
+		 
+		});
+		//$('#DIV_toolbar').appendTo('.datagrid-toolbar'); 
+	});
+		
+	</script>
+</HEAD>
+<BODY>
+ <CENTER>
+  <FORM name=form action=Order_newform.asp method=post encType=multipart/form-data>
+   <TABLE width="90%" align=center border=0>
+      <TBODY>
+       <TR>
+         <TD align=middle><FONT color=red>选择物资</FONT>====&gt;录入需求计划====&gt;需求计划确认</TD>
+       </TR>
+      </TBODY>
+    </TABLE>
+    <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff borderColorLight=#ffffff border=0>
+      <TBODY>
+       <tr>
+  	       <td>
+	      </td>
+       </tr>
+       <tr>
+  	    <td>
+    	 <div>
+        	<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+                <tr>
+                  <td>
+                    <table cellpadding="3" cellspacing="1" border="0" width="100%" id="table1" >
+                     
+                         <tr  class="T1">
+                          <td nowrap align="center">选择</td>
+                          <td nowrap align="center">序号</td>
+                          <td nowrap align="center">产品编码</td>
+                          <td nowrap align="center">产品名称</td>
+                         </tr>
+
+                    </table>
+                  </td>
+                </tr>
+             </TABLE>
+             <div align="center"> 请先选择物资，然后点击：<A href="javascript:window.document.location='order'"><FONT size=3><U>下一步</U></div>    
+         </div>
+       </td>
+     </tr>
+      <TR>
+        <TD>
+          <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+            <TBODY>
+              <!-- datagrid展示数据 -->
+             <table id="dg" style="width:1290px;height:290px;backcolor:red" > 
+               <div id="DIV_toolbar" Style="margin:0px; padding:5px">
+		                     产品类型：<select id="typeUnit" style="width:100px;height:25px;">
+                            <option>全部</option>
+                            <option>晶振</option>
+                            <option>逻辑集成电路</option>
+                            <option>线性集成电路</option>
+                            <option>cpu及外围电路</option>
+                     </select>&nbsp;&nbsp; <a class="easyui-linkbutton" id="query" data-options="iconCls:'icon-search',text:'查询'"></a>  
+               </div>
+             </table>
+            </TBODY>
+          </TABLE>
+        </TD>
+       </TR>
+      </TBODY>
+     </TABLE>
+   </FORM>
+  </CENTER>
+ </BODY>
+</html>

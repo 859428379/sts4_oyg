@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+		<title>所有原材料类别</title>
+
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+        <link href="css/default.css" rel="stylesheet" type="text/css" />
+		<script>
+			function save1(){
+				alert('类型名称 芯片||类型的描述 电脑的芯片 添加成功！！');
+				var al=document.getElementById("aaa");
+				
+				al.innerHTML="<tr><td><input type='checkbox' name='num' value='' /></td><td><div align='center'>芯片</div></td><td>";
+				}
+			function addData(){
+				//save1();
+				var name = categoryForm.categoryName.value;
+				var des = categoryForm.descn.value;
+				var objTable = document.getElementById("mytable");
+				objTable.insertRow().insertCell().innerText="200701001";
+				
+				var lastIndex=objTable.rows.length;
+				alert(lastIndex);
+				objTable.rows[lastIndex-1].insertCell().innerText=name;
+				alert(lastIndex);
+				objTable.rows[lastIndex-1].insertCell().innerText=des;
+				alert(lastIndex);
+				objTable.rows[lastIndex-1].insertCell().innerText="sdfjsd";
+				objTable.rows[lastIndex-1].insertCell().innerText="sdiojsd";
+			}
+		</script>
+        <style type="text/css">
+<!--
+.STYLE2 {color: #FFFFFF}
+-->
+        </style>
+</head>
+	<body>
+		<div class="pageTitle">
+			&nbsp; 供应商材料类别查询
+		</div>
+		<div class="list">
+			<div class="listTopOperation">
+				<div class="select">
+				<form action="" method="post">
+						材料类型名称：
+						  <input type="text" name="">
+						&nbsp;
+						<button type="submit">
+							查询
+						</button>
+				  </form>
+				</jodd:form>
+				</div>
+			</div>
+
+			<form action="" method="post"id="myform" onsubmit="">
+
+				<div>
+					<table id="mytable" border="0" cellspacing="1" cellpadding="0"
+						width="100%">
+						<thead>
+							<tr>
+								<th width="30px;"><span class="STYLE2">
+								  选择								</span></th>
+								<th><span class="STYLE2">
+								  类型编号								</span></th>
+								<th><span class="STYLE2">
+								  名称								</span></th>
+								
+								<th><span class="STYLE2"> 供应商类别 </span></th>
+								<th><span class="STYLE2">
+								  统一类别编号</span></th>
+							</tr>
+						</thead>
+						
+						<tbody id="_list_Tbody">
+						
+							        <tr>
+									<td>
+										<input type="checkbox" name="num" value="" />									</td>
+									<td align="center">
+									  <a href="#" onclick="alert('相对应的产品信息!')">adasdasf</a>				</td>
+									<td align="center">
+									  asfasf</td>
+									
+									<td align="center"> 未知 </td>
+									<td align="center">
+									  w2007010011</td>
+								</tr>
+								<div id="aaa">								</div>
+								
+						</tbody>
+					</table>
+					<br>
+					<div class="listBottomOperation">
+				  分页信息显示
+			        </div>
+              </div>
+			</form>
+		</div>
+		
+	</body>
+</html>
+

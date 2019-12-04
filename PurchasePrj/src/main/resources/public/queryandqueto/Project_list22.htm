@@ -1,0 +1,452 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>采购计划一览表</TITLE>
+<SCRIPT language=JAVASCRIPT> 
+function chck()
+{  var  count=0;
+   for (var i=0;i<form.length;i++)
+   if ((form[i].type == "radio") && (form[i].checked))
+   count++; 
+   if (count==0)
+      { return false;  }
+   else
+      { return true;   }
+}
+ 
+function Add(SourceList,TargetList)
+	{
+	var nIndex = SourceList.selectedIndex;
+ 	var nCount = 0;  
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+	for (i=0;i<SourceList.length;i++)
+  {
+     if (SourceList.options(i).selected==true)
+     {    
+         if (inSouceList(SourceList.options(i).value,TargetList)==false)
+         {
+          	var objSelected = new Option(SourceList[i].text, SourceList[i].value);
+           	TargetList.options[TargetList.length] = objSelected;
+         }
+     }     
+	}
+  for (var i=0;i<TargetList.options.length;i++)
+  {
+    TargetList.options(i).selected=true;
+  }
+	if(navigator.appName=="Netscape")
+	{
+		history.go(0)
+	}
+ }
+ function inSouceList(SourceListOption,TargetList)
+ {
+ 	  for (i=0;i<TargetList.length;i++)
+    {
+	     if (TargetList.options[i].value==SourceListOption)
+       {
+        	 return true;
+       }
+    }   
+    return false;
+ }  
+function Remove(SelectList)
+	{
+	var nIndex = SelectList.selectedIndex;
+ 	var nCount = 0;
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+  while(nCount<SelectList.length)
+  {
+       if (SelectList.options(nCount).selected==true)
+       {
+       	 SelectList.options[nCount] = null;
+       }
+       else
+       {
+         nCount++;
+       }
+  }
+	if(navigator.appName=="Netscape")
+		{
+		history.go(0)
+		}	
+	}
+ function enter()
+ {
+   var srcEle = window.event.srcElement;
+   var tmp;   
+   tmp = window.showModalDialog("pub_pub.Dialog_Date?vc_input=" + srcEle.value);
+     if ( tmp.indexOf("/") != -1)
+     {
+        srcEle.value = tmp;
+     }
+     return;
+ }   
+ function check_num()
+ {
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+ function check_blank()
+ {
+ 	 if (window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+  
+function check_num_dot()
+{
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 46)
+	 {
+  		 window.event.returnValue = false;   
+	 }
+   else
+   {
+      if(window.event.keyCode==47)
+      {
+    		 window.event.returnValue = false;
+      }
+      if(window.event.keyCode==46)
+      {
+         if (window.event.srcElement.value.indexOf(".")!=-1)
+         {
+        		 window.event.returnValue = false;
+         }
+      }   
+    }  
+ }
+  
+ function submitonce(theform)
+ {
+ if (document.all || document.getElementById)
+ {
+ for (i=0;i<theform.length;i++)
+ {
+ var tempobj = theform.elements[i]
+ if (tempobj.type.toLowerCase() =="button")
+ tempobj.disabled = true
+ }
+ }
+ }
+ 
+  function CheckAll() 
+ {
+   var i = 0;
+   for (i=0; i < window.document.forms[0].elements.length; i++) 
+   {
+     if(window.document.forms[0].elements[i].Chk<3) 
+     {
+       if(window.document.forms[0].elements[i].value=="")
+       {
+         alert(window.document.forms[0].elements[i].alt);
+         window.document.forms[0].elements[i].focus();
+         return;
+       }
+       else if (window.document.forms[0].elements[i].Chk==2)
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+     else if(window.document.forms[0].elements[i].Chk==3)
+     {
+       if(window.document.forms[0].elements[i].value!="")
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+   }
+   window.document.forms[0].submit();
+   return true;
+ }
+ function NotNumber(Field)
+ {
+   var j = 0;
+   var k = 0;
+   for (var i=0; i<Field.length; i++)
+   {
+      var ch=Field.substring(i,i+1);
+      if((ch>="0")&&(ch<="9")) 
+      {
+        j=0;
+      }
+      else if(ch==".") 
+      {
+        k++;
+      }
+      else
+      {
+        j=1;
+        break;
+      }
+   }
+   if ((j==0)&&(k<2))
+   {
+      return false;
+   }
+   else
+   {
+      return true;
+   }
+ }
+ function openwindown(page)
+ {
+    window.open(page,"newuser","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=700,height=400,left=100,top=150");
+ }
+</SCRIPT>
+
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId><LINK 
+href="js/style.css" rel=stylesheet>
+<SCRIPT language=JavaScript src="js/pub_Calendar.js"></SCRIPT>
+
+<SCRIPT language=javascript>
+    function select_check(theForm)
+      {
+        var count=0;
+        for (var k = 0; k < theForm.length; k++)
+        if ((theForm[k].type == "checkbox") && (theForm[k].checked))
+        count++;
+         if (count==0)
+         {
+            for (k = 0; k < theForm.length; k++)
+            {
+              if (theForm[k].type == "checkbox")
+              theForm[k].checked=true;
+            }
+         }
+         else
+         {
+            for (k = 0; k < theForm.length; k++)
+            {
+              if (theForm[k].type == "checkbox")
+              theForm[k].checked=false;
+            }
+         }
+      }
+      
+      function submit_Checkform(theForm,i)
+      {
+        var count=0;
+        for (var k = 0; k < theForm.length; k++)
+        if ((theForm[k].type == "checkbox") && (theForm[k].checked))
+        count++;
+        if (count==0)
+        {
+          alert("提示信息：\n请选择采购计划。");
+          return;
+        }
+         document.form.p_type.value=i;
+         window.document.form.submit();
+         return true;
+      }      
+      function submit_form(theForm,i)
+      {
+        var count=0;
+        for (var k = 0; k < theForm.length; k++)
+        if ((theForm[k].type == "radio") && (theForm[k].checked))
+        count++;
+        if (count==0)
+        {
+          alert("提示信息：\n请选择采购计划。");
+          return;
+        }
+        if (i==3)
+        {
+          form.action="../Enquire/Enquire_form.asp";
+        }
+        if (i==6)
+        {
+          form.action="../Bidding/bidding_add.asp";
+        }
+         document.form.p_type.value=i;
+         window.document.form.submit();
+         return true;
+      }
+      function submit_form_cx()
+      {
+        form.action="Project_list.asp";
+        window.document.form.submit();
+      }
+	  function workLog() 
+ 	 {
+  		window.open("Enquire_xjsmx.htm","Canny1","toolbar=0,location=0,status=0,menubar=0,scrollbars=0,width=600,height=440,left=100,top=60");
+      
+ 	 }
+	  function xjfatzXjfamx() 
+ 	 {
+  		window.open("xjfatz_xjfamx.htm","Canny1","toolbar=0,location=0,status=0,menubar=0,scrollbars=0,width=600,height=440,left=100,top=60");
+      
+ 	 }
+
+	function dakai()
+	{
+		window.document.location = "Enquire_xjsmx.htm";
+	}
+
+</SCRIPT>
+</HEAD>
+<BODY>
+<DIV id=overDiv style="Z-INDEX: 1; POSITION: absolute"></DIV>
+<CENTER>
+<FORM name=form action=Project_list_do.asp method=post><INPUT type=hidden 
+value=1 name=p_type> 
+<H2><FONT color=#0070c0>可维护的询价书列表</FONT></H2>
+<TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff 
+borderColorLight=#ffffff border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#ffffff>
+          <TD noWrap align=middle>询价书名称：<INPUT size=10 
+            name=p_title>&nbsp;&nbsp; 开始时间：<INPUT size=10 
+            name=p_Item1>&nbsp;&nbsp; 结束时间：<INPUT size=10 
+            name=p_Item2>&nbsp;&nbsp; 状态：
+			<select>
+			<option>全部</option>
+			<option>已截止</option>
+			<option>未发布</option>
+			</select>&nbsp;&nbsp; <INPUT onclick=submit_form_cx() type=button value=查询></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FORM 
+name="form1" action="" method="Post">
+<CENTER><FONT color=#000064>◆&nbsp;</FONT><FONT color=#000064>首页 
+上一页</FONT>&nbsp;<FONT color=#ff0000>1</FONT>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=2"><FONT 
+color=#0000be>2</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=3"><FONT 
+color=#0000be>3</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=4"><FONT 
+color=#0000be>4</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=5"><FONT 
+color=#0000be>5</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=6"><FONT 
+color=#0000be>6</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=7"><FONT 
+color=#0000be>7</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=8"><FONT 
+color=#0000be>8</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=9"><FONT 
+color=#0000be>9</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=10"><FONT 
+color=#0000be>10</FONT></A>&nbsp; 到第 <SELECT onchange=submit_form_cx() 
+  name=page> <OPTION value=1 selected>1</OPTION> <OPTION value=2>2</OPTION> 
+  <OPTION value=3>3</OPTION> <OPTION value=4>4</OPTION> <OPTION 
+  value=5>5</OPTION> <OPTION value=6>6</OPTION> <OPTION value=7>7</OPTION> 
+  <OPTION value=8>8</OPTION> <OPTION value=9>9</OPTION> <OPTION 
+  value=10>10</OPTION> <OPTION value=11>11</OPTION> <OPTION value=12>12</OPTION> 
+  <OPTION value=13>13</OPTION></SELECT>页&nbsp; <A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=2"><FONT 
+color=#0000be>下一页</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Project/Project_list.asp?p_type=1&amp;p_title=&amp;p_Item=&amp;p_status=&amp;p_stocktype=&amp;page=13"><FONT 
+color=#0000be>尾页</FONT></A><FONT color=#000064>&nbsp;共 127 个采购计划 每页10 
+个采购计划</FONT><FONT color=#000064>&nbsp;页次:<FONT 
+color=blue>1</FONT>/13页</FONT><FONT color=#000064>&nbsp;◆&nbsp;</FONT> 
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
+bgColor=#336699 borderColorLight=#006699 border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR class=t1>
+          <TD noWrap align=middle>选择</TD>
+          <TD noWrap align=middle>序号</TD>
+          <TD noWrap align=middle>询价书名称</TD>
+          <TD noWrap align=middle>询价书状态</TD>
+          <TD noWrap align=middle>截止时间</TD>
+        <TR class=t2>
+          <TD align=middle><INPUT type=radio value=1000201001251753 
+            name=p_projno></TD>
+          <TD>1</TD>
+          <TD><A 
+            href="javascript:chakan();">11111111111111<BR></A></TD>
+          <TD>未发布<BR></TD>
+          
+          <TD>2010/01/08 16:30:59</TD>
+          </TR>
+		  <TR class=t2>
+          <TD align=middle><INPUT type=radio value=1000201001251753 
+            name=p_projno></TD>
+          <TD>2</TD>
+          <TD><A 
+            href="javascript:chakan();">11111111111111<BR></A></TD>
+          <TD>已截止<BR></TD>
+          
+          <TD>2010/01/08 16:30:59</TD>
+          </TR>
+        </TBODY></TABLE></TD></TR></TBODY></TABLE>
+		<P Align=center>
+<INPUT onclick=" update_quote();" type=button name="jbxxlist1"     value="修改询价">
+<INPUT onclick=" javascript:delete_quote()" type=button name="jbxxlist2"     value="删除询价"> 
+</p>
+
+</body>
+</html>
+
+<script language=javascript>
+
+function chakan()
+	{
+		window.document.location = "Enquire_xjsmx.htm";
+	}
+      function update_quote()
+      { var count=0;
+        for (var k = 0; k < form.length; k++)
+        if ((form[k].type == "radio") && (form[k].checked))
+           count++;
+        if (count==0)
+           {
+            alert("提示信息：\n请选择报价书。\n你只能修改未发布的询价书");
+            return;
+           }
+        else
+           { form.action="quote2.html";
+             form.submit(); 
+           }
+      }
+  function delete_quote()
+      {  var count=0;
+        for (var k = 0; k < form.length; k++)
+        if ((form[k].type == "radio") && (form[k].checked))
+           count++;
+        if (count==0)
+           {
+            alert("提示信息：\n请选择报价书。");
+            return;
+           }
+        else
+           {  
+              if (confirm("您确定要删除选择的报价书？\n按确定删除该报价书，删除后您可以重新报价。按取消不执行删除操作。")==true)
+                 { 
+                 form.action="Project_list22.htm";
+                 form.submit(); }
+              else
+                 { return; }
+           }
+      }
+      
+   </script>
+

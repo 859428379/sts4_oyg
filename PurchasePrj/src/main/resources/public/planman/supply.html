@@ -1,0 +1,337 @@
+
+ <SCRIPT LANGUAGE="JAVASCRIPT"> 
+function chck()
+{  var  count=0;
+   for (var i=0;i<form.length;i++)
+   if ((form[i].type == "radio") && (form[i].checked))
+   count++; 
+   if (count==0)
+      { return false;  }
+   else
+      { return true;   }
+}
+ 
+function Add(SourceList,TargetList)
+	{
+	var nIndex = SourceList.selectedIndex;
+ 	var nCount = 0;  
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+	for (i=0;i<SourceList.length;i++)
+  {
+     if (SourceList.options(i).selected==true)
+     {    
+         if (inSouceList(SourceList.options(i).value,TargetList)==false)
+         {
+          	var objSelected = new Option(SourceList[i].text, SourceList[i].value);
+           	TargetList.options[TargetList.length] = objSelected;
+         }
+     }     
+	}
+  for (var i=0;i<TargetList.options.length;i++)
+  {
+    TargetList.options(i).selected=true;
+  }
+	if(navigator.appName=="Netscape")
+	{
+		history.go(0)
+	}
+ }
+ function inSouceList(SourceListOption,TargetList)
+ {
+ 	  for (i=0;i<TargetList.length;i++)
+    {
+	     if (TargetList.options[i].value==SourceListOption)
+       {
+        	 return true;
+       }
+    }   
+    return false;
+ }  
+function Remove(SelectList)
+	{
+	var nIndex = SelectList.selectedIndex;
+ 	var nCount = 0;
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+  while(nCount<SelectList.length)
+  {
+       if (SelectList.options(nCount).selected==true)
+       {
+       	 SelectList.options[nCount] = null;
+       }
+       else
+       {
+         nCount++;
+       }
+  }
+	if(navigator.appName=="Netscape")
+		{
+		history.go(0)
+		}	
+	}
+ function enter()
+ {
+   var srcEle = window.event.srcElement;
+   var tmp;   
+   tmp = window.showModalDialog("pub_pub.Dialog_Date?vc_input=" + srcEle.value);
+     if ( tmp.indexOf("/") != -1)
+     {
+        srcEle.value = tmp;
+     }
+     return;
+ }   
+ function check_num()
+ {
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+ function check_blank()
+ {
+ 	 if (window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+  
+function check_num_dot()
+{
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 46)
+	 {
+  		 window.event.returnValue = false;   
+	 }
+   else
+   {
+      if(window.event.keyCode==47)
+      {
+    		 window.event.returnValue = false;
+      }
+      if(window.event.keyCode==46)
+      {
+         if (window.event.srcElement.value.indexOf(".")!=-1)
+         {
+        		 window.event.returnValue = false;
+         }
+      }   
+    }  
+ }
+  
+ function submitonce(theform)
+ {
+ if (document.all || document.getElementById)
+ {
+ for (i=0;i<theform.length;i++)
+ {
+ var tempobj = theform.elements[i]
+ if (tempobj.type.toLowerCase() =="button")
+ tempobj.disabled = true
+ }
+ }
+ }
+ 
+  function CheckAll() 
+ {
+   var i = 0;
+   for (i=0; i < window.document.forms[0].elements.length; i++) 
+   {
+     if(window.document.forms[0].elements[i].Chk<3) 
+     {
+       if(window.document.forms[0].elements[i].value=="")
+       {
+         alert(window.document.forms[0].elements[i].alt);
+         window.document.forms[0].elements[i].focus();
+         return;
+       }
+       else if (window.document.forms[0].elements[i].Chk==2)
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+     else if(window.document.forms[0].elements[i].Chk==3)
+     {
+       if(window.document.forms[0].elements[i].value!="")
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+   }
+   alert("临时供应商注册 成功,请进行供应商会员注册！");
+   window.document.forms[0].submit();
+   return true;
+ }
+ function NotNumber(Field)
+ {
+   var j = 0;
+   var k = 0;
+   for (var i=0; i<Field.length; i++)
+   {
+      var ch=Field.substring(i,i+1);
+      if((ch>="0")&&(ch<="9")) 
+      {
+        j=0;
+      }
+      else if(ch==".") 
+      {
+        k++;
+      }
+      else
+      {
+        j=1;
+        break;
+      }
+   }
+   if ((j==0)&&(k<2))
+   {
+      return false;
+   }
+   else
+   {
+      return true;
+   }
+ }
+ function openwindown(page)
+ {
+    window.open(page,"newuser","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=700,height=400,left=100,top=150");
+ }
+</SCRIPT>
+
+
+<html>
+<link rel="stylesheet" href="css/style.css">
+<head>
+<title>临时供应商注册</title>
+<script language=javascript>  
+function subback()
+	{  
+	 
+	  form.but.value ="add"; 
+	  CheckAll();
+	}  
+</script>
+</head>
+<body>
+<center>
+<form name=form action="supply2.html"  method="post">
+<input type="hidden" name="p_Enquireno" value="100020101348014">
+<input type=hidden name=but value="ture">
+
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+<tr bgcolor="#ffffff"> 
+<td width="100%" colspan="20" bgcolor="#ffffff" align=center height=22><B><H2><font  color=#0070C0 >临时供应商注册</td>
+</tr>
+   
+<tr>
+		<td class=t1 nowrap >供应商名称</td><td class=t2><INPUT maxLength=50 name="strCorpName" style="HEIGHT: 22px; WIDTH: 161px"  Chk=1 alt="请输入供应商名称！" >**</td>
+		<td class=t1 nowrap>供应商简称</td><td class=t2><input name="strShortName" style="HEIGHT: 22px; WIDTH: 161px"  Chk=1 alt="请输入供应商简称！">**</td>
+</tr>
+<tr>
+	     <td class=t1 nowrap>法人代表</td><td class=t2><INPUT maxLength=10 name="strManager" style="HEIGHT: 22px; WIDTH: 161px" Chk=1 alt="请输入法人代表！">**</td>
+		 <td class=t1 nowrap>供应商证书编号</td><td class=t2><INPUT maxLength=50 name="strCert" style="HEIGHT: 22px; WIDTH: 161px"></td> 
+</tr>
+<tr>                           
+		<td class=t1 nowrap>地&nbsp;&nbsp;&nbsp;&nbsp;址</td><td class=t2><input maxLength="50" name="strAddr" style="HEIGHT: 22px; WIDTH: 161px"  Chk=1 alt="请输入地址！" >**</td>
+		<td class=t1 nowrap>邮&nbsp;&nbsp;&nbsp;&nbsp;编</td><td class=t2><input maxLength="6" name="strZip" style="HEIGHT: 22px; WIDTH: 161px"></td>
+</tr>
+<tr>
+		<td class=t1 nowrap>注册资金</td><td class=t2><input maxLength="10" name="strFinancing"  style="HEIGHT: 22px; WIDTH: 161px">(元)</td>
+		<td class=t1 nowrap>联&nbsp;系&nbsp;人</td><td class=t2><input maxLength="10" name="strContact" style="HEIGHT: 22px; WIDTH: 161px"></td>
+</tr>
+<tr>
+		<td class=t1 nowrap>电&nbsp;&nbsp;&nbsp;&nbsp;话</td><td class=t2><input maxLength="15" name="strTel" style="HEIGHT: 22px; WIDTH: 161px" ></td>
+		<td class=t1 nowrap>传&nbsp;&nbsp;&nbsp;&nbsp;真</td><td class=t2><input maxLength="15" name="strFax" style="HEIGHT: 22px; WIDTH: 161px" ></td>
+</tr>
+<tr>
+		<td class=t1 nowrap>电子邮箱</td><td class=t2><input maxLength="40" name="strEmail" style="HEIGHT: 22px; WIDTH: 161px" ></td>
+		<td class=t1 nowrap>网站地址</td><td class=t2><input maxLength="40" name="strUrl" style="HEIGHT: 22px; WIDTH: 161px"></td>
+</tr>
+<tr>
+		<td class=t1 nowrap>公司性质</td><td class=t2><select name="intCorpChara" style="HEIGHT: 22px; WIDTH: 161px">
+															
+															<OPTION value="1">国有企业</OPTION>
+															
+															<OPTION value="2">集体企业</OPTION>
+															
+															<OPTION value="3">股份合作企业</OPTION>
+															
+															<OPTION value="4">国有联营企业</OPTION>
+															
+															<OPTION value="5">集体联营企业</OPTION>
+															
+															<OPTION value="6">国有与集体联营企业</OPTION>
+															
+															<OPTION value="7">其他联营企业</OPTION>
+															
+															<OPTION value="8">国有独资公司</OPTION>
+															
+															<OPTION value="9">有限责任公司</OPTION>
+															
+															<OPTION value="10">股份有限公司</OPTION>
+															
+															<OPTION value="11">私营独资企业</OPTION>
+															
+															<OPTION value="12">私营合伙企业</OPTION>
+															
+															<OPTION value="13">私营有限责任公司</OPTION>
+															
+															<OPTION value="14">私营股份有限公司</OPTION>
+															
+															<OPTION value="15">其他企业</OPTION>
+															
+															<OPTION value="16">合资经营企业（港或澳、台资)</OPTION>
+															
+															<OPTION value="17">合作经营企业（港或澳、台资)</OPTION>
+															
+															<OPTION value="18">港、澳、台商独资经营企业</OPTION>
+															
+															<OPTION value="19">港、澳、台商投资股份有限公司</OPTION>
+															
+															<OPTION value="20">中外合资经营企业</OPTION>
+															
+															<OPTION value="21">中外合作经营企业</OPTION>
+															
+															</select></td>
+		<td class=t1 nowrap>认证状况</td><td class=t2><input maxLength="30" name="strCertStatus" style="HEIGHT: 22px; WIDTH: 161px"></td>
+</tr>
+<tr>
+		<td class=t1 nowrap>开户银行</td><td class=t2><input name="strBank" style="HEIGHT: 22px; WIDTH: 161px" ></td>
+		<td class=t1 nowrap>帐&nbsp;&nbsp;&nbsp;&nbsp;号</td><td class=t2><input maxLength="20" name="strAccount" style="HEIGHT: 22px; WIDTH: 161px" ></td>
+</tr>
+<tr>
+		<td class=t1 nowrap>税&nbsp;&nbsp;&nbsp;&nbsp;号</td><td class=t2><input maxLength="20" name="strTax" style="HEIGHT: 22px; WIDTH: 161px" ></td>
+		<td class=t1 nowrap>银行信誉等级证书 </td><td class=t2><input maxLength="20" name="strBankcert" style="HEIGHT: 22px; WIDTH: 161px"></td>
+</tr>
+
+</table></td></tr></table>
+	
+		<p align=center>
+		<!-- <INPUT type=button value="保存/填写注册信息" onClick="subback()" id=button1 name=button1> -->
+		<INPUT type=button value="保存/填写注册信息" onClick="subback()" id=button1 name=button1> 
+		<INPUT type=button value="清 除" onClick="form.reset()" id=button1 name=button1> 
+		<INPUT type=reset value="返 回" onClick="history.back()" id=reset1 name=reset1>
+		</P>
+</form>
+</body>
+</html>

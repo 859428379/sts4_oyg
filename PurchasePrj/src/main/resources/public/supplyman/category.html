@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>供应商产品信息</TITLE>
+<SCRIPT language=JAVASCRIPT> 
+function prosave(){
+	window.document.location="category_save.html";
+}
+function mydelete(obj)
+{
+	if(confirm("您确定删除本商品？"))
+	{	
+		var myobj=obj.parentNode.parentNode.parentNode;
+		var myrow=obj.parentNode.parentNode;
+		myobj.deleteRow(myrow.rowIndex);
+	}
+}
+</SCRIPT>
+ 
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId><LINK 
+href="css/style.css" rel=stylesheet>
+</HEAD>
+<BODY>
+<CENTER>
+<FORM name=form action="" method=post>
+<H2><FONT color=#0070c0>供应商材料类型维护</FONT></H2>
+<TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff 
+borderColorLight=#ffffff border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD noWrap align=middle>类型编号：<INPUT maxLength=15 size=15 
+            name=p_prodno>&nbsp;&nbsp; 类型名称：<INPUT maxLength=15 size=15 
+            name=p_prodname>&nbsp;&nbsp; <INPUT id=button2 onclick=submit_form_cx() type=button value=查询 name=button2></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FORM 
+name="form1" action="" method="Post">
+
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
+bgColor=#336699 borderColorLight=#006699 border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+		<tr class=t2>
+			<td colspan="11"><input type="button" value="增加" onclick="prosave();"/></td>
+			
+		</tr>
+        <TR class=t1>
+          <TD noWrap align=middle>序号</TD>
+          <TD noWrap align=middle>类型编号</TD>
+          <TD noWrap align=middle>类型名称</TD>
+          <TD noWrap align=middle>类型描述</TD>
+		  <TD noWrap align=middle>操纵</TD></TR>
+        <TR class=t2>
+          <TD align=middle>2</TD>
+          <TD align=middle>001005000<BR></TD>
+          <TD>晶振<BR></TD>
+          <TD align=right>芯片</TD>
+		  <TD align=center><a href="category_update.html">修改</a>&nbsp;&nbsp;<a onclick="mydelete(this)" style="cursor:hand">删除</a></TD>
+		  </TR>
+		<tr class=t2>
+			<td colspan="11"><CENTER><FONT color=#000064>◆&nbsp;</FONT><FONT color=#000064>首页 
+上一页</FONT>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Order/Order_Wbxjfa_List.asp?p_type=0&amp;p_prodno=&amp;p_pagesize=&amp;p_ftype=&amp;p_orderby=&amp;page=2"><FONT 
+color=#0000be>下一页</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Order/Order_Wbxjfa_List.asp?p_type=0&amp;p_prodno=&amp;p_pagesize=&amp;p_ftype=&amp;p_orderby=&amp;page=4"><FONT 
+color=#0000be>尾页</FONT></A><FONT color=#000064>&nbsp;共 40 个需求计划 每页10 
+个需求计划</FONT><FONT color=#000064>&nbsp;页次:<FONT 
+color=blue>1</FONT>/4页</FONT><FONT color=#000064>&nbsp;◆&nbsp;</FONT> </td>
+		</tr>
+       </TBODY></TABLE></TD></TR></TBODY></TABLE>
+	  
+</FORM></CENTER></CENTER></BODY></HTML>

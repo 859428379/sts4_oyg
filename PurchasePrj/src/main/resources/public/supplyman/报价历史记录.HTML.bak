@@ -1,0 +1,446 @@
+
+ <SCRIPT LANGUAGE="JAVASCRIPT"> 
+function chck()
+{  var  count=0;
+   for (var i=0;i<form.length;i++)
+   if ((form[i].type == "radio") && (form[i].checked))
+   count++; 
+   if (count==0)
+      { return false;  }
+   else
+      { return true;   }
+}
+ 
+function Add(SourceList,TargetList)
+	{
+	var nIndex = SourceList.selectedIndex;
+ 	var nCount = 0;  
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+	for (i=0;i<SourceList.length;i++)
+  {
+     if (SourceList.options(i).selected==true)
+     {    
+         if (inSouceList(SourceList.options(i).value,TargetList)==false)
+         {
+          	var objSelected = new Option(SourceList[i].text, SourceList[i].value);
+           	TargetList.options[TargetList.length] = objSelected;
+         }
+     }     
+	}
+  for (var i=0;i<TargetList.options.length;i++)
+  {
+    TargetList.options(i).selected=true;
+  }
+	if(navigator.appName=="Netscape")
+	{
+		history.go(0)
+	}
+ }
+ function inSouceList(SourceListOption,TargetList)
+ {
+ 	  for (i=0;i<TargetList.length;i++)
+    {
+	     if (TargetList.options[i].value==SourceListOption)
+       {
+        	 return true;
+       }
+    }   
+    return false;
+ }  
+function Remove(SelectList)
+	{
+	var nIndex = SelectList.selectedIndex;
+ 	var nCount = 0;
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+  while(nCount<SelectList.length)
+  {
+       if (SelectList.options(nCount).selected==true)
+       {
+       	 SelectList.options[nCount] = null;
+       }
+       else
+       {
+         nCount++;
+       }
+  }
+	if(navigator.appName=="Netscape")
+		{
+		history.go(0)
+		}	
+	}
+ function enter()
+ {
+   var srcEle = window.event.srcElement;
+   var tmp;   
+   tmp = window.showModalDialog("pub_pub.Dialog_Date?vc_input=" + srcEle.value);
+     if ( tmp.indexOf("/") != -1)
+     {
+        srcEle.value = tmp;
+     }
+     return;
+ }   
+ function check_num()
+ {
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+ function check_blank()
+ {
+ 	 if (window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+  
+function check_num_dot()
+{
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 46)
+	 {
+  		 window.event.returnValue = false;   
+	 }
+   else
+   {
+      if(window.event.keyCode==47)
+      {
+    		 window.event.returnValue = false;
+      }
+      if(window.event.keyCode==46)
+      {
+         if (window.event.srcElement.value.indexOf(".")!=-1)
+         {
+        		 window.event.returnValue = false;
+         }
+      }   
+    }  
+ }
+  
+ function submitonce(theform)
+ {
+ if (document.all || document.getElementById)
+ {
+ for (i=0;i<theform.length;i++)
+ {
+ var tempobj = theform.elements[i]
+ if (tempobj.type.toLowerCase() =="button")
+ tempobj.disabled = true
+ }
+ }
+ }
+ 
+  function CheckAll() 
+ {
+   var i = 0;
+   for (i=0; i < window.document.forms[0].elements.length; i++) 
+   {
+     if(window.document.forms[0].elements[i].Chk<3) 
+     {
+       if(window.document.forms[0].elements[i].value=="")
+       {
+         alert(window.document.forms[0].elements[i].alt);
+         window.document.forms[0].elements[i].focus();
+         return;
+       }
+       else if (window.document.forms[0].elements[i].Chk==2)
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+     else if(window.document.forms[0].elements[i].Chk==3)
+     {
+       if(window.document.forms[0].elements[i].value!="")
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+   }
+   window.document.forms[0].submit();
+   return true;
+ }
+ function NotNumber(Field)
+ {
+   var j = 0;
+   var k = 0;
+   for (var i=0; i<Field.length; i++)
+   {
+      var ch=Field.substring(i,i+1);
+      if((ch>="0")&&(ch<="9")) 
+      {
+        j=0;
+      }
+      else if(ch==".") 
+      {
+        k++;
+      }
+      else
+      {
+        j=1;
+        break;
+      }
+   }
+   if ((j==0)&&(k<2))
+   {
+      return false;
+   }
+   else
+   {
+      return true;
+   }
+ }
+ function openwindown(page)
+ {
+    window.open(page,"newuser","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=700,height=400,left=100,top=150");
+ }
+</SCRIPT>
+ 
+
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+<script Language="JavaScript" src="../pub_Calendar.js"></script>
+
+<html>
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+</head>
+<link rel="stylesheet" href="css/style.css">
+<title></title>
+<body bgcolor="#B9D3EE">
+<center>
+        
+    <form name="form" action="Quote_SV.ASP" method="post">
+    <input type="hidden" name="p_Enquireno" value="100020101347993">
+    <input type="hidden" name="p_QuoteNo" value="47792010146980">
+    <input type="hidden" name="p_Projno" value="1000201001251591">
+    <input type="hidden" name="p_opert" value="2">
+    
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+
+    <tr bgcolor="#ffffff"> 
+    <td width="100%" colspan="6" bgcolor="#ffffff" align="center" height="30"><b><h2><font color="#0070C0">采购计划文档</b></td></tr>
+    <tr bgcolor="#ffffff"> 
+    <td width="100%" colspan="6" bgcolor="#ffffff" align="center" height="22"><center><font color="blue"><b><img src="../images/warning.gif" WIDTH="15" HEIGHT="15">&nbsp;请不要在输入金额的地方输入单位（如：元、圆），直接输入数字即可。</b></font></center></td></tr>
+    
+</table></td></tr></table>
+
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+
+      <tr>
+      <td colspan=6 align="middle" bgcolor="#99ccff"><B>需求计划1
+      <input type="hidden" name="p_orderno0" value="1000201011133069">
+      <input type="hidden" name="p_ordernum0" value="1">
+      </td>
+      </tr>
+      <tr class=t2> 
+           <td >物资编码</td>
+           <td >W64001005000<br></td>         
+           <td >物资名称</td>
+           <td >晶振(HC-49U-500K-0.005%)<br></td>
+           <td >计量单位</td>
+           <td >个<br></td> 
+           </tr>       
+    
+           <tr bgcolor="#FFFFFF">
+           <td nowrap >单价(元/含税)</td>
+           <td nowrap >543</td>
+           <td nowrap >数量</td>
+           <td nowrap >1</td>
+           <td nowrap >总价(元/含税)</td>
+           <td nowrap >543</td>
+           </tr>
+           <tr bgcolor="#FFFFFF">
+           <td nowrap >运杂费(元/含税)</td>
+           <td nowrap >0</td>
+           <td nowrap >其他费用(元/含税)</td>
+           <td nowrap >0</td>
+           <td nowrap >总计(元/含税)</td>
+           <td nowrap >543</td>
+           </tr>  
+           <tr bgcolor="#FFFFFF">
+           <td nowrap >起始到货期</td>
+           <td nowrap >2010/01/07
+           </td>
+           <td nowrap >结束到货期</td>
+           <td nowrap >2010/01/07</td>
+           <td nowrap ></td>
+           <td nowrap ></td>
+           </td>
+           </tr>                    
+
+    
+   <input type="hidden" name="HBSUM" value="3">
+   
+</table></td></tr></table>
+
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+<tr>
+<td>
+<table cellpadding="3" cellspacing="1" border="0" width="100%">
+
+    <tr bgcolor="#f2f8ff">
+    <td nowrap><a href="javascript:SumNum()">数量合计</a></td>
+    <td>3427</td>
+    <td nowrap>总金额(元)</td><td>121453</td>
+    </tr>
+    
+    <tr bgcolor="#f2f8ff">
+    <td nowrap>报价书标题</td>
+    <td>对200ojk20055100107的报价</td>
+    <td nowrap>报价有效期</td>
+    <td>2010/01/08
+   </td>
+    </tr>
+    <tr bgcolor="#f2f8ff">
+    <td nowrap>报价说明</td>
+    <td colspan="3" style="width:100%"></td>
+    </tr>
+    
+</table></td></tr></table>
+
+    <p Align="center">
+	<input onclick=" javascript:form_back()" type="button" name="TJBJ" value="修改">  
+    <input onclick=" javascript:form_back()" type="button" name="TJBJ" value="返回">  
+    </p>
+    </form>
+    </center>
+    
+</body>
+</html>
+
+    <script Language="JavaScript" src="../pub_Calendar.js"></script>
+    <script language="javascript">
+       function form_subt()
+       { if (form.p_intAmountSum.value=="" || form.p_intAmountSum.value.length==0 || form.p_intAmountSum.value==0)
+             {  
+                 alert("提示信息：\n请输入有效的数据。");
+                return;
+             }
+         else
+             { if ( form.p_strExplain.value.length>200)
+                  { 
+                    alert("提示信息：\n说明文字不能超过200字。");
+                    return;
+                  }
+               else
+                 {  if (confirm("在修改报价前请确定输入的报价内容完全正确。\n按确定按钮提交修改报价，按取消按钮重新修改报价。")==true)
+                       { 
+                       submitonce(form);
+                       CheckAll(); }
+                    else
+                       { return; }
+                 }
+             }
+       }
+     function form_back()
+     {  window.location="Order_wbxjfa_list.html";
+     }
+    </script>
+    <script language="javascript">
+       function get_jsz(k)      //失去焦点时计算总价，总金额
+       {var v_je=0;
+        var v_zje=0;
+        if (form.p_intQty.length>=2)
+           { if( form.p_intPrice[k].value=="" || form.p_intPrice[k].value.length==0)
+                   form.p_intPrice[k].value=0;
+              if( form.p_intQty[k].value=="" || form.p_intQty[k].value.length==0)
+                   form.p_intQty[k].value=0;
+              // if( parseFloat(form.p_intQty[k].value) > parseFloat(p_order_qut[k].value))
+              //  {alert("报价数量不能大于订单数量");
+              //   form.p_intQty[k].focus();
+              //  }
+              if( form.p_intFree[k].value=="" || form.p_intFree[k].value.length==0)
+                form.p_intFree[k].value=0;
+              if( form.p_intOther[k].value=="" || form.p_intOther[k].value.length==0)
+                form.p_intOther[k].value=0;
+              form.p_intAmount[k].value=form.p_intPrice[k].value*form.p_intQty[k].value;
+              form.p_intAll[k].value=parseFloat(form.p_intAmount[k].value)+parseFloat(form.p_intFree[k].value)+parseFloat(form.p_intOther[k].value);
+              for (i=0;i<form.p_intQty.length;i++)
+                 if (form.p_intAll[i].value=="" || form.p_intAll[i].value.length==0 )
+                     v_je=0;
+                 else
+                    { v_je=form.p_intAll[i].value;
+                      v_zje=parseFloat(v_zje)+parseFloat(v_je);
+                    }
+              form.p_intAmountSum.value=v_zje;
+            }
+         else
+            { if( form.p_intPrice.value=="" || form.p_intPrice.value.length==0)
+                form.p_intPrice.value=0;
+              if( form.p_intQty.value=="" || form.p_intQty.value.length==0)
+                form.p_intQty.value=0;
+             // if( parseFloat(form.p_intQty.value) > parseFloat(p_order_qut.value))
+             //   {alert("报价数量不能大于订单数量");
+             //    form.p_intQty.focus();
+             //   }
+              if( form.p_intFree.value=="" || form.p_intFree.value.length==0)
+                form.p_intFree.value=0;
+              if( form.p_intOther.value=="" || form.p_intOther.value.length==0)
+                form.p_intOther.value=0;
+              form.p_intAmount.value=form.p_intPrice.value*form.p_intQty.value;
+              form.p_intAll.value=parseFloat(form.p_intAmount.value)+parseFloat(form.p_intFree.value)+parseFloat(form.p_intOther.value);
+              form.p_intAmountSum.value=form.p_intAll.value;
+            }
+       }
+       function clearzero(p_item,k)
+       { if (p_item.length>=1)
+            {
+              if (p_item[k].value==0)
+                  p_item[k].value="";
+            }
+         else
+            { if (p_item.value==0)
+                 p_item.value="";
+            }
+       }
+       function SumNum()
+       {var v_sl=0;
+        var v_zsl=0;
+        if (form.p_intQty.length>=2)
+           {for (i=0;i<form.p_intQty.length;i++)
+                 if (form.p_intQty[i].value=="" || form.p_intQty[i].value.length==0 )
+                     v_sl=0;
+                 else
+                    { v_sl=form.p_intQty[i].value;
+                      v_zsl=parseFloat(v_zsl)+parseFloat(v_sl);
+                    }
+              form.p_intAmountQty.value=v_zsl;
+            }
+         else
+            {
+              form.p_intAmountQty.value=form.p_intQty.value;
+            }
+       }
+       function ClearNum()
+       { form.p_intAmountQty.value="";  }
+   </script>

@@ -1,0 +1,394 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML><HEAD><TITLE>未通过的采购计划</TITLE>
+<SCRIPT language=JAVASCRIPT> 
+function chck()
+{  var  count=0;
+   for (var i=0;i<form.length;i++)
+   if ((form[i].type == "radio") && (form[i].checked))
+   count++; 
+   if (count==0)
+      { return false;  }
+   else
+      { return true;   }
+}
+ 
+function Add(SourceList,TargetList)
+	{
+	var nIndex = SourceList.selectedIndex;
+ 	var nCount = 0;  
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+	for (i=0;i<SourceList.length;i++)
+  {
+     if (SourceList.options(i).selected==true)
+     {    
+         if (inSouceList(SourceList.options(i).value,TargetList)==false)
+         {
+          	var objSelected = new Option(SourceList[i].text, SourceList[i].value);
+           	TargetList.options[TargetList.length] = objSelected;
+         }
+     }     
+	}
+  for (var i=0;i<TargetList.options.length;i++)
+  {
+    TargetList.options(i).selected=true;
+  }
+	if(navigator.appName=="Netscape")
+	{
+		history.go(0)
+	}
+ }
+ function inSouceList(SourceListOption,TargetList)
+ {
+ 	  for (i=0;i<TargetList.length;i++)
+    {
+	     if (TargetList.options[i].value==SourceListOption)
+       {
+        	 return true;
+       }
+    }   
+    return false;
+ }  
+function Remove(SelectList)
+	{
+	var nIndex = SelectList.selectedIndex;
+ 	var nCount = 0;
+	if (nIndex == -1)
+	{
+		// Process continue only if at least one item selected
+		//alert("请先选择一项!");
+		return;
+	}
+  while(nCount<SelectList.length)
+  {
+       if (SelectList.options(nCount).selected==true)
+       {
+       	 SelectList.options[nCount] = null;
+       }
+       else
+       {
+         nCount++;
+       }
+  }
+	if(navigator.appName=="Netscape")
+		{
+		history.go(0)
+		}	
+	}
+ function enter()
+ {
+   var srcEle = window.event.srcElement;
+   var tmp;   
+   tmp = window.showModalDialog("pub_pub.Dialog_Date?vc_input=" + srcEle.value);
+     if ( tmp.indexOf("/") != -1)
+     {
+        srcEle.value = tmp;
+     }
+     return;
+ }   
+ function check_num()
+ {
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+ function check_blank()
+ {
+ 	 if (window.event.keyCode < 48)
+	 {
+	 		window.event.returnValue = false;
+	 }
+ }
+  
+function check_num_dot()
+{
+ 	 if (window.event.keyCode > 57 || window.event.keyCode < 46)
+	 {
+  		 window.event.returnValue = false;   
+	 }
+   else
+   {
+      if(window.event.keyCode==47)
+      {
+    		 window.event.returnValue = false;
+      }
+      if(window.event.keyCode==46)
+      {
+         if (window.event.srcElement.value.indexOf(".")!=-1)
+         {
+        		 window.event.returnValue = false;
+         }
+      }   
+    }  
+ }
+  
+ function submitonce(theform)
+ {
+ if (document.all || document.getElementById)
+ {
+ for (i=0;i<theform.length;i++)
+ {
+ var tempobj = theform.elements[i]
+ if (tempobj.type.toLowerCase() =="button")
+ tempobj.disabled = true
+ }
+ }
+ }
+ 
+  function CheckAll() 
+ {
+   var i = 0;
+   for (i=0; i < window.document.forms[0].elements.length; i++) 
+   {
+     if(window.document.forms[0].elements[i].Chk<3) 
+     {
+       if(window.document.forms[0].elements[i].value=="")
+       {
+         alert(window.document.forms[0].elements[i].alt);
+         window.document.forms[0].elements[i].focus();
+         return;
+       }
+       else if (window.document.forms[0].elements[i].Chk==2)
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+     else if(window.document.forms[0].elements[i].Chk==3)
+     {
+       if(window.document.forms[0].elements[i].value!="")
+       {
+         if (NotNumber(window.document.forms[0].elements[i].value))
+         {
+            alert("提示信息：\n不是有效的数字，请重新输入。");
+            window.document.forms[0].elements[i].focus();
+            return;
+         }
+       }
+     }
+   }
+   window.document.forms[0].submit();
+   return true;
+ }
+ function NotNumber(Field)
+ {
+   var j = 0;
+   var k = 0;
+   for (var i=0; i<Field.length; i++)
+   {
+      var ch=Field.substring(i,i+1);
+      if((ch>="0")&&(ch<="9")) 
+      {
+        j=0;
+      }
+      else if(ch==".") 
+      {
+        k++;
+      }
+      else
+      {
+        j=1;
+        break;
+      }
+   }
+   if ((j==0)&&(k<2))
+   {
+      return false;
+   }
+   else
+   {
+      return true;
+   }
+ }
+ function openwindown(page)
+ {
+    window.open(page,"newuser","toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=700,height=400,left=100,top=150");
+ }
+</SCRIPT>
+
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId><LINK 
+href="css/style.css" rel=stylesheet>
+<SCRIPT language=javascript>
+		 function req()
+      {
+      	window.document.location="报价历史记录.HTML";
+		}
+      function submit_form(theForm,i)
+      {
+      	window.document.location="报价历史记录.HTML";
+       /* var count=0;
+        for (var k = 0; k < theForm.length; k++)
+        if ((theForm[k].type == "checkbox") && (theForm[k].checked))
+        count++;
+        if (count==0)
+        {
+        alert("提示信息：\n请选择需求计划。");
+        return;
+        }
+        if (i==4)
+        {
+          form.action="";
+        }
+        
+        if (i==5)
+		{	if(count>1) 
+			{ alert("提示信息：\n只能对单条记录进行操作。");}
+			else
+			{ 
+			form.action="Order_wtb_upddate.asp";        
+			form.submit();
+			}      
+		}
+        
+        if (i==2)
+        {
+          form.action="../Project/Project_form.asp";
+        }
+        if (i==3)
+        {
+          form.action="Order_wtb_not.asp";
+        }
+         document.form.p_type.value=i;
+         window.document.form.submit();
+         return true;
+		 */
+      }
+       function select_check(theForm)
+      {
+        var count=0;
+        for (var k = 0; k < theForm.length; k++)
+        if ((theForm[k].type == "checkbox") && (theForm[k].checked))
+        count++;
+         if (count==0)
+         {
+            for (k = 0; k < theForm.length; k++)
+            {
+              if (theForm[k].type == "checkbox")
+              theForm[k].checked=true;
+            }
+         }
+         else
+         {
+            for (k = 0; k < theForm.length; k++)
+            {
+              if (theForm[k].type == "checkbox")
+              theForm[k].checked=false;
+            }
+         }
+      }
+      function submit_form_cx()
+      {
+        form.action="Order_wbxjfa_list.asp";
+        window.document.form.submit();
+      }
+</SCRIPT>
+</HEAD>
+<BODY>
+<CENTER>
+<FORM name=form action="" method=post>
+<H2><FONT color=#0070c0>未通过的采购计划</FONT></H2>
+<TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff 
+borderColorLight=#ffffff border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD noWrap align=middle>物资编码：<INPUT maxLength=15 size=15 
+            name=p_prodno>&nbsp;&nbsp; 物资名称：<INPUT maxLength=15 size=15 
+            name=p_prodname>&nbsp;&nbsp; 每页显示个数： <SELECT name=p_pagesize> 
+              <OPTION value=10 selected>10</OPTION> <OPTION value=20>20</OPTION> 
+              <OPTION value=30>30</OPTION> <OPTION value=50>50</OPTION> <OPTION 
+              value=100>100</OPTION> <OPTION value=4>全部</OPTION></SELECT> 状态： 
+            <SELECT name=p_orderby> <OPTION value="" selected>驳回</OPTION> 
+               <OPTION 
+            value=2>废弃</OPTION></SELECT> <INPUT id=button2 onclick=submit_form_cx() type=button value=查询 name=button2></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE><FORM 
+name="form1" action="" method="Post">
+<CENTER><FONT color=#000064>◆&nbsp;</FONT><FONT color=#000064>首页 
+上一页</FONT>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Order/Order_Wbxjfa_List.asp?p_type=0&amp;p_prodno=&amp;p_pagesize=&amp;p_ftype=&amp;p_orderby=&amp;page=2"><FONT 
+color=#0000be>下一页</FONT></A>&nbsp;<A 
+href="http://169.254.158.100/zzdl/Order/Order_Wbxjfa_List.asp?p_type=0&amp;p_prodno=&amp;p_pagesize=&amp;p_ftype=&amp;p_orderby=&amp;page=4"><FONT 
+color=#0000be>尾页</FONT></A><FONT color=#000064>&nbsp;共 35 个需求计划 每页10 
+个需求计划</FONT><FONT color=#000064>&nbsp;页次:<FONT 
+color=blue>1</FONT>/4页</FONT><FONT color=#000064>&nbsp;◆&nbsp;</FONT> 
+<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0 width="100%" 
+bgColor=#336699 borderColorLight=#006699 border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR class=t1>
+          <TD noWrap align=middle>选择</TD>
+          <TD noWrap align=middle>序号</TD>
+          <TD noWrap align=middle>物资代码</TD>
+          <TD noWrap align=middle>物资名称</TD>
+		   <TD noWrap align=middle>需求计划号</TD>
+          <TD noWrap align=middle>数量</TD>
+          <TD noWrap align=middle>审批人</TD>
+         <TD noWrap align=middle>审批状态</TD>
+
+		</TR>
+        <TR class=t2>
+          <TD align=middle><INPUT type=checkbox value=1000201011133245 
+            name=p_orderno></TD>
+          <TD align=middle>1</TD>
+          <TD align=middle>W64001005000<BR></TD>
+          <TD>晶振(HC-49U-500K-0.005%)<BR></TD>
+		  <TD>111111<BR></TD>
+          <TD align=right>22<BR></TD>
+			<TD align=right>计划部长<BR></TD>
+          <TD align=right>废弃<BR></TD>
+        <TR class=t2>
+          <TD align=middle><INPUT type=checkbox value=1000201011133190 
+            name=p_orderno></TD>
+          <TD align=middle>2</TD>
+          <TD align=middle>W64001005000<BR></TD>
+          <TD>晶振(HC-49U-500K-0.005%)<BR></TD>
+		   <TD>111111<BR></TD>
+          <TD align=right>1<BR></TD>
+          <TD align=right>计划部长<BR></TD>
+          <TD align=right>驳回<BR></TD>
+		   
+          </TR>
+        <TR class=t2>
+          <TD align=middle><INPUT type=checkbox value=1000201011133221 
+            name=p_orderno></TD>
+          <TD align=middle>3</TD>
+          <TD align=middle>W64001005000<BR></TD>
+          <TD>晶振(HC-49U-500K-0.005%)<BR></TD>
+		   <TD>4353463<BR></TD>
+          <TD align=right>10<BR></TD>
+        <TD align=right>财务<BR></TD>
+         <TD align=right>废弃<BR></TD>
+          </TR>
+        <TR class=t2>
+          <TD align=middle><INPUT type=checkbox value=1000201011133199 
+            name=p_orderno></TD>
+          <TD align=middle>10</TD>
+          <TD align=middle>W65000400101<BR></TD>
+          <TD>CMOS电路(CD4001BCN)<BR></TD>
+		   <TD>5436456<BR></TD>
+          <TD align=right>10086<BR></TD>
+           <TD align=right>财务<BR></TD>
+          <TD align=right>驳回<BR></TD>
+          </TR></TBODY></TABLE></TD></TR></TBODY></TABLE><INPUT type=hidden value=0 
+name=p_type> 
+<P align=center><INPUT onclick=select_check(document.form) type=button value=全选/取消> 
+<INPUT onclick="req();" type=button value=详情 name=upd> 
+</P></FORM></CENTER></CENTER></BODY></HTML>

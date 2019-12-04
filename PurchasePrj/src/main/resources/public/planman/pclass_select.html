@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<HEAD>
+	<TITLE>选择物资</TITLE>
+	<META http-equiv=Content-Language content=zh-cn>
+	<META http-equiv=Content-Type content="text/html; charset=gb2312">
+	<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
+	<META content=FrontPage.Editor.Document name=ProgId>
+	<LINK href="css/style.css" rel=stylesheet>
+	<script src="jquery-easyui-1.6.3/jquery.min.js" charset="utf-8"></script>
+	<!-- easyui依赖的js -->
+	<script src="jquery-easyui-1.6.3/jquery.easyui.min.js" charset="utf-8"></script>
+	<!--引用对应的语言包 -->
+	<script src="jquery-easyui-1.6.3/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
+	<!-- 引用图标样式 -->
+	<link rel="stylesheet" href="jquery-easyui-1.6.3/themes/icon.css">
+	<!-- 引用默认的样式 -->
+	<link rel="stylesheet" href="jquery-easyui-1.6.3/themes/default/easyui.css">
+	<script type="text/javascript">
+	//通过js创建easyui控件 通过url属性 远程加载内容
+	$(function(){ 
+		
+		//模糊查询
+		$("#query").click(function(){
+			
+			$("#dg").datagrid({
+				queryParams: {
+					name:$("#sname").val()
+					
+				}
+			});
+			
+		});
+		
+		//初始化数据表格
+		$("#dg").datagrid({
+			toolbar: [{
+				iconCls: 'icon-add',
+				text:"添加学生",
+				handler: function(){
+					//alert('添加学生')
+					//打开一个新建窗口
+					$("#addWindow").dialog({
+						title:"新建菜单",
+						iconCls:"icon-add",
+						width:'400px',
+					    height:'230px',
+						buttons:[{
+							text:'保存',
+							iconCls:'icon-save',
+							handler:function(){
+								//alert("ajax保存成功");
+								var name=$("#name").val();
+								var birthday=$("#birthday").val();
+								var obj = document.getElementsByName("sex");
+								var sex;
+							    for(var i=0; i<obj.length; i ++){
+							        if(obj[i].checked){
+							            sex=obj[i].value;	
+							        }
+							    }
+								var hobby=$("#hobby").val();
+								//$("#loves").tagbox("getValues");
+								//alert($("#loves").tagbox("getValues"));
+								$.ajax({
+									   method:'post',
+									   url:'/addStu',
+									   data:{
+										   name:name,
+										   birthday:birthday,
+										   sex:sex,
+										   hobby:hobby
+									   },
+									   success:function(data){
+										   alert(data);
+										   $("#addWindow").dialog({ 
+												closed: true 
+											})
+										  //重新加载数据表格
+										  $("#dg").datagrid("reload");
+									   }
+								   });
+								
+							}
+						}]
+					});
+				}
+			}
+			]
+			,
+			 columns:[
+				 [
+					 {
+						 title:'操作',
+						 width:50,
+						 field:'cz',
+						 checkbox:true
+					 },
+					 {
+						 title:'名称',
+						 field:'material_name',
+						 width:100,
+						 align:'center'
+					 },
+					 {
+						 title:'单位',
+						 field:'material_unit',
+						 width:100,
+						 align:'center'
+					 }
+				 ]
+			 ],
+			 url:'/materials',
+			 method:'get',
+			 pagination:true,//分页工具
+			 pageSize:2,//页面显示几条
+			 pageNumber:1,//显示第一页
+			 pageList:[2,4,6,8]
+			
+		 });
+		 
+	})
+	</script>
+</HEAD>
+<BODY>
+ <CENTER>
+  <FORM name=form action=Order_newform.asp method=post encType=multipart/form-data>
+   <TABLE width="90%" align=center border=0>
+      <TBODY>
+       <TR>
+         <TD align=middle><FONT color=red>选择物资</FONT>====&gt;录入需求计划====&gt;需求计划确认</TD>
+       </TR>
+      </TBODY>
+    </TABLE>
+    <TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff borderColorLight=#ffffff border=0>
+      <TBODY>
+       <tr>
+  	       <td>
+		     <div align="center">
+				<FONT color=#000064>◆&nbsp;</FONT><FONT color=#000064>首页 上一页</FONT>&nbsp;
+				<A href="#"><FONT color=#0000be>下一页</FONT></A>&nbsp;
+				<A href="#"><FONT color=#0000be>尾页</FONT></A>
+				<FONT color=#000064>&nbsp;共 40 个需求计划 每页10 个需求计划</FONT>
+				<FONT color=#000064>&nbsp;页次:<FONT color=blue>1</FONT>/4页</FONT>
+				<FONT color=#000064>&nbsp;◆&nbsp;</FONT> 
+		     </div>
+	      </td>
+       </tr>
+       <tr>
+  	    <td>
+    	 <div>
+        	<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+                <tr>
+                  <td>
+                    <table cellpadding="3" cellspacing="1" border="0" width="100%" id="table1">
+                     
+                         <tr  class="T1">
+                          <td nowrap align="center">选择</td>
+                          <td nowrap align="center">序号</td>
+                          <td nowrap align="center">产品编码</td>
+                          <td nowrap align="center">产品名称</td>
+                         </tr>
+                
+                         <tr class="T2" >
+                          <td align=center><input type="checkbox" name="p_orderno" value="1000201011133305" checked="checked"></td>
+                          <td >1</td>
+                          <td >W64001005000<br></td>
+                          <td >晶振(HC-49U-500K-0.005%)<br></td>
+                         </tr>
+                    </table>
+                  </td>
+                </tr>
+             </TABLE>
+             <div align="center"> 请先选择物资，然后点击：<A href="javascript:window.document.location='Order_newform.htm'"><FONT size=3><U>下一步</U></div>    
+         </div>
+       </td>
+     </tr>
+      <TR>
+        <TD>
+          <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+            <TBODY>
+              <!-- datagrid展示数据 -->
+             <table id="dg" style="width:600px;height:250px">
+                                产品类型：<input type="text" id="sname" /><a class="easyui-linkbutton" id="query" data-options="iconCls:'icon-search',text:'查询'"></a>
+             </table>
+            </TBODY>
+          </TABLE>
+        </TD>
+       </TR>
+      </TBODY>
+     </TABLE>
+   </FORM>
+  </CENTER>
+ </BODY>
+</html>

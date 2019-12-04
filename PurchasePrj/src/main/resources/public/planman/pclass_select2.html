@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>选择物资</TITLE>
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId><LINK 
+href="css/style.css" rel=stylesheet>
+
+<SCRIPT language=JAVASCRIPT>
+ function delCheckbox(){
+  	var objCheckbox = document.getElementsByName("p_orderno");
+	var count=0;
+	for(var i=0;i<objCheckbox.length;i++){
+		if(objCheckbox[i].checked){
+			count++;
+			var obj=document.getElementById("table1");
+			obj.deleteRow(i+1);
+		}
+	}
+	if(count==0){
+		alert("请选择一条要删除的数据。");
+	}
+  }
+  
+  function productX() 
+  {
+  		window.open("wangyeduihakuang.htm","Canny1","toolbar=0,location=0,status=0,menubar=0,scrollbars=0,width=600,height=440,left=100,top=60");
+      
+  }
+</SCRIPT>
+
+<FORM name=form action=Order_newform.asp method=post 
+encType=multipart/form-data></HEAD>
+<BODY>
+<CENTER>
+<TABLE width="90%" align=center border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle><FONT 
+  color=red>选择物资</FONT>====&gt;录入需求计划====&gt;需求计划确认</TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#ffffff 
+borderColorLight=#ffffff border=0>
+  <TBODY>
+  <tr>
+  	<td>
+		<div align="center">
+			<FONT color=#000064>◆&nbsp;</FONT><FONT color=#000064>首页 
+			上一页</FONT>&nbsp;<A 
+			href="#"><FONT 
+			color=#0000be>下一页</FONT></A>&nbsp;<A 
+			href="#"><FONT 
+			color=#0000be>尾页</FONT></A><FONT color=#000064>&nbsp;共 40 个需求计划 每页10 
+			个需求计划</FONT><FONT color=#000064>&nbsp;页次:<FONT 
+			color=blue>1</FONT>/4页</FONT><FONT color=#000064>&nbsp;◆&nbsp;</FONT> 
+		</div>
+	</td>
+  </tr>
+  <tr>
+  	<td>
+    	<div>
+        	<TABLE style="LINE-HEIGHT: 30px" cellSpacing=1 cellPadding=0     width="100%"  bgColor=#336699 borderColorLight=#006699 border=0>
+                <tr>
+                <td>
+                <table cellpadding="3" cellspacing="1" border="0" width="100%" id="table1">
+                
+                <center>
+                <form name=form action="Order_wtb_do.asp" method="post">
+                    <tr  class="t1">
+                    <td nowrap align="center">选择</td>
+                    <td nowrap align="center">序号</td>
+                    <td nowrap align="center">产品编码</td>
+                    <td nowrap align="center">产品名称</td>
+                    </tr>
+                
+                    <tr class="t2" >
+                    <td align=center><input type="checkbox" name="p_orderno" value="1000201011133305" checked="checked"></td>
+                    <td >1</td>
+                    <td >W64001005000<br></td>
+                    
+                    <td >晶振(HC-49U-500K-0.005%)<br></td>
+                    
+                     </tr>
+                
+                    <tr class="t2" >
+                    <td align=center><input type="checkbox" name="p_orderno" value="1000201011133272"  checked="checked"></td>
+                    <td >2</td>
+                    <td >W64001005000<br></td>
+                    
+                    <td >晶振(HC-49U-500K-0.005%)<br></td>
+                    
+                     
+                    </tr>
+                
+                    <tr class="t2" >
+                    <td align=center><input type="checkbox" name="p_orderno" value="1000201011133262" checked="checked"></td>
+                    <td >3</td>
+                    <td >W64001005000<br></td>
+                    
+                    <td >晶振(HC-49U-500K-0.005%)<br></td>
+                    
+                    </tr>
+                
+                </table></td></tr></table>
+                <div align="center">
+               请先选择物资，然后点击：<A 
+            href="javascript:window.document.location='Order_newform.htm'"><FONT 
+            size=3><U>下一步</U>
+			</div>
+                </form>
+                
+        </div>
+    </td>
+  </tr>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=1 cellPadding=3 width="100%" border=0>
+        <TBODY>
+       
+        <TR bgColor=#99ccff>
+          <TD colSpan=2><A href="javascript: productX()"><B>晶振 
+            W64</B></A> </TD></TR>
+        <TR bgColor=#ffffff>
+          <TD>　 <A href="#">【晶振系列】【W640】</A> </TD>
+          <TD><BR></TD></TR>
+        <TR bgColor=#99ccff>
+          <TD colSpan=2><A href="#"><B>逻辑集成电路 
+            W65</B></A> </TD></TR>
+        <TR bgColor=#ffffff>
+          <TD>　 <A href="#">【CMOS电路】【W650】</A> 
+</TD>
+          <TD>　 <A href="#">【高速CMOS电路】【W651】</A> 
+          </TD></TR>
+        <TR bgColor=#ffffff>
+          <TD>　 <A href="#">【TTL电路】【W652】</A> </TD>
+          <TD>　 <A href="#">【其它逻辑电路】【W659】</A> 
+        </TD></TR>
+        <TR bgColor=#99ccff>
+          <TD colSpan=2><A href="#"><B>线性集成电路 
+            W66</B></A> </TD></TR>
+        <TR bgColor=#ffffff>
+          <TD>　 <A href="#">【放大器】【W660】</A> </TD>
+          <TD>　 <A href="#">【比较器】【W661】</A> 
+</TD></TR>
+        <TR bgColor=#ffffff>
+          <TD>　 <A href="#">【电源系列】【W662】</A> </TD>
+          <TD>　 <A href="#">【模拟电路】【W663】</A> 
+        </TD></TR>
+        <TR bgColor=#ffffff>
+          <TD>　 <A href="#">【转换器】【W664】</A> </TD>
+          <TD>　 <A href="#">【其它线性电路】【W669】</A> 
+        </TD></TR>
+        <TR bgColor=#99ccff>
+          <TD colSpan=2><A href="#)"><B>CPU及外围电路 
+            W67</B></A> </TD></TR>
+        <TR bgColor=#ffffff>
+          <TD>　 <A href="'#">【CPU电路】【W670】</A> </TD>
+          <TD>　 <A href="#">【微控电路】【W671】</A> 
+        </TD></TR>
+        <TR bgColor=#ffffff>
+          <TD>　 <A href="#">【接口电路】【W672】</A> </TD>
+          <TD>　 <A href="#">【时间电路】【W673】</A> 
+        </TD></TR>
+        <TR bgColor=#ffffff>
+          <TD>　 <A href="#">【存储器】【W674】</A> </TD>
+          <TD>　 <A href="#">【可编程逻辑电路】【W675】</A> 
+          </TD></TR>
+        </TBODY></TABLE></TD></TR></TBODY></TABLE></FORM></CENTER></BODY></HTML>
